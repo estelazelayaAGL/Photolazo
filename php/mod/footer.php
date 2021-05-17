@@ -1,0 +1,33 @@
+ <footer class="container-fluid ">
+        <div class="container">
+                <!-- copyright -->
+                <div class="redesnombre col-xs-12 col-sm-12 col-md-6 col-lg-6 footer1">
+                    <h1>PHOTOLAZO</h1>
+                </div>
+                <div class="redesnombre col-xs-12 col-sm-12 col-md-6 col-lg-6 footer1">
+                    <ul class="iconos-social ">
+                        <li><a href="#"><i class="fab fa-youtube glyphiconPlus"></i></a></li>
+                        <li><a href="#"><i class="fab fa-facebook glyphiconPlus "></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter glyphiconPlus "></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram glyphiconPlus"></i></a></li>
+                    </ul>
+            </div>
+        </div>
+            <!-- POLITICAS -->
+            <div class="container ft1 footer2">
+                <ul>
+                    <li>Información Legal |</li>
+                    <li>Política de Cookies |</li>
+                    <li>Condiciones de venta |</li>
+                    <li>Política de privacidad |</li>
+                </ul>
+            </div>
+            <div class="footer2">
+                <ul>
+                    <li>Copyright &#169; 2020</li>
+                    <li>PhotoLazo</li>
+                </ul>
+            </div>
+
+        
+    </footer>

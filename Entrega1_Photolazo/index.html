@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title></title>
+
+    <!-- CSS PROPIO -->
+    <link rel="stylesheet" href="./css/estilos.css">
+
+    <!-- BOOTSTRAP  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+        
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- Versión compilada y minimizada del CSS de Bootstrap -->
+    <link rel="stylesheet" href="./css/bootstrap/css/bootstrap.min.css">
+</head>
+
+
+<body>
+    <!-- SECCION CABECERA -->
+    <header class="container-fluid">
+        <div class="container menu">
+            <!--Crea un barra top. Introduce el tlf, email a la izquierda e iconos sociales a la derecha(barra encima del menú, oculta para movil -->
+            <nav class="navbar top row topBarra ">
+                <div class="topBarradiv col-xs-12 col-sm-12 col-md-12">
+                    <ul class="iconos-social-top">
+                        <li>
+                            <a id="registrarse" href="">Registrarse<img src="./imagenes/imgMaquetacion/createaccount.png" alt=""></a>
+                        </li>
+                        <li>
+                            <a id="login" href="">Entrar<img src="./imagenes/imgMaquetacion/login.png" alt=""></a>
+                        </li>
+                        <li>
+                            <a id="cesta" href="">Cesta<img src="./imagenes/imgMaquetacion/cesta.png" alt=""></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="row cabeceraBlanca">
+                <nav class="navbar navbar-expand-md  navbar-light  row navLogo col-xs-12 col-sm-12 col-md-12">
+                    <div class="col-xs-10 col-sm-10 col-md-6"><a class="" href="#">
+                            <img src="./imagenes/imgMaquetacion/logo.png" alt="Logo" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-0"> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                    </div>
+                    <div class="col-xs-0 col-sm-0 col-md-6">
+                        <div
+                            class="cajabuscar col-xs-0 col-sm-0 col-md-8 d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block d-lg-none d-xl-block">
+                            <form method="get" id="buscarform" class="">
+                                <div class="input-group">
+                                    <input type="text" id="buscar" class="form-control" placeholder="Search">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+
+                <nav class="navbar navbar-expand-md  col-xs-12 col-sm-12 col-md-12">
+                    <div class="collapse navbar-collapse barratema" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Inicio <img src="./imagenes/imgMaquetacion/inicio.png" alt=""></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Productos <img src="./imagenes/imgMaquetacion/producto.png" alt="">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Cámaras</a>
+                                    <a class="dropdown-item" href="#">Objetivos</a>
+                                    <a class="dropdown-item" href="#">Iluminación-Estudio</a>
+                                    <a class="dropdown-item" href="#">Libros</a>
+                                    <a class="dropdown-item" href="#">Mochilas</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Otros accesorios</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Cursos <img src="./imagenes/imgMaquetacion/cursos.png" alt=""></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Blog <img src="./imagenes/imgMaquetacion/blog.png" alt=""></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Recursos <img src="./imagenes/imgMaquetacion/recursos.png" alt=""></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contacto <img src="./imagenes/imgMaquetacion/contacto.png" alt=""></a>
+                            </li>
+                        </ul>
+                        <!-- <form class="form-inline my-2 my-lg-0 d-block d-sm-none">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form> -->
+
+                        <div class="cajabuscar form-inline my-2 my-lg-0 d-block d-sm-none">
+                            <form method="get" id="buscarform">
+                                <div class="input-group">
+                                    <input type="text" id="buscar" class="form-control" placeholder="Search">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </nav>
+
+
+                <!-- Slider - Carrusel-->
+                <div class="container" id="titulo" id="slider" class="row">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                </ol>
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" id="item-1">
+                                    <div class="item active">
+                                        <img src="./imagenes/imgMaquetacion/banner1.png" alt="" style="width:100%;">
+                                    </div>
+
+                                    <div class="item" id="item-2">
+                                        <img src="./imagenes/imgMaquetacion/banner2.PNG" alt="" style="width:100%;">
+                                        <div class="carousel-caption">
+                                        </div>
+                                    </div>
+
+                                    <div class="item" id="item-3">
+                                        <img src="./imagenes/imgMaquetacion/banner3.png" alt="" style="width:100%;">
+                                        <div class="carousel-caption">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!---	Incluye un breadcrumb que indique la sección actual-->
+                <div class="container col-xs-12 col-sm-12 col-md-12">
+                    <div class="">
+                        <ol class="breadcrumb">
+                            <li><a href="#home">Home /</a></li>
+                            
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- Termina el header -->
+    </header>
+
+    <section class="container-fluid">
+        <!-- ENCABEZADO -->
+        <div class="container seccion ">
+            <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
+                <h1>¡Bienvenidos PhotoLazeros!</h1>
+                <p>Si estas aquí es porque seguro sabes de fotografía, o simplemente quieres
+                    aprender y conocer un poco más este mundo. Si es así, déjame decirte que estás
+                    en el lugar correcto.
+                    Para PhotoLazo, los protagonistas son todas las personas que quieren ir un paso
+                    más allá en sus vidas, apostar por sí mismas y realizarse a través de lo que
+                    les apasiona: La fotografía.
+
+                    Me gustaría ponerte en contexto para que entiendas un poco más de qué se
+                    trata este proyecto.
+
+                    Como ya habrás visto, tenemos muchos materiales fotográficos a la
+                    venta, incluyendo cursos de fotografía en distintos niveles. ¡Pero todo
+                    eso solo es la punta del Iceberg! Nuestro objetivo principal es
+                    que podamos ir creando cada vez más material gratis, para personas
+                    que no tienen la oportunidad de pagar un curso completo pero que les apasiona
+                    este mundo. Así que, cada vez que compras algo de nuestra tienda,
+                    estás colaborando, no solo para
+                    acceder a más recursos gratis tú mismo, si no que estás ayudando a que esos
+                    recursos sigan creciendo, y el conocimiento llegue a más personas.
+                    Así que ya sabes, nuestra misión es contribuir y mejorar la
+                    vida de muchisimas personas, para que de esta manera puedan tener una puerta
+                    abierta para conseguir dedicarse a lo que les apasiona.
+
+                    Recuerda, tú eres un pilar fundamental en este proyecto, sin ti nada de esto
+                    tendría sentido, eres tú quien dicta el alcance de este proyecto. Así que recuerda,
+                    nos ayudas mucho comprando y compartiendo con tus amigos el sitio web.
+
+                    Recuenda “pasito a pasito por la dirección adecuada se llega a la meta.”
+                </p>
+
+                <span><a class="btn btn-primary btn-lg col-xs-6 col-sm-6 col-md-2" href="#slider">Ver cursos</a></span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container-fluid footer-fluid">
+        <div class="container ">
+            <div class="col-xs-12 col-sm-12 col-md-12" >
+                <!-- copyright -->
+                <div class="redesnombre col-xs-12 col-sm-12 col-md-6 footer1">
+                    <h1>PHOTOLAZO</h1>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 footer1">
+                    <ul class="iconos-social ">
+                        <li><a href="#"><i class="fab fa-youtube glyphiconPlus"></i></a></li>
+                        <li><a href="#"><i class="fab fa-facebook glyphiconPlus "></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter glyphiconPlus "></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram glyphiconPlus"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <!-- POLITICAS -->
+            <div class="ft1 footer2">
+                <ul>
+                    <li>Información Legal |</li>
+                    <li>Política de Cookies |</li>
+                    <li>Condiciones de venta |</li>
+                    <li>Política de privacidad |</li>
+                </ul>
+            </div>
+            <div class="footer2">
+                <ul>
+                    <li>Copyright &#169; 2020</li>
+                    <li>PhotoLazo</li>
+                </ul>
+            </div>
+
+        
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+INSERT INTO categorias VALUES ('CAT001','camaras');
+INSERT INTO categorias VALUES ('CAT002','objetivos');
+INSERT INTO categorias VALUES ('CAT003','iluminacion');
+INSERT INTO categorias VALUES ('CAT004','libros');
+INSERT INTO categorias VALUES ('CAT005','mochilas');
+
+INSERT INTO marcas VALUES ('MRC001','Nikon');
+INSERT INTO marcas VALUES ('MRC002','Canon');
+INSERT INTO marcas VALUES ('MRC003','Fujifilm');
+INSERT INTO marcas VALUES ('MRC004','Olympus');
+INSERT INTO marcas VALUES ('MRC005','Sony');
+INSERT INTO marcas VALUES ('MRC006','TAMRON');
+INSERT INTO marcas VALUES ('MRC007','SIGMA');
+INSERT INTO marcas VALUES ('MRC008','GODOX');
+INSERT INTO marcas VALUES ('MRC009','YONGNUO');
+INSERT INTO marcas VALUES ('MRC010','MANFROTTO');
+INSERT INTO marcas VALUES ('MRC011','SIN MARCA');
+INSERT INTO marcas VALUES ('MRC012','PEAK');
+INSERT INTO marcas VALUES ('MRC013','LOWEPRO');
+
+INSERT INTO productos VALUES ('PRO001','CAT001','MRC001','NIKON D3500',5,400.10,'Cuerpo / Kit: Solo cuerpo Pantalla móvil: No Wifi: No Microfono externo: No Video 4K: No Tamaño de sensor: APS-C',5);
+
+INSERT INTO productos VALUES ('PRO002','CAT001','MRC002','CANON EOS 2000D',5350.50,'Cuerpo / Kit: Solo cuerpo 
+Pantalla móvil: No Wifi: Sí Microfono externo: No Video 4K: No Tamaño de sensor: APS-C',5);
+
+INSERT INTO productos VALUES ('PRO003','CAT001','MRC002','CANON EOS 5D-MARK-IV',20,5254.50,'Cuerpo / Kit: Solo cuerpo Pantalla móvil: No Wifi: Sí Microfono externo: Sí Video 4K: Sí Tamaño de sensor: Sensor completo',4);
+
+INSERT INTO productos VALUES ('PRO004','CAT001','MRC001','NIKON D5600',15,5254.50,'Cuerpo / Kit: Solo cuerpo Pantalla móvil: Sí Wifi: Sí Microfono externo: Sí Video 4K: No Tamaño de sensor: APS-C',3);
+
+INSERT INTO productos VALUES ('PRO005','CAT001','MRC003','FUJI FINEPIX X-E4 SILVER',3,890.90,'Cuerpo / Kit: Sólo cuerpo Pantalla móvil: Sí Video 4K: Sí Wifi: Sí Sensor completo: No',5);
+
+INSERT INTO productos VALUES ('PRO006','CAT001','MRC001','NIKON Z7',2,500,'Cuerpo / Kit: Sólo cuerpo Micrófono externo: Sí Pantalla móvil: Sí Video 4K: Sí Wifi: Sí Sensor completo: Sí',5);
+
+INSERT INTO productos VALUES ('PRO007','CAT001','MRC002','CANON EOS R',6,1760.60,'Cuerpo / Kit: Sólo cuerpo
+Micrófono externo: Sí
+Pantalla móvil: Sí
+Video 4K: Sí
+Wifi: Sí
+Sensor completo: Sí',4);
+
+
+INSERT INTO productos VALUES ('PRO008','CAT002','MRC006','TAMRON AF 17-35',2,1349.50,'Focal: Angular - Tele
+Macro: No
+Descentrable: No',5);
+
+INSERT INTO productos VALUES ('PRO009','CAT002','MRC006','TAMRON 18-400mm F3.5-6.3 Di II VC HLD-NIKON',4,555.55,'Lente con montura F / formato DX Pasa de un gran angular a un ultratelefoto 18-400mm Ideal para paisaje, arquitectura, deportes, aves, macro... Motor de regulación de torsión HLD para autoenfoque Construcción externa resistente a la humedad El primer ultra teleobjetivo zoom todo en uno del mundo',4);
+
+
+INSERT INTO productos VALUES ('PRO010','CAT002','MRC002','OBJETIVO CANON EF 100/2.8 L IS USM MACRO',3,950.50,'Focal: Fijo Macro: Sí Descentrable: No',5);
+
+INSERT INTO productos VALUES ('PRO011','CAT002','MRC001','NIKON AFS 70-200mm f2.8E FL ED VR',1,2763.53,'F-Mount Lens / FX Format Rango de apertura: f / 2.8 a f / 22 Seis elementos de dispersión extra-baja Elementos de Fluorita e HRI Recubrimiento Nano Crystal & Super Integrated Elementos frontales y traseros revestidos de flúor Silent Wave Motor y MF Override Estabilización de imagen',5);
+
+INSERT INTO productos VALUES ('PRO012','CAT002','MRC007','SIGMA 16MM f/1.4 DC DN CONTEMPORARY SONY E',4,369.50,'E-Mount Lens / Formato APS-C 24 mm (equivalente de 35 mm) Rango de apertura: f / 1.4 a f / 16 3 FLD, 2 SLD y 2 elementos asféricos Recubrimiento Super Multi-Layer Stepping AF Motor Diafragma redondeado de 9 hojas Construcción de TSC sellada por el clima',4);
+
+
+INSERT INTO productos VALUES ('PRO013','CAT002','MRC005','SONY OBJETIVO 85MM F1.8 FE NEGRO',4,369.50,'Lente con montura E / Formato de fotograma completo Rango de apertura: f / 1.8 a f / 22 Un elemento de dispersión extra baja Motor AF lineal doble Impresionante efecto bokeh para retratos Diseño compacto y ligero para una buena portabilidad Compatible con cámaras APS-C',5);
+
+
+
+INSERT INTO productos VALUES ('PRO014','CAT003','MRC008','GODOX KIT DE ALETAS/GELES/NIDO PARA AD400PRO',15,29.00,'Se acoplan al frontal del AD400 Pro Las aletas orientables permiten controlar la luz Con los geles podemos cambiar el color de la escena Los accesorios se pueden usar en conjunto o separadamente',3);
+
+INSERT INTO productos VALUES ('PRO015','CAT003','MRC008','GODOX VENTANA SOFTBOX SB-FW 6090 ADAPTADOR BOWENS+GRID',5,58.00,'Interior plata reflectante granulado. Doble difusor y grid. Adaptador Bowens incluído.',5);
+
+INSERT INTO productos VALUES ('PRO016','CAT003','MRC009','YONGNUO YN600L 5500K LUZ LED',1,99.20,'Temperatura de color variable 3200-5500K Modos de atenuación áspera y fina Acepta baterías de la serie Sony NP-F Enfriado por ventilador Incluye control remoto IR de 3 canales Manija y trípode-Montable Dos placas de filtro incluidas Adaptador de CA opcional',4);
+
+INSERT INTO productos VALUES ('PRO017','CAT003','MRC009','LASTOLITE (DE MANFROTTO) HOTSHOE EZYBOX 54X54CM. LLLR2462JM (EDICION JOE Mc NALLY)',5,144.90,'Interior blanco. Difusor interior y exterior. Montura ajustable para adaptarse a flashes de diferente tamaño.',5);
+
+
+
+INSERT INTO productos(`id_producto`, `id_categoria`,`id_marca`,`nombre`, `unidades`, `precio`,`valoracion_media`) VALUES ('PROD18','CAT004','MRC011','LOS COLORES Y TU (TINO SORIANO)',6,30.35,5.8);
+
+INSERT INTO productos VALUES ('PRO019','CAT002','MRC002','OBJETIVO CANON EF 17-40/4 L USM',2,555.55,'Focal: Angular - angular Macro: No Descentrable: No',5);
+
+INSERT INTO productos(`id_producto`, `id_categoria`,`id_marca`,`nombre`, `unidades`, `precio`,`valoracion_media`) VALUES ('PROD20','CAT004','MRC011','LIBRO PHOTOSHOP Y FOTOGRAFIA DIGITAL (JOSE LUIS ARMENTIA)',3,24.90,5);
+
+INSERT INTO productos(`id_producto`, `id_categoria`,`id_marca`,`nombre`, `unidades`, `precio`,`valoracion_media`) VALUES ('PROD21','CAT004','MRC011','LIBRO FOTOGRAFIA DE PAISAJE (SCOTT KELBY)',1,29.50,3);
+
+
+INSERT INTO productos VALUES ('PRO022','CAT005','MRC012','MOCHILA PEAK DESIGN EVERYDAY SLING 3L V2 NEGRO',2,89.10,'- Dimensiones externas: 30,5 x 19,5 x 11 cm.
+
+- Dimeniones internas: 19,8 x 8,9 x 6,4 cm.
+
+- Volumen máximo: 3 L
+
+- Peso: 450 gr.
+
+- Material: nylon.
+
+- Color: negro.',5);
+
+INSERT INTO productos VALUES ('PRO023','CAT005','MRC012','MOCHILA PEAK DESIGN EVERYDAY BACKPACK 30L V2 MIDNIGHT BLUE',10,269.00,'- Dimensiones externas: 36 x 62 x 19.8 cm.
+
+- Dimeniones internas: 31 x 60 x 17 cm.
+
+- Volumen máximo: 30 L
+
+- Peso: 1.8 kg.
+
+- Material: nylon.
+
+- Color: azul.',5);
+
+
+INSERT INTO productos VALUES ('PRO024','CAT005','MRC013','MOCHILA LOWEPRO PROTACTIC LENS EXCHANGE 100 AW',7,49.00,'- Dimensiones externas: 15 x 12,5 x 18,5 cm.
+
+- Dimensiones internas: 11 x 10,5 x 16 cm.
+
+- Peso: 380 gr.
+
+- Volumen máximo: 1.5L',4);
+
+INSERT INTO productos VALUES ('PRO025','CAT005','MRC013','MOCHILA LOWEPRO PRO TREKKER BP 450 AW II',2,255.00,'- Dimensiones externas: 35 x 25 x 49 cm.
+
+- Dimensiones internas: 32 x 16 x 46 cm.
+
+- Dimensiones compartimento ordenador portátil: 32 x 3 x 34 cm.
+
+- Dimensiones compartimento táblet: 22 x 1,5 x 26 cm.
+
+- Volumen: 32 litros.
+
+- Peso: 2,7 kg.',5);
+
