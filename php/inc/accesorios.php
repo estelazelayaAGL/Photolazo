@@ -28,8 +28,8 @@
             <hr>
             <div class="row">
                 <?php
-                    $Productos = BD::obtieneProductos('accesorios');
-                    BD::muestraProductos($Productos);
+                    // $Productos = BD::obtieneProductos('accesorios');
+                    // BD::muestraProductos($Productos);
                 ?>
             </div>
         </div>

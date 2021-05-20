@@ -5,7 +5,10 @@
     <?php $titulo = 'Inicio';
     ?>
 
-    <?php include("../mod/header.php")  ?>
+    <?php 
+    include("../mod/header.php");
+    include("../mod/slider.php");
+    ?>
 
     <section class="container-fluid">
 

@@ -39,7 +39,7 @@
                         <a id="login" href="../inc/login.php">Entrar<img src="../../imagenes/imgMaquetacion/login.png" alt=""></a>
                     </li>
                     <li>
-                        <a id="cesta" href="">Cesta<img src="../../imagenes/imgMaquetacion/cesta.png" alt=""></a>
+                        <a id="cesta" href="../inc/cesta.php">Cesta<img src="../../imagenes/imgMaquetacion/cesta.png" alt=""></a>
                     </li>
                 </ul>
             </div>
@@ -77,21 +77,7 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="../inc/index.php">Inicio <img src="../../imagenes/imgMaquetacion/inicio.png" alt=""></a>
                         </li>
-                        <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="../inc/productos.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Productos <img src="../../imagenes/imgMaquetacion/producto.png" alt="">
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="../inc/camaras.php">Cámaras</a>
-                                <a class="dropdown-item" href="../inc/objetivos.php">Objetivos</a>
-                                <a class="dropdown-item" href="../inc/iluminacion.php">Iluminación-Estudio</a>
-                                <a class="dropdown-item" href="../inc/libros.php">Libros</a>
-                                <a class="dropdown-item" href="../inc/mochilas.php">Mochilas</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Otros accesorios</a>
-                            </div>
-                        </li> -->
-                        <li class=" nav-item dropdown"><a href="../inc/productos.php">Productos<b class="caret"></b></a>
+                        <li class=" nav-item dropdown"><a class="nav-link " href="../inc/productos.php">Productos  <img src="../../imagenes/imgMaquetacion/producto.png" alt=""></a>
 
                             <ul class="dropdown-menu">
                                 <li><a href="../inc/camaras.php">Cámaras</a></li>
@@ -100,6 +86,9 @@
                                 <li><a href="../inc/libros.php">Libros</a></li>
                                 <li><a href="../inc/mochilas.php">Mochilas</a></li>
                                 <li><a href="../inc/accesorios.php">Otros accesorios</a></li>
+                                <li><div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="../inc/accesorios.php">Otros accesorios</a></li>
+                                
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -137,49 +126,6 @@
             </nav>
 
 
-            <!-- Slider - Carrusel-->
-            <div class="container" id="titulo" id="slider" class="row">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                            <!-- Indicators -->
-                            <ol class="carousel-indicators">
-                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                <li data-target="#myCarousel" data-slide-to="1"></li>
-                                <li data-target="#myCarousel" data-slide-to="2"></li>
-                            </ol>
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner" id="item-1">
-                                <div class="item active">
-                                    <img src="../../imagenes/imgMaquetacion/banner1.png" alt="" style="width:100%;">
-                                </div>
-
-                                <div class="item" id="item-2">
-                                    <img src="../../imagenes/imgMaquetacion/banner2.PNG" alt="" style="width:100%;">
-                                    <div class="carousel-caption">
-                                    </div>
-                                </div>
-
-                                <div class="item" id="item-3">
-                                    <img src="../../imagenes/imgMaquetacion/banner3.png" alt="" style="width:100%;">
-                                    <div class="carousel-caption">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Left and right controls -->
-                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
         <!-- Termina el header -->

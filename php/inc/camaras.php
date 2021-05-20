@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <body>
     <?php $titulo = 'Cámaras'; ?>
 
@@ -48,33 +48,6 @@
                     <!-- <span> -->
                     <?php
                     $productos = BD::obtieneProductos('camaras', 'Fujifilm');
-                    BD::muestraProductos($productos);
-                    ?>
-                    <!-- </span> -->
-                </div>
-                <h4>Nikon</h4>
-                <div class="row">
-                    <!-- <span> -->
-                    <?php
-                    $productos = BD::obtieneProductos('camaras', 'nikon');
-                    BD::muestraProductos($productos);
-                    ?>
-                    <!-- </span> -->
-                </div>
-                <h4>Nikon</h4>
-                <div class="row">
-                    <!-- <span> -->
-                    <?php
-                    $productos = BD::obtieneProductos('camaras', 'nikon');
-                    BD::muestraProductos($productos);
-                    ?>
-                    <!-- </span> -->
-                </div>
-                <h4>Nikon</h4>
-                <div class="row">
-                    <!-- <span> -->
-                    <?php
-                    $productos = BD::obtieneProductos('camaras', 'nikon');
                     BD::muestraProductos($productos);
                     ?>
                     <!-- </span> -->

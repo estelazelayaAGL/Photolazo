@@ -53,6 +53,10 @@ font-size: 1.2vw;
     min-height   : 0% !important;
 }
 
+.navbar-expand-md  {
+    padding-bottom: 0% !important;
+}
+
 .boton {
     padding-left: 0% !important;
 }

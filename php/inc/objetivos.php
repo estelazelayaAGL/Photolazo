@@ -20,20 +20,61 @@
                     </ol>
                 </div>
             </div>
-        </div>
 
+            <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
+                <h1>Objetivos</h1>
+                <hr>
 
-        <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
-            <h1>Objetivos</h1>
-            <br>
-            <hr>
-            <div class="row">
-                <?php
-                    $Productos = BD::obtieneProductos('objetivos');
-                    BD::muestraProductos($Productos);
-                ?>
+                <h4>Canon</h4>
+                <div class="row">
+                    <?php
+                    $productos = BD::obtieneProductos('objetivos', 'canon');
+                    BD::muestraProductos($productos);
+                    ?>
+                </div>
+
+                <h4>Nikon</h4>
+                <div class="row">
+                    <?php
+                    $productos = BD::obtieneProductos('objetivos', 'nikon');
+                    BD::muestraProductos($productos);
+                    ?>
+                </div>
+
+                <h4>Sigma</h4>
+                <div class="row">
+                    <?php
+                    $productos = BD::obtieneProductos('objetivos', 'SIGMA');
+                    BD::muestraProductos($productos);
+                    ?>
+                </div>
+
+                
+                
+                <h4>Sony</h4>
+                <div class="row">
+                    <?php
+                    $productos = BD::obtieneProductos('objetivos', 'Sony');
+                    BD::muestraProductos($productos);
+                    ?>
+                </div>
+
+                
+                <h4>Tamron</h4>
+                <div class="row">
+                    <?php
+                    $productos = BD::obtieneProductos('objetivos', 'TAMRON');
+                    BD::muestraProductos($productos);
+                    ?>
+                </div>
+
+                
+
             </div>
         </div>
+
+
+
     </section>
 
     <?php include("../mod/footer.php")  ?>

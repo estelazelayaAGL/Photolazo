@@ -63,7 +63,7 @@ INSERT INTO productos VALUES ('PRO015','CAT003','MRC008','GODOX VENTANA SOFTBOX 
 
 INSERT INTO productos VALUES ('PRO016','CAT003','MRC009','YONGNUO YN600L 5500K LUZ LED',1,99.20,'Temperatura de color variable 3200-5500K Modos de atenuación áspera y fina Acepta baterías de la serie Sony NP-F Enfriado por ventilador Incluye control remoto IR de 3 canales Manija y trípode-Montable Dos placas de filtro incluidas Adaptador de CA opcional',4);
 
-INSERT INTO productos VALUES ('PRO017','CAT003','MRC009','LASTOLITE (DE MANFROTTO) HOTSHOE EZYBOX 54X54CM. LLLR2462JM (EDICION JOE Mc NALLY)',5,144.90,'Interior blanco. Difusor interior y exterior. Montura ajustable para adaptarse a flashes de diferente tamaño.',5);
+INSERT INTO productos VALUES ('PRO017','CAT003','MRC010','LASTOLITE (DE MANFROTTO) HOTSHOE EZYBOX 54X54CM. LLLR2462JM (EDICION JOE Mc NALLY)',5,144.90,'Interior blanco. Difusor interior y exterior. Montura ajustable para adaptarse a flashes de diferente tamaño.',5);
 
 
 

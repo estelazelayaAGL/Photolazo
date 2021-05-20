@@ -20,18 +20,45 @@
                     </ol>
                 </div>
             </div>
+
+            <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
+            <h1>Iluminación</h1>
+            <hr>
+
+            <h4>Godox</h4>
+                <div class="row">
+                    <!-- <span> -->
+                    <?php
+                    $productos = BD::obtieneProductos('iluminacion', 'GODOX');
+                    BD::muestraProductos($productos);
+                    ?>
+                    <!-- </span> -->
+                </div>
+
+                <h4>Manfrotto</h4>
+                <div class="row">
+                    <!-- <span> -->
+                    <?php
+                    $productos = BD::obtieneProductos('iluminacion', 'MANFROTTO');
+                    BD::muestraProductos($productos);
+                    ?>
+                    <!-- </span> -->
+                </div>
+
+                <h4>Yongnuo</h4>
+                <div class="row">
+                    <!-- <span> -->
+                    <?php
+                    $productos = BD::obtieneProductos('iluminacion', 'YONGNUO');
+                    BD::muestraProductos($productos);
+                    ?>
+                    <!-- </span> -->
+                </div>
         </div>
 
-        <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
-            <h1>Iluminación</h1><br>
-            <hr>
-            <div class="row">
-                <?php
-                    $Productos = BD::obtieneProductos('iluminacion');
-                    BD::muestraProductos($Productos);
-                ?>
-            </div>
         </div>
+
+       
     </section>
 
     <?php include("../mod/footer.php")  ?>

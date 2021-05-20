@@ -20,18 +20,22 @@
                     </ol>
                 </div>
             </div>
-        </div>
 
-        <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
+            <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
             <h1>Libros</h1><br>
             <hr>
-            <div class="row">
-                <?php
-                    $Productos = BD::obtieneProductos('libros');
-                    BD::muestraProductos($Productos);
-                ?>
-            </div>
+                <div class="row">
+                    <!-- <span> -->
+                    <?php
+                    $productos = BD::obtieneProductos('libros', 'SIN MARCA');
+                    BD::muestraProductos($productos);
+                    ?>
+                    <!-- </span> -->
+                </div>
         </div>
+        </div>
+
+     
     </section>
 
     <?php include("../mod/footer.php")  ?>
