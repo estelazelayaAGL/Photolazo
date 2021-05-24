@@ -76,8 +76,8 @@
 
 
     </section>
-
     <?php include("../mod/footer.php")  ?>
+    
 </body>
 
 </html>

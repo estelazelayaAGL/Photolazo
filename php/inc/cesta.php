@@ -1,4 +1,10 @@
-<?php require_once("../mod/CestaCompra.php")  ?>
+<!-- //Con esto, se pueden enviar los headers en cualquier lugar del documento. -->
+<?php
+ob_start();
+?>
+
+<?php require_once("../mod/cestacompra.php")  ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +51,8 @@
 
 
                 // Si pulsamos el botón de pagar
-                if (isset($_POST['pagar'])) {
-                    header("Location: pago.php");
+                if (isset($_POST['tramitar'])) {
+                    header("Location:pago.php");
                 }
                 // Mostramos el contenido en todo momento
                 //
@@ -74,7 +80,12 @@
                     }
                 }
 
+                $_SESSION['cestaPago']=$cesta;
+
                 $cesta->muestra();
+
+                
+
 
                 //Obtención del método de pago: a través de post
                 //(si es la primera vez en la página), o a través de la sesión.
@@ -101,3 +112,7 @@
 </body>
 
 </html>
+
+<?php
+ob_end_flush();
+?>

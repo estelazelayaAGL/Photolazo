@@ -10,31 +10,39 @@
         <!-- ENCABEZADO -->
         <div class="container seccion ">
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
-                <h1>Bienvenido de nuevo</h1>
-                <hr>
-                <!-- INICIO FORMULARIO HTML -->
-                <form method="POST" action="/index.php" class="needs-validation" novalidate>
-                    <div class="row form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-6">
-                            <label for="correo">Correo</label>
-                            <input id="correo" name="correo" class="form-control" type="email" placeholder="Correo electrónico">
+                <div class=" col-xs-12 col-sm-12 col-md-12">
+                    <h1>Bienvenido de nuevo</h1>
+
+                    <hr>
+                </div>
+                <div class="registro col-xs-12 col-sm-12 col-md-12">
+                    <div><img src="../../imagenes/imgMaquetacion/formLogin.png" alt=""></div>
+                    <!-- INICIO FORMULARIO HTML -->
+                    <form method="POST" action="/index.php" class="needs-validation" novalidate>
+                        <div class="row form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <!-- <label for="usuario">Usuario</label> -->
+                                <input id="usuario" name="usuario" class="form-control" type="usuario" placeholder="Ingresa tu usuario" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-6">
-                            <label for="palabraSecreta">Contraseña</label>
-                            <input id="palabraSecreta" name="palabraSecreta" class="form-control" type="password" placeholder="Contraseña">
+                        <div class="row form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <!-- <label for="palabraSecreta">Contraseña</label> -->
+                                <input id="palabraSecreta" name="palabraSecreta" class="form-control" placeholder="Ingresa tu contraseña" type="password" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-6">
-                    <button type="submit" class="btn btn-primary mb-2">
-                        Entrar
-                    </button><br>
-                    <a href="#">Contraseña olvidada</a></div></div>
-                    
-                   
-                </form>
+                        <div class="row form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <button type="submit" class="btn btn-primary mb-2">
+                                    Entrar
+                                </button><br>
+                                <a class="passOlvidada" href="#">Contraseña olvidada</a>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
             </div>
 
         </div>
@@ -62,3 +70,6 @@
 </body>
 
 </html>
+
+
+
