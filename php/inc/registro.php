@@ -20,7 +20,7 @@
 
                 <div class="registro col-xs-12 col-sm-12 col-md-10">
                     <!-- INICIO FORMULARIO HTML -->
-                    <form method="POST" action="/index.php" class="needs-validation" novalidate>
+                    <form method="POST" action="login.php" class="needs-validation" novalidate>
                         <!-- DATOS DEL CLIENTE -->
                         <div class="form-group col-xs-6 col-sm-6 col-md-6">
                             <label for="validarNombre">Nombre:<span class="rojo">*</span></label>
@@ -97,7 +97,7 @@
 
                         <div class="form-group col-xs-12 col-sm-12 col-md-12">
                             <button class="btn btn-info" type="reset" name="reset">Limpiar</button>
-                            <button class="btn btn-primary" type="submit" name="submit">Enviar</button>
+                            <button class="btn btn-primary" type="submit" name="registroEnviado">Enviar</button>
                         </div>
                     </form>
                 </div>

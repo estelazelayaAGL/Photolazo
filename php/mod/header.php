@@ -1,10 +1,13 @@
+<?php
+ob_start();
+?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title><?php echo $titulo;
-            ?></title>
+    session_start();?></title>
 
     <!-- CSS PROPIO -->
     <link rel="stylesheet" href="../../css/estilos.css">
@@ -27,6 +30,8 @@
     <link rel="stylesheet" href="../../css/bootstrap/css/bootstrap.min.css">
 </head>
 
+<?php include("../mod/conexion.php")  ?>
+<?php include("../mod/BD.php")  ?>
 <!-- SECCION CABECERA -->
 <header class="container-fluid">
     <div class="container menu">
@@ -34,15 +39,36 @@
         <nav class="navbar top row topBarra ">
             <div class="topBarradiv col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <ul class="iconos-social-top">
+                    <?php
+                    if(isset($_SESSION['usuario'])) {
+                        echo "<li>
+                        <a id='registrarse' href='#'>Bienvenido/a, ". $_SESSION['usuario']."<img src='../../imagenes/imgMaquetacion/createaccount.png' alt=''></a>
+                    </li>
+                    <li>
+                        <a id='login' href='../inc/logout.php'>Salir<img src='../../imagenes/imgMaquetacion/login.png' alt=''></a>
+                    </li>
+                    <li>
+                        <a id='cesta' href='../inc/cesta.php'>Cesta<img src='../../imagenes/imgMaquetacion/cesta.png' alt=''></a>
+                    </li>";
+                    $usuario = BD::obtieneUsuario($_SESSION['usuario']);
+                    if ($usuario->getTipo_usuario() == 1) {
+                        echo "<li>
+                                <a id='administracion' href='../inc/administracion.php'>Administración<img src='../../imagenes/imgMaquetacion/createaccount.png' alt=''></a>
+                            </li>";
+                    }
+                    } else {
+                    ?>
                     <li>
                         <a id="registrarse" href="../inc/registro.php">Registrarse<img src="../../imagenes/imgMaquetacion/createaccount.png" alt=""></a>
                     </li>
                     <li>
                         <a id="login" href="../inc/login.php">Entrar<img src="../../imagenes/imgMaquetacion/login.png" alt=""></a>
                     </li>
-                    <li>
-                        <a id="cesta" href="../inc/cesta.php">Cesta<img src="../../imagenes/imgMaquetacion/cesta.png" alt=""></a>
-                    </li>
+                    <!-- <li>
+                        <a id='cesta' href='../inc/cesta.php'>Cesta<img src='../../imagenes/imgMaquetacion/cesta.png' alt=''></a>
+                    </li> -->
+
+                    <?php }?>
                 </ul>
             </div>
         </nav>
@@ -133,5 +159,3 @@
         <!-- Termina el header -->
        
 </header>
-<?php include("../mod/conexion.php")  ?>
-<?php include("../mod/BD.php")  ?>

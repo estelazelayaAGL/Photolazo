@@ -3,7 +3,7 @@ USE photolazo;
 
 -- Creación de las tablas
 CREATE TABLE usuarios(
-    id_usuario VARCHAR(6) NOT NULL,
+    id_usuario INT(6) AUTO_INCREMENT NOT NULL,
     tipo_usuario BOOLEAN NOT NULL,
     nombre VARCHAR(35) NOT NULL,
     apellidos VARCHAR(50) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE usuarios(
     contrasena VARCHAR(60) NOT NULL,
     fecha_nacimiento DATE NOT NULL,
     correo VARCHAR(40) NOT NULL,
-    telefono INT(12) NOT NULL,
+    telefono INT(12) NULL,
     direccion VARCHAR(35) NOT NULL,
     codigo_postal INT NOT NULL,
     ciudad VARCHAR(20) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE marcas(
 )ENGINE = INNODB;
 
 CREATE TABLE metodosPagos(
-    id_metodo VARCHAR(6) NOT NULL,
+    id_metodo INT(6) AUTO_INCREMENT NOT NULL,
     titular VARCHAR(100) NOT NULL,
     iban   VARCHAR(24) NOT NULL,
     bic    VARCHAR(11) NOT NULL,
@@ -80,12 +80,12 @@ CONSTRAINT fkCategoriaCurso FOREIGN KEY (id_categoria) REFERENCES categorias(id_
 
 
 CREATE TABLE UsuariosCursos(
-id_usuario VARCHAR(6) NOT NULL,
+id_usuario INT(6) NOT NULL,
 id_curso VARCHAR(6) NOT NULL,
+id_metodo INT(6) NOT NULL,
 precio FLOAT NOT NULL, 
 fecha_compra DATE NOT NULL,
 valoracion FLOAT NOT NULL,
-id_metodo VARCHAR(6) NOT NULL,
 CONSTRAINT pk_usuarioCurso PRIMARY KEY (id_usuario,id_curso),
 CONSTRAINT fkCursoUC FOREIGN KEY (id_curso) REFERENCES cursos(id_curso), 
 CONSTRAINT fkMP_UC FOREIGN KEY (id_metodo) REFERENCES metodosPagos(id_metodo) 
@@ -94,15 +94,15 @@ CONSTRAINT fkMP_UC FOREIGN KEY (id_metodo) REFERENCES metodosPagos(id_metodo)
 
 CREATE TABLE pedidos(
 id_pedido VARCHAR(6) NOT NULL,
-id_usuario VARCHAR(6) NOT NULL,
-id_metodo VARCHAR(6) NOT NULL,
+id_usuario INT(6) NOT NULL,
+id_metodo INT(6) NOT NULL,
 fecha_pedido DATE NOT NULL,
 fecha_entrega DATE NOT NULL,
 estado VARCHAR(50) NOT NULL CHECK (estado IN ('Pendiente de pago','Pendiente de envío','En tránsito','Entregado')),
 total FLOAT NOT NULL,
 comentario VARCHAR(50) NULL,
 CONSTRAINT pk_pedido PRIMARY KEY (id_pedido),
-CONSTRAINT fkUsuarioPedido FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+CONSTRAINT fkUsuario_Pedido FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
 CONSTRAINT fkMP_Pedido FOREIGN KEY (id_metodo) REFERENCES metodosPagos(id_metodo)  
 )ENGINE = INNODB;
 

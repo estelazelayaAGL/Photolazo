@@ -13,6 +13,13 @@ ob_start();
     <?php $titulo = 'Cesta'; ?>
     <?php include("../mod/header.php")  ?>
 
+<!-- Impide el acceso a esta página a menos que se haya iniciado sesión -->
+<?php 
+if (!isset($_SESSION['usuario'])) {
+    header("Location: index.php");
+}
+?>
+
     <section class="container-fluid">
         <!-- ENCABEZADO -->
         <div class="container seccion ">

@@ -41,3 +41,6 @@
         <input id="aceptarCookies" type="button" class="btn btn-sm btn-primary" value="Acepto el uso de cookies" />
     </div>
 </div>
+<?php
+ob_end_flush();
+?>

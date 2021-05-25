@@ -1,9 +1,61 @@
 <?php
 
 require_once 'Producto.php';
+require_once 'Usuario.php';
 
 class BD
 {
+
+    public static function obtieneUsuario($usuario) {
+        $sql = "SELECT * FROM usuarios WHERE user_login = '" . $usuario . "'";
+        $resultado = self::ejecutaConsulta($sql);
+        $usuario = null;
+        if ($resultado) {
+            $row = $resultado->fetch();
+            $usuario = new Usuario($row);
+        }
+        return $usuario;
+    }
+
+    public static function verificaCliente($usuario, $contrasena) {
+        $sql = "SELECT user_login FROM usuarios ";
+        $sql .= "WHERE user_login='$usuario' ";
+        $sql .= "AND contrasena='" . md5($contrasena) . "';";
+        $resultado = self::ejecutaConsulta($sql);
+        if (isset($resultado)) {
+            $fila = $resultado->fetch();
+            if ($fila !== false) {
+                $_SESSION['usuario'] = $usuario;
+                header("Location: index.php");
+            } else {
+                echo "Usuario no registrado.";
+            }
+        }
+    }
+
+    public static function crearUsuario($nombre, $apellidos, $fechaNacimiento, $telefono, $email, $usuario, $contrasena, $direccion, $ciudad, $provincia, $pais, $codigopostal) {
+        
+        $sql = "INSERT INTO usuarios(tipo_usuario, nombre, apellidos, user_login, contrasena, fecha_nacimiento, correo, telefono, direccion, codigo_postal, ciudad, provincia, pais) VALUES (0, ";
+        $sql .= "'".$nombre ."', ";
+        $sql .= "'".$apellidos ."', ";
+        $sql .= "'".$usuario ."', ";
+        $sql .= "'".md5($contrasena) ."', ";
+        $sql .= "'".$fechaNacimiento ."', ";
+        $sql .= "'".$email ."', ";
+        $sql .= "".$telefono .", ";
+        $sql .= "'".$direccion ."', ";
+        $sql .= "".$codigopostal .", ";
+        $sql .= "'".$ciudad ."', ";
+        $sql .= "'".$provincia ."', ";
+        $sql .= "'".$pais ."')";
+
+        $resultado = self::ejecutaConsulta($sql);
+        if ($resultado) {
+            echo "¡Se ha creado el usuario " . $usuario . " correctamente!";
+        } else {
+            header("Location: registro.php");
+        }
+    }
 
     public static function obtieneProductos($ctg, $mrc) //Categoria y marca
     {
@@ -55,8 +107,11 @@ class BD
                     . '<a href=#><p>' . $producto->getNombre() . '</p></a>'
                     . '<p> Marca: ' . $producto->getMarca() . '</p>'
                     . '<p>' . $producto->getDescripcion() . '</p>'
-                    . '<p>Precio: ' . $producto->getPrecio() . '€ (IVA incluido)</p>'
-                    . '<input type="submit" name="aniadir" value="Añadir al carrito"></input>'
+                    . '<p>Precio: ' . $producto->getPrecio() . '€ (IVA incluido)</p>';
+                    if (isset($_SESSION['usuario'])) {
+                        echo '<input type="submit" name="aniadir" value="Añadir al carrito"></input>';
+                    }
+                    echo ""
                     . '</form>'
                     . '</div>
 						</div>

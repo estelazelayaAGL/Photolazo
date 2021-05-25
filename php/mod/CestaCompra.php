@@ -1,6 +1,5 @@
 <?php
 
-// include_once('../mod/BD.php');
 include_once('../mod/Producto.php');
 session_start();
 
