@@ -1,19 +1,20 @@
 <?php
 ob_start();
 ?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title><?php echo $titulo;
-    session_start();?></title>
-
+            session_start(); ?></title>
     <!-- CSS PROPIO -->
     <link rel="stylesheet" href="../../css/estilos.css">
 
     <!-- JAVASCRIP PROPIO -->
     <script src="../../js/funciones.js"></script>
+    <script src="../../js/cookies.js"></script>
 
     <!-- BOOTSTRAP  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -27,11 +28,12 @@ ob_start();
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
     <!-- Versión compilada y minimizada del CSS de Bootstrap -->
-    <link rel="stylesheet" href="../../css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap/css/bootstrap.min.css">
 </head>
 
-<?php include("../mod/conexion.php")  ?>
-<?php include("../mod/BD.php")  ?>
+<?php include("../mod/accesoDatos/conexion.php")  ?>
+<?php include("../mod/accesoDatos/BD.php")  ?>
+
 <!-- SECCION CABECERA -->
 <header class="container-fluid">
     <div class="container menu">
@@ -40,35 +42,35 @@ ob_start();
             <div class="topBarradiv col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <ul class="iconos-social-top">
                     <?php
-                    if(isset($_SESSION['usuario'])) {
+                    if (isset($_SESSION['usuario'])) {
                         echo "<li>
-                        <a id='registrarse' href='#'>Bienvenido/a, ". $_SESSION['usuario']."<img src='../../imagenes/imgMaquetacion/createaccount.png' alt=''></a>
+                        <a id='registrarse' href='#'>Bienvenido/a, " . $_SESSION['usuario'] . "<img src='../../imagenes/imgMaquetacion/createaccount.png' alt=''></a>
                     </li>
                     <li>
-                        <a id='login' href='../inc/logout.php'>Salir<img src='../../imagenes/imgMaquetacion/login.png' alt=''></a>
+                        <a id='login' href='logout.php'>Salir<img src='../../imagenes/imgMaquetacion/login.png' alt=''></a>
                     </li>
                     <li>
-                        <a id='cesta' href='../inc/cesta.php'>Cesta<img src='../../imagenes/imgMaquetacion/cesta.png' alt=''></a>
+                        <a id='cesta' href='cesta.php'>Cesta<img src='../../imagenes/imgMaquetacion/cesta.png' alt=''></a>
                     </li>";
-                    $usuario = BD::obtieneUsuario($_SESSION['usuario']);
-                    if ($usuario->getTipo_usuario() == 1) {
-                        echo "<li>
-                                <a id='administracion' href='../inc/administracion.php'>Administración<img src='../../imagenes/imgMaquetacion/createaccount.png' alt=''></a>
+                        $usuario = BD::obtieneUsuario($_SESSION['usuario']);
+                        if ($usuario->getTipo_usuario() == 1) {
+                            echo "<li>
+                                <a id='administracion' href='administracion.php'>Administración<img src='../../imagenes/imgMaquetacion/createaccount.png' alt=''></a>
                             </li>";
-                    }
+                        }
                     } else {
                     ?>
-                    <li>
-                        <a id="registrarse" href="../inc/registro.php">Registrarse<img src="../../imagenes/imgMaquetacion/createaccount.png" alt=""></a>
-                    </li>
-                    <li>
-                        <a id="login" href="../inc/login.php">Entrar<img src="../../imagenes/imgMaquetacion/login.png" alt=""></a>
-                    </li>
-                    <!-- <li>
+                        <li>
+                            <a id="registrarse" href="registro.php">Registrarse<img src="../../imagenes/imgMaquetacion/createaccount.png" alt=""></a>
+                        </li>
+                        <li>
+                            <a id="login" href="login.php">Entrar<img src="../../imagenes/imgMaquetacion/login.png" alt=""></a>
+                        </li>
+                        <!-- <li>
                         <a id='cesta' href='../inc/cesta.php'>Cesta<img src='../../imagenes/imgMaquetacion/cesta.png' alt=''></a>
                     </li> -->
 
-                    <?php }?>
+                    <?php } ?>
                 </ul>
             </div>
         </nav>
@@ -105,7 +107,7 @@ ob_start();
                         <li class="nav-item active">
                             <a class="nav-link" href="../inc/index.php">Inicio <img src="../../imagenes/imgMaquetacion/inicio.png" alt=""></a>
                         </li>
-                        <li class=" nav-item dropdown"><a class="nav-link " href="../inc/productos.php">Productos  <img src="../../imagenes/imgMaquetacion/producto.png" alt=""></a>
+                        <li class=" nav-item dropdown"><a class="nav-link " href="../inc/productos.php">Productos <img src="../../imagenes/imgMaquetacion/producto.png" alt=""></a>
 
                             <ul class="dropdown-menu">
                                 <li><a href="../inc/camaras.php">Cámaras</a></li>
@@ -114,9 +116,6 @@ ob_start();
                                 <li><a href="../inc/libros.php">Libros</a></li>
                                 <li><a href="../inc/mochilas.php">Mochilas</a></li>
                                 <li><a href="../inc/accesorios.php">Otros accesorios</a></li>
-                                <li><div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="../inc/accesorios.php">Otros accesorios</a></li>
-                                
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -157,5 +156,5 @@ ob_start();
 
         </div>
         <!-- Termina el header -->
-       
+
 </header>

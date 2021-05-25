@@ -1,7 +1,7 @@
 <?php
-
-require_once 'Producto.php';
-require_once 'Usuario.php';
+// echo getcwd ();
+require_once '../mod/clases/Producto.php';
+require_once '../mod/clases/Usuario.php';
 
 class BD
 {
@@ -98,7 +98,7 @@ class BD
 						<div class="miembro-equipo cuadro"> 
 							<img class="img-fluid" src="../../imagenes/imgObjetivas/camara.jpeg">
 							<div class="team-info">'
-                    . '<form action="cesta.php" method="post">'
+                    . '<form action="../inc/cesta.php" method="post">'
                     . '<input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>'
                     . '<input type="hidden" name="nombre" value="' . $producto->getNombre() . '"></input>'
                     . '<input type="hidden" name="marca" value="' . $producto->getMarca() . '"></input>'

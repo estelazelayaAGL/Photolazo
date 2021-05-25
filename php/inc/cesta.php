@@ -3,7 +3,7 @@
 ob_start();
 ?>
 
-<?php require_once("../mod/cestacompra.php")  ?>
+<?php require_once("../mod/clases/CestaCompra.php")  ?>
 
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ ob_start();
 
 <body>
     <?php $titulo = 'Cesta'; ?>
-    <?php include("../mod/header.php")  ?>
+    <?php include("../mod/plantillasDelDiseno/header.php")  ?>
 
 <!-- Impide el acceso a esta página a menos que se haya iniciado sesión -->
 <?php 
@@ -115,7 +115,7 @@ if (!isset($_SESSION['usuario'])) {
 
     </section>
 
-    <?php include("../mod/footer.php")  ?>
+    <?php include("../mod/plantillasDelDiseno/footer.php")  ?>
 </body>
 
 </html>

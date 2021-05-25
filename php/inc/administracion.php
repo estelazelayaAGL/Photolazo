@@ -3,7 +3,7 @@
 
 <body>
     <?php $titulo = 'Administración'; ?>
-    <?php include("../mod/header.php")  ?>
+    <?php include("../mod/plantillasDelDiseno/header.php")  ?>
 
     <!-- Impide el acceso a esta página a menos que se haya iniciado sesión como usuario administrador (campo tipo_usuario = 1) -->
     <?php
@@ -44,7 +44,7 @@
         </div>
     </section>
 
-    <?php include("../mod/footer.php")  ?>
+    <?php include("../mod/plantillasDelDiseno/footer.php")  ?>
 </body>
 
 </html>

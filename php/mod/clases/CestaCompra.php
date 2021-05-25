@@ -1,6 +1,6 @@
 <?php
 
-include_once('../mod/Producto.php');
+include_once('../mod/clases/Producto.php');
 session_start();
 
 class CestaCompra {

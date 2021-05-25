@@ -1,4 +1,4 @@
-<script src="../../js/funciones.js"></script>
+<script src="../../../js/funciones.js"></script>
 <footer class="container-fluid ">
     <div class="container">
         <!-- copyright -->

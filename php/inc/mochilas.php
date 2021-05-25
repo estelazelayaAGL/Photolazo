@@ -4,7 +4,7 @@
 <body>
     <?php $titulo = 'Mochilas'; ?>
 
-    <?php include("../mod/header.php")  ?>
+    <?php include("../mod/plantillasDelDiseno/header.php")  ?>
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->
@@ -50,7 +50,7 @@
 
     </section>
 
-    <?php include("../mod/footer.php")  ?>
+    <?php include("../mod/plantillasDelDiseno/footer.php")  ?>
 </body>
 
 </html>

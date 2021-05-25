@@ -6,8 +6,8 @@
     ?>
 
     <?php 
-    include("../mod/header.php");
-    include("../mod/slider.php");
+    include("../mod/plantillasDelDiseno/header.php");
+    include("../mod/plantillasDelDiseno/slider.php");
     ?>
 
     <section class="container-fluid">
@@ -62,7 +62,7 @@
         </div>
     </section>
 
-    <?php include("../mod/footer.php")  ?>
+    <?php include("../mod/plantillasDelDiseno/footer.php")  ?>
 </body>
 
 </html>

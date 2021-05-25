@@ -1,11 +1,11 @@
-<?php require_once("../mod/CestaCompra.php")  ?>
+<?php require_once("../mod/clases/CestaCompra.php")  ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <body>
     <?php $titulo = 'Pago'; ?>
 
-    <?php include("../mod/header.php")  ?>
+    <?php include("../mod/plantillasDelDiseno/header.php")  ?>
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->
@@ -43,7 +43,7 @@
                         <input type="checkbox" id="modificarDireccion" value="modificarDireccion"> <label for="modificarDireccion">Quiero modificar la dirección</label>
                     </div>
 
-                    <div id="actualizarDiv" class="tarjeta-div" style="display: none;">
+                    <div id="div-direccion" class="tarjeta-div" style="display: none;">
                             <div class=" panel panel-default">
                         <div class="panel-heading">
                             <div class="row">
@@ -210,7 +210,7 @@
 
     </section>
 
-    <?php include("../mod/footer.php")  ?>
+    <?php include("../mod/plantillasDelDiseno/footer.php")  ?>
 </body>
 
 </html>
