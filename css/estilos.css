@@ -137,7 +137,7 @@ ul li {
     text-align   : left;
 }
 
-#buscarform {
+#buscarform1,#buscarform2 {
     padding : 0;
     float   : left;
     clear   : both;
@@ -145,12 +145,12 @@ ul li {
     position: relative;
 }
 
-#buscarform fieldset {
+/* #buscarform1 fieldset.#buscarform2 fieldset {
     float : left;
     border: .06em;
-}
+} */
 
-#buscarform .search {
+#buscarform1 .search, #buscarform2 .search {
     font-size : 1.2em;
     font-size : 1.2vw;
     top       : 0px;
@@ -165,7 +165,7 @@ ul li {
     text-align: center;
 }
 
-#buscarform fieldset {
+#buscarform1 fieldset,#buscarform2 fieldset {
     width: 100%
 }
 
@@ -602,4 +602,29 @@ a.passOlvidada {
 #aceptarCookies {
     /* background-color: #2E2E2E !important; */
     font-size: 0.7em !important;
+}
+
+
+/* ADMINISTRACION */
+.panel-padre{
+    position: relative;    /* para poder posicionar el texto de forma absoluta */
+    display: inline-block; /* para que solo ocupe el ancho de la imagen */
+}
+
+.panel-padre:hover{
+    background-color: #fc6625;
+}
+
+.panel-titulo{
+    position: absolute;    /* posición absolute con respecto al padre */
+    bottom: 2%;             /* posicionada en la esquina inferior derecha */
+    right: 5%;
+    /* font-size: 1.8em; */
+    font-size: 1.8vw;
+    color:#000000;
+    text-align: center;
+}
+
+.tablaMuestraProductos{
+    position: absolute;
 }

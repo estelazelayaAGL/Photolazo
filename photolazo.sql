@@ -36,13 +36,13 @@ CREATE TABLE marcas(
 CREATE TABLE metodosPagos(
     id_metodo INT(6) AUTO_INCREMENT NOT NULL,
     titular VARCHAR(100) NOT NULL,
-    iban   VARCHAR(24) NOT NULL,
-    bic    VARCHAR(11) NOT NULL,
-    numero_tarjeta VARCHAR(25) NOT NULL,
-    mes_caducidad INT NOT NULL CHECK (mes_caducidad IN (1,2,3,4,5,6,7,8,9,10,11,12)),
+    iban   VARCHAR(24) NULL,
+    bic    VARCHAR(11) NULL,
+    numero_tarjeta VARCHAR(25) NULL,
+    mes_caducidad INT NULL CHECK (mes_caducidad IN (1,2,3,4,5,6,7,8,9,10,11,12)),
     -- QUITAR
-    ano_caducidad YEAR NOT NULL,
-    cvc INT NOT NULL CHECK (cvc > 3),
+    ano_caducidad YEAR NULL,
+    cvc INT NULL CHECK (cvc > 3),
     tipoMetodo BOOLEAN NOT NULL,
     CONSTRAINT pk_mpt PRIMARY KEY (id_metodo)
 )ENGINE = INNODB;
@@ -88,12 +88,13 @@ fecha_compra DATE NOT NULL,
 valoracion FLOAT NOT NULL,
 CONSTRAINT pk_usuarioCurso PRIMARY KEY (id_usuario,id_curso),
 CONSTRAINT fkCursoUC FOREIGN KEY (id_curso) REFERENCES cursos(id_curso), 
+CONSTRAINT fkUsuarioUC FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario), 
 CONSTRAINT fkMP_UC FOREIGN KEY (id_metodo) REFERENCES metodosPagos(id_metodo) 
 )ENGINE = INNODB;
 
 
 CREATE TABLE pedidos(
-id_pedido VARCHAR(6) NOT NULL,
+id_pedido INT(6) AUTO_INCREMENT NOT NULL,
 id_usuario INT(6) NOT NULL,
 id_metodo INT(6) NOT NULL,
 fecha_pedido DATE NOT NULL,
@@ -101,6 +102,8 @@ fecha_entrega DATE NOT NULL,
 estado VARCHAR(50) NOT NULL CHECK (estado IN ('Pendiente de pago','Pendiente de envío','En tránsito','Entregado')),
 total FLOAT NOT NULL,
 comentario VARCHAR(50) NULL,
+personaRecepcion VARCHAR(100) NOT NULL,
+
 CONSTRAINT pk_pedido PRIMARY KEY (id_pedido),
 CONSTRAINT fkUsuario_Pedido FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
 CONSTRAINT fkMP_Pedido FOREIGN KEY (id_metodo) REFERENCES metodosPagos(id_metodo)  
@@ -108,9 +111,9 @@ CONSTRAINT fkMP_Pedido FOREIGN KEY (id_metodo) REFERENCES metodosPagos(id_metodo
 
 
 CREATE TABLE lineasPedidos(
-    id_lineafacturacion VARCHAR(6) NOT NULL,
-    id_pedido VARCHAR(6) NOT NULL,
-    id_producto VARCHAR(5) NOT NULL,
+    id_lineafacturacion INT(6) AUTO_INCREMENT NOT NULL,
+    id_pedido INT(6) NOT NULL,
+    id_producto VARCHAR(6) NOT NULL,
     cantidad INT NOT NULL,
     precio_venta FLOAT NOT NULL,
     porcentaje_descuento FLOAT NOT NULL,
@@ -121,7 +124,7 @@ CONSTRAINT fklfProducto FOREIGN KEY (id_producto) REFERENCES productos(id_produc
 )ENGINE = INNODB;
 
 CREATE TABLE resenas(
-    id_pedido VARCHAR(6) NOT NULL,
+    id_pedido INT(6) NOT NULL,
     id_producto VARCHAR(6) NOT NULL,
     comentario VARCHAR(100) NOT NULL,
     foto MEDIUMBLOB NULL,

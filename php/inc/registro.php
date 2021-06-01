@@ -18,7 +18,7 @@
                     <hr>
                 </div>
 
-                <div class="registro col-xs-12 col-sm-12 col-md-10">
+                <div class="registro col-xs-12 col-sm-12 col-md-10 ">
                     <!-- INICIO FORMULARIO HTML -->
                     <form method="POST" action="login.php" class="needs-validation" novalidate>
                         <!-- DATOS DEL CLIENTE -->
@@ -69,32 +69,30 @@
 
 
                         <div class="form-group col-xs-12 col-sm-12   col-md-12">
-                            <label for="validarDireccion">Dirección:</label>
-                            <input type="text" class="form-control" id="validarDireccion" name="validarDireccion">
+                            <label for="validarDireccion">Dirección:<span class="rojo">*</span></label>
+                            <input type="text" class="form-control" id="validarDireccion" name="validarDireccion" required>
                         </div>
 
 
                         <div class="form-group col-xs-6 col-sm-6   col-md-6">
-                            <label for="validarCiudad">Ciudad:</label>
-                            <input type="text" class="form-control" id="validarCiudad" name="validarCiudad">
+                            <label for="validarCiudad">Ciudad:<span class="rojo">*</span></label>
+                            <input type="text" class="form-control" id="validarCiudad" name="validarCiudad" required>
                         </div>
 
                         <div class="form-group col-xs-6 col-sm-6   col-md-6">
-                            <label for="validarProvincia">Provincia:</label>
-                            <input type="text" class="form-control" id="validarProvincia" name="validarProvincia">
+                            <label for="validarProvincia">Provincia:<span class="rojo">*</span></label>
+                            <input type="text" class="form-control" id="validarProvincia" name="validarProvincia" required>
                         </div>
 
                         <div class="form-group col-xs-6 col-sm-6   col-md-6">
-                            <label for="validarPais">Pais:</span></label>
-                            <input type="text" class="form-control" id="validarPais" name="validarPais">
+                            <label for="validarPais">Pais:<span class="rojo">*</span></label>
+                            <input type="text" class="form-control" id="validarPais" name="validarPais" required>
                         </div>
 
                         <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                            <label for="validarCPostal">Codigo postal:</label>
-                            <input type="text" class="form-control" id="validarCPostal" name="validarCPostal">
+                            <label for="validarCPostal">Codigo postal:<span class="rojo">*</span></label>
+                            <input type="text" class="form-control" id="validarCPostal" name="validarCPostal" required>
                         </div>
-
-
                         <div class="form-group col-xs-12 col-sm-12 col-md-12">
                             <button class="btn btn-info" type="reset" name="reset">Limpiar</button>
                             <button class="btn btn-primary" type="submit" name="registroEnviado">Enviar</button>
@@ -103,24 +101,6 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            (function() {
-                'use strict';
-                window.addEventListener('load', function() {
-                    var forms = document.getElementsByClassName('needs-validation');
-                    var validation = Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', function(event) {
-                            if (form.checkValidity() === false) {
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
-                            form.classList.add('was-validated');
-                        }, false);
-                    });
-                }, false);
-            })();
-        </script>
     </section>
 
     <?php include("../mod/plantillasDelDiseno/footer.php")  ?>

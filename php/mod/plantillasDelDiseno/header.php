@@ -13,8 +13,8 @@ ob_start();
     <link rel="stylesheet" href="../../css/estilos.css">
 
     <!-- JAVASCRIP PROPIO -->
-    <script src="../../js/funciones.js"></script>
     <script src="../../js/cookies.js"></script>
+    <script src="../../js/validaFormularios.js"></script>
 
     <!-- BOOTSTRAP  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -23,6 +23,8 @@ ob_start();
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- PARA TABLAS DE ADMINISTRACION -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -55,7 +57,7 @@ ob_start();
                         $usuario = BD::obtieneUsuario($_SESSION['usuario']);
                         if ($usuario->getTipo_usuario() == 1) {
                             echo "<li>
-                                <a id='administracion' href='administracion.php'>Administración<img src='../../imagenes/imgMaquetacion/createaccount.png' alt=''></a>
+                                <a id='administracion' href='panelDeAdministracion.php'>Administración<img src='../../imagenes/imgMaquetacion/createaccount.png' alt=''></a>
                             </li>";
                         }
                     } else {

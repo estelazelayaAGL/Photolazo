@@ -13,12 +13,12 @@ ob_start();
     <?php $titulo = 'Cesta'; ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
 
-<!-- Impide el acceso a esta página a menos que se haya iniciado sesión -->
-<?php 
-if (!isset($_SESSION['usuario'])) {
-    header("Location: index.php");
-}
-?>
+    <!-- Impide el acceso a esta página a menos que se haya iniciado sesión -->
+    <?php
+    if (!isset($_SESSION['usuario'])) {
+        header("Location: index.php");
+    }
+    ?>
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->
@@ -35,11 +35,9 @@ if (!isset($_SESSION['usuario'])) {
             </div>
 
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
-                <h1>Listado de productos:</h1>
+                <h1>Cesta de compra</h1>
                 <hr />
                 <?php
-
-                // Cesta de la compra:
 
                 // Recuperamos la cesta de la compra o creamos una nueva
                 $cesta = CestaCompra::carga_cesta();
@@ -56,42 +54,51 @@ if (!isset($_SESSION['usuario'])) {
                     $cesta->guarda_cesta();
                 }
 
+                // Para eliminar un curso de la seleccion
+                if (isset($_POST['quitarCurso'])) {
+                    $cesta->eliminaCurso($_POST['codigo']);
+                    $cesta->guarda_cesta();
+                }
 
                 // Si pulsamos el botón de pagar
                 if (isset($_POST['tramitar'])) {
                     header("Location:pago.php");
                 }
-                // Mostramos el contenido en todo momento
-                //
 
                 //// Para añadir un producto a la cesta - Si existe anadir en el formulario que llegó, se analiza que estén los demás campos recibidos.
                 echo "<div>";
                 if (isset($_POST['aniadir'])) {
                     if (isset($_POST['codigo'])) {
-                        if (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['marca'])) {
-                            $codigo = $_POST['codigo'];
-                            $cesta->nuevo_articulo($codigo);
-                            $cesta->guarda_cesta();
-                            // $nombre = $_POST['nombre'];
-                            // $marca = $_POST['marca'];
-                            // $descripcion = $_POST['descripcion'];
-                            // $precio  = $_POST['precio'];
+                        // if ((isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['marca'])) || ()) {
+                        $codigo = $_POST['codigo'];
+                        $cesta->nuevo_articulo($codigo);
+                        $cesta->guarda_cesta();
+                        // $nombre = $_POST['nombre'];
+                        // $marca = $_POST['marca'];
+                        // $descripcion = $_POST['descripcion'];
+                        // $precio  = $_POST['precio'];
 
-                            //imprimir todo el artículo
-                            //echo $codigo;
-                        } else {
-                            echo 'No has puesto alguno de los siguientes: nombre, descripción, nombre_corto, PVP.';
-                        }
+                        //imprimir todo el artículo
+                        //echo $codigo;
+                        // } else {
+                        //     echo 'No has puesto alguno de los siguientes: nombre, descripción, nombre_corto, PVP.';
+                        // }
                     } else {
                         echo "No has puesto código.";
                     }
+                } else if (isset($_POST['aniadirCurso'])) {
+                    if (isset($_POST['codigo'])) {
+                        $codigo = $_POST['codigo'];
+                        $cesta->nuevo_curso($codigo);
+                        $cesta->guarda_cesta();
+                    }
                 }
 
-                $_SESSION['cestaPago']=$cesta;
-
+                $cesta = CestaCompra::carga_cesta();
                 $cesta->muestra();
+                //$cesta->muestraCurso();
 
-                
+
 
 
                 //Obtención del método de pago: a través de post
