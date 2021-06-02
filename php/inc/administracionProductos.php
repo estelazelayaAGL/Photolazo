@@ -5,7 +5,7 @@
     <script src="../../js/administracionProductos.js"></script>
     <?php $titulo = 'Administración'; ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
-    
+
 
     <!-- Impide el acceso a esta página a menos que se haya iniciado sesión como usuario administrador (campo tipo_usuario = 1) -->
     <?php
@@ -18,7 +18,6 @@
         header("Location: index.php");
     }
     ?>
-
 
     <?php
     if (isset($_POST['anadir'])) {
@@ -55,7 +54,7 @@
         $disp = "none";
     }
 
-    
+
     if (isset($_POST['eliminar'])) {
         $idProducto = $_POST['idProducto'];
         $mensaje = BD::eliminarProducto($idProducto);
@@ -68,6 +67,16 @@
         <!-- ENCABEZADO -->
         <div class="container seccion ">
 
+            <!---	Incluye un breadcrumb que indique la sección actual-->
+            <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+                <div class="">
+                    <ol class="breadcrumb">
+                        <li><a href="index.php"> Inicio </a></li>
+                        <li><a href="panelDeadministracion.php"> Administración </a></li>
+                        <li class="active">Gestión de productos</li>
+                    </ol>
+                </div>
+            </div>
 
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <h1>Gestión de productos</h1>
@@ -81,44 +90,40 @@
                 <fieldset>
                     <legend>Gestión productos</legend>
                     <input type="button" name="anadeProducto" id="anadeProducto" value="Añadir producto" />
-                    <!-- <a href="datosproducto.php"> -->
                     <input type="button" name="obtieneLista" id="obtieneLista" value="Mostrar lista de productos" />
-                    <!-- </a> -->
                 </fieldset>
 
-
-                <div id="divAnadeProducto" class="tarjeta-div" style="display: none;">
+                <div id="divAnadeProducto" class="tarjeta-div col-xs-12 col-sm-12 col-md-12" style="display: none;">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-
-                            <h4>AÑADIR PRODUCTO</h4>
-                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <h4>AÑADIR NUEVO PRODUCTO</h4>
+                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                         <label>ID Producto</label>
-                                        <input type="text" name="idProducto_A" class="form-control" />
+                                        <input type="text" name="idProducto_A" class="form-control" required />
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                         <label>ID Categoria</label>
-                                        <input type="text" name="idCategoriaProd_A" class="form-control" placeholder="Titular" />
+                                        <input type="text" name="idCategoriaProd_A" class="form-control" placeholder="" required />
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                         <label>ID Marca</label>
-                                        <input type="text" name="idMarcaProd_A" class="form-control" placeholder="Titular" />
+                                        <input type="text" name="idMarcaProd_A" class="form-control" placeholder="" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-8 pad-adjust">
                                         <label>Nombre del producto</label>
-                                        <input type="text" name="nombreProducto_A" class="form-control" />
+                                        <input type="text" name="nombreProducto_A" class="form-control" required />
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-2 pad-adjust">
                                         <label>Unidades</label>
-                                        <input type="text" name="unidadesProducto_A" class="form-control" />
+                                        <input type="text" name="unidadesProducto_A" class="form-control" required />
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-2 pad-adjust">
                                         <label>Precio</label>
-                                        <input type="text" name="precioProducto_A" class="form-control" />
+                                        <input type="text" name="precioProducto_A" class="form-control" required />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -148,36 +153,36 @@
                                 while ($row != null) {
                             ?>
                                     <h4>MODIFICAR PRODUCTO <?php echo $row["id_producto"]; ?></h4>
-                                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                                 <label>ID Categoria</label>
                                                 <input type="hidden" name="idProducto_M" class="form-control" placeholder="" value="<?php echo $row["id_producto"]; ?>" />
-                                                <input type="text" name="idCategoriaProd_M" class="form-control" placeholder="" value="<?php echo $row["id_categoria"]; ?>" />
+                                                <input type="text" name="idCategoriaProd_M" class="form-control" placeholder="" value="<?php echo $row["id_categoria"]; ?>" required/>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                                 <label>ID Marca</label>
-                                                <input type="text" name="idMarcaProd_M" class="form-control" placeholder="" value="<?php echo $row["id_marca"]; ?>" />
+                                                <input type="text" name="idMarcaProd_M" class="form-control" placeholder="" value="<?php echo $row["id_marca"]; ?>" required/>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-8 pad-adjust">
                                                 <label>Nombre del producto</label>
-                                                <input type="text" name="nombreProducto_M" class="form-control" value="<?php echo $row["nombre"]; ?>" />
+                                                <input type="text" name="nombreProducto_M" class="form-control" value="<?php echo $row["nombre"]; ?>" required />
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-2 pad-adjust">
                                                 <label>Unidades</label>
-                                                <input type="text" name="unidadesProducto_M" class="form-control" value="<?php echo $row["unidades"]; ?>" />
+                                                <input type="text" name="unidadesProducto_M" class="form-control" value="<?php echo $row["unidades"]; ?>" required/>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-2 pad-adjust">
                                                 <label>Precio</label>
-                                                <input type="text" name="precioProducto_M" class="form-control" value="<?php echo $row["precio"]; ?>" />
+                                                <input type="text" name="precioProducto_M" class="form-control" value="<?php echo $row["precio"]; ?>" required/>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                                 <label>Descripción</label>
-                                                <input type="text" name="descripcionProducto_M" class="form-control" value="<?php echo $row["descripcion"]; ?>" />
+                                                <input type="text" name="descripcionProducto_M" class="form-control" value="<?php echo $row["descripcion"]; ?>" required/>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -196,62 +201,60 @@
                     </div>
                 </div>
 
-
-
                 <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust" id="tablaMuestraProductos" style="display:none;">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID Producto</th>
-                                    <th scope="col">ID Categoria</th>
-                                    <th scope="col">ID Marca</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Unidades</th>
-                                    <th scope="col">Precio</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col"></th>
-                                    <!-- <th scope="col"></th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $productosObtenidos = BD::listarProductos();
-                                if (isset($productosObtenidos)) {
-                                    $row = $productosObtenidos->fetch();
-                                    while ($row != null) {
-                                ?>
-                                        <tr>
-                                            <td><?php echo $row["id_producto"]; ?></td>
-                                            <td><?php echo $row["id_categoria"]; ?></td>
-                                            <td><?php echo $row["id_marca"]; ?></td>
-                                            <td><?php echo $row["nombre"]; ?></td>
-                                            <td><?php echo $row["unidades"]; ?></td>
-                                            <td><?php echo $row["precio"]; ?></td>
-                                            <td><?php echo $row["descripcion"]; ?></td>
-                                            <!-- <td><?php //echo $row["valoracion_media"]; 
-                                                        ?></td> -->
-                                            <td>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID Producto</th>
+                                <th scope="col">ID Categoria</th>
+                                <th scope="col">ID Marca</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Unidades</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col"></th>
+                                <!-- <th scope="col"></th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $productosObtenidos = BD::listarProductos();
+                            if (isset($productosObtenidos)) {
+                                $row = $productosObtenidos->fetch();
+                                while ($row != null) {
+                            ?>
+                                    <tr>
+                                        <td><?php echo $row["id_producto"]; ?></td>
+                                        <td><?php echo $row["id_categoria"]; ?></td>
+                                        <td><?php echo $row["id_marca"]; ?></td>
+                                        <td><?php echo $row["nombre"]; ?></td>
+                                        <td><?php echo $row["unidades"]; ?></td>
+                                        <td><?php echo $row["precio"]; ?></td>
+                                        <td><?php echo $row["descripcion"]; ?></td>
+                                        <!-- <td><?php //echo $row["valoracion_media"]; 
+                                                    ?></td> -->
+                                        <td>
                                             <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                                    <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
-                                                    <input type="submit" id="modificar" name="modificar" value="Modificar">
-                                                </form>
+                                                <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
+                                                <input type="submit" id="modificar" name="modificar" value="Modificar">
+                                            </form>
                                             <!-- </td> -->
                                             <!-- <td> -->
-                                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                                    <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
-                                                    <input type="submit" id="eliminar" name="eliminar" value="Eliminar">
+                                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                                <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
+                                                <input type="submit" id="eliminar" name="eliminar" value="Eliminar">
 
-                                                </form>
-                                            </td>
-                                        </tr>
-                                <?php
-                                        $row = $productosObtenidos->fetch();
-                                    }
+                                            </form>
+                                        </td>
+                                    </tr>
+                            <?php
+                                    $row = $productosObtenidos->fetch();
                                 }
-                                ?>
-                            <tbody>
-                        </table>
-                    </div>
+                            }
+                            ?>
+                        <tbody>
+                    </table>
+                </div>
 
             </div>
         </div>

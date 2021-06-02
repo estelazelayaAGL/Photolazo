@@ -333,6 +333,7 @@ ul li.nav-item {
 /* SECTION */
 section {
     padding-bottom: 0%;
+    height: min-content;
 }
 
 .cabecera-seccion {
@@ -627,4 +628,12 @@ a.passOlvidada {
 
 .tablaMuestraProductos{
     position: absolute;
+}
+
+fieldset{
+    margin-bottom: 2.5em !important;
+}
+
+form label, table tr, table th, table td{
+    font-size: .8em;
 }

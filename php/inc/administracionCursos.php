@@ -60,7 +60,7 @@
         $disp = "none";
     }
 
-    
+
     if (isset($_POST['eliminar'])) {
         $idCurso = $_POST['id_curso'];
         $mensaje = BD::eliminarCurso($idCurso);
@@ -71,6 +71,16 @@
         <!-- ENCABEZADO -->
         <div class="container seccion ">
 
+            <!---	Incluye un breadcrumb que indique la sección actual-->
+            <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+                <div class="">
+                    <ol class="breadcrumb">
+                        <li><a href="index.php"> Inicio </a></li>
+                        <li><a href="panelDeadministracion.php"> Administración </a></li>
+                        <li class="active">Gestión de cursos</li>
+                    </ol>
+                </div>
+            </div>
 
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <h1>Gestión de los cursos</h1>
@@ -84,70 +94,65 @@
                 <fieldset>
                     <legend>Gestión de cursos</legend>
                     <input type="button" name="anadeCurso" id="anadeCurso" value="Añadir nuevo curso" />
-                    <!-- <a href="datosproducto.php"> -->
                     <input type="button" name="obtieneLista" id="obtieneLista" value="Mostrar lista de cursos" />
-                    <!-- </a> -->
                 </fieldset>
-
-
                 <div id="divAnadeCurso" class="tarjeta-div" style="display: none;">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-
                             <h4>AÑADIR NUEVO CURSO</h4>
-                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                         <label>ID CURSO</label>
-                                        <input type="text" name="id_curso" class="form-control" />
+                                        <input type="text" name="id_curso" class="form-control" required />
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                         <label> ID Categoria</label>
-                                        <input type="text" name="id_categoria" class="form-control" placeholder="Titular" />
+                                        <input type="text" name="id_categoria" class="form-control" placeholder="" required />
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                         <label>Precio</label>
-                                        <input type="number" name="precio" class="form-control" placeholder="Titular" />
+                                        <input type="number" name="precio" class="form-control" placeholder="" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                         <label>Lema</label>
-                                        <input type="text" name="lema" class="form-control" placeholder="Titular" />
+                                        <input type="text" name="lema" class="form-control" placeholder="" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                         <label>Titulo</label>
-                                        <input type="text" name="titulo" class="form-control" />
+                                        <input type="text" name="titulo" class="form-control" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
                                         <label>Nivel</label>
-                                        <input type="text" name="nivel" class="form-control" />
+                                        <input type="text" name="nivel" class="form-control" required />
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
                                         <label>Autor</label>
-                                        <input type="text" name="autor" class="form-control" />
+                                        <input type="text" name="autor" class="form-control" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                         <label>Resumen</label>
-                                        <input type="text" name="resumen" class="form-control" />
+                                        <input type="text" name="resumen" class="form-control" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                         <label>Descripcion</label>
-                                        <input type="text" name="descripcion" class="form-control" />
+                                        <input type="text" name="descripcion" class="form-control" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                         <label>Titulo con el que se ha guardado el video promocional</label>
-                                        <input type="text" name="video_promocional" class="form-control" />
+                                        <input type="text" name="video_promocional" class="form-control" required />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -171,15 +176,12 @@
                                 while ($row != null) {
                             ?>
                                     <h4>MODIFICAR CURSO <?php echo $row["id_curso"]; ?></h4>
-                                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                                <label>ID CURSO</label>
-                                                <input type="text" name="id_curso_M" class="form-control" value="<?php echo $row['id_curso']; ?>" />
-                                            </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                                 <label> ID Categoria</label>
-                                                <input type="text" name="id_categoria_M" class="form-control" placeholder="" value="<?php echo $row['id_categoria']; ?>"/>
+                                                <input type="hidden" name="id_curso_M" class="form-control" value="<?php echo $row['id_curso']; ?>" />
+                                                <input type="text" name="id_categoria_M" class="form-control" placeholder="" value="<?php echo $row['id_categoria']; ?>" />
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                                 <label>Precio</label>
@@ -201,11 +203,11 @@
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
                                                 <label>Nivel</label>
-                                                <input type="text" name="nivel_M" class="form-control" value="<?php echo $row['nivel']; ?>"/>
+                                                <input type="text" name="nivel_M" class="form-control" value="<?php echo $row['nivel']; ?>" />
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
                                                 <label>Autor</label>
-                                                <input type="text" name="autor_M" class="form-control" value="<?php echo $row['autor']; ?>"/>
+                                                <input type="text" name="autor_M" class="form-control" value="<?php echo $row['autor']; ?>" />
                                             </div>
                                         </div>
                                         <div class="row">
@@ -223,7 +225,7 @@
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                                 <label>Titulo con el que se ha guardado el video promocional</label>
-                                                <input type="text" name="video_promocional_M" class="form-control"  value="<?php echo $row['video_promocional']; ?>"/>
+                                                <input type="text" name="video_promocional_M" class="form-control" value="<?php echo $row['video_promocional']; ?>" />
                                             </div>
                                         </div>
                                         <div class="row">
@@ -270,14 +272,18 @@
                                     <tr>
                                         <td><?php echo $row["id_curso"]; ?></td>
                                         <td><?php echo $row["id_categoria"]; ?></td>
-                                        <!-- <td><?php //echo $row["lema"]; ?></td> -->
+                                        <!-- <td><?php //echo $row["lema"]; 
+                                                    ?></td> -->
                                         <td><?php echo $row["titulo"]; ?></td>
                                         <td><?php echo $row["autor"]; ?></td>
                                         <td><?php echo $row["nivel"]; ?></td>
-                                        <!-- <td><?php // echo $row["resumen"]; ?></td> -->
-                                        <!-- <td><?php //echo $row["descripcion"]; ?></td> -->
+                                        <!-- <td><?php // echo $row["resumen"]; 
+                                                    ?></td> -->
+                                        <!-- <td><?php //echo $row["descripcion"]; 
+                                                    ?></td> -->
                                         <td><?php echo $row["precio"]; ?></td>
-                                        <!-- <td><?php //echo $row["video_promocional"]; ?></td> -->
+                                        <!-- <td><?php //echo $row["video_promocional"]; 
+                                                    ?></td> -->
                                         <!-- <td><?php //echo $row["valoracion_media"]; 
                                                     ?></td> -->
                                         <td>

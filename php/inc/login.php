@@ -9,32 +9,22 @@
 
     <?php
 
-    //Para intentar dar de alta un registro
-    if (isset($_POST['registroEnviado'])) {
-        $nombre = $_POST['validarNombre'];
-        $apellidos = $_POST['validarApellido'];
-        $fechaNacimiento = $_POST['validarNacimiento'];
-        $telefono = NULL;
-        if (isset($_POST['validarTelefono'])) {
-            $telefono = $_POST['validarTelefono'];
-        }
-        $email = $_POST['validarEmail'];
-        $usuario = $_POST['validarUsuario'];
-        $contrasena = $_POST['validarContrasena'];
-        $direccion = $_POST['validarDireccion'];
-        $ciudad = $_POST['validarCiudad'];
-        $provincia = $_POST['validarProvincia'];
-        $pais = $_POST['validarPais'];
-        $codigoPostal = $_POST['validarCPostal'];
-
-        BD::crearUsuario($nombre, $apellidos, $fechaNacimiento, $telefono, $email, $usuario, $contrasena, $direccion, $ciudad, $provincia, $pais, $codigoPostal);
-    }
-
     //Para intentar iniciar sesión
     if (isset($_POST['intentoLogin'])) {
         $usuario = $_POST['usuario'];
         $contrasena = $_POST['contrasena'];
-        BD::verificaCliente($usuario, $contrasena);
+        $existe = BD::verificaCliente($usuario, $contrasena);
+
+        if ($existe) {
+            // $fila = $resultado->fetch();
+            // if ($fila !== false) {
+            $_SESSION['usuario'] = $usuario;
+            header("Location: index.php");
+        } else {
+            $mensaje= "<div class ='alert alert-danger'>
+            <a class='close' data-dismiss='alert'> × </a>Usuario no registrado</div>";
+        }
+        // }
     }
 
     ?>
@@ -47,6 +37,12 @@
                 <div class=" col-xs-12 col-sm-12 col-md-12">
                     <h1>Bienvenido de nuevo</h1>
                     <hr>
+                    <div><?php
+                            if (isset($mensaje)) {
+                                echo $mensaje;
+                            }
+                            ?>
+                    </div>
                 </div>
                 <div class="registro col-xs-12 col-sm-12 col-md-12">
                     <div><img src="../../imagenes/imgMaquetacion/formLogin.png" alt=""></div>
@@ -79,4 +75,3 @@
 </body>
 
 </html>
-

@@ -136,13 +136,13 @@ CREATE TABLE resenas(
 
 
 CREATE TABLE categoriasBlog(
-    id_categoriaB VARCHAR(6) NOT NULL,
-    CONSTRAINT pk_cBlog PRIMARY KEY (id_categoriaB),
+    id_categoria VARCHAR(6) NOT NULL,
+    CONSTRAINT pk_cBlog PRIMARY KEY (id_categoria),
     nombre VARCHAR(30) NOT NULL
 )ENGINE = INNODB;
  
 CREATE TABLE blogs(
-    id_blog VARCHAR(6) NOT NULL,
+    id_blog INT(6) AUTO_INCREMENT NOT NULL,
     id_categoriaB VARCHAR(6) NOT NULL,
     autor VARCHAR(60) NOT NULL,
     titulo VARCHAR(60) NOT NULL,
@@ -155,7 +155,7 @@ CREATE TABLE blogs(
 
 CREATE TABLE comentarios(
     id_comentario VARCHAR(6) NOT NULL,
-    id_blog VARCHAR(6) NOT NULL,
+    id_blog INT(6) NOT NULL,
     autor VARCHAR(60) NOT NULL,
     correo VARCHAR(60) NOT NULL,
     contenido TEXT NOT NULL,
@@ -173,7 +173,7 @@ CREATE TABLE etiquetas(
 
 
 CREATE TABLE etiquetasBlog(
-    id_blog VARCHAR(6) NOT NULL,
+    id_blog INT(6) NOT NULL,
     id_etiqueta VARCHAR(6) NOT NULL,
     CONSTRAINT pk_etiquetaBlog PRIMARY KEY (id_etiqueta,id_blog),
     CONSTRAINT fketiBlog FOREIGN KEY (id_blog) REFERENCES blogs(id_blog),

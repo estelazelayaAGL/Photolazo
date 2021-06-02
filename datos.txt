@@ -1,8 +1,10 @@
-INSERT INTO categorias VALUES ('CAT001','camaras');
-INSERT INTO categorias VALUES ('CAT002','objetivos');
-INSERT INTO categorias VALUES ('CAT003','iluminacion');
-INSERT INTO categorias VALUES ('CAT004','libros');
-INSERT INTO categorias VALUES ('CAT005','mochilas');
+INSERT INTO categorias VALUES ('CAT001','Camaras');
+INSERT INTO categorias VALUES ('CAT002','Objetivos');
+INSERT INTO categorias VALUES ('CAT003','Iluminacion');
+INSERT INTO categorias VALUES ('CAT004','Libros');
+INSERT INTO categorias VALUES ('CAT005','Mochilas');
+INSERT INTO `categorias` (`id_categoria`, `nombre`) VALUES ('CAT100', 'Retrato'), ('CAT101', 'Naturaleza');
+INSERT INTO `categorias` (`id_categoria`, `nombre`) VALUES ('CAT100', 'Retrato'), ('CAT101', 'Retrato');
 
 INSERT INTO marcas VALUES ('MRC001','Nikon');
 INSERT INTO marcas VALUES ('MRC002','Canon');
@@ -121,3 +123,8 @@ INSERT INTO productos VALUES ('PRO025','CAT005','MRC013','MOCHILA LOWEPRO PRO TR
 
 - Peso: 2,7 kg.',5);
 
+
+INSERT INTO `categoriasblog`(`id_categoriaB`, `nombre`) VALUES ('ENT001','Cursos');
+INSERT INTO `categoriasblog`(`id_categoriaB`, `nombre`) VALUES ('ENT002','Accesorios');
+INSERT INTO `categoriasblog`(`id_categoriaB`, `nombre`) VALUES ('ENT003','Materiales');
+INSERT INTO `categoriasblog`(`id_categoriaB`, `nombre`) VALUES ('ENT004','Tips/Consejos');

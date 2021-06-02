@@ -22,23 +22,32 @@ class BD
 
     public static function verificaCliente($usuario, $contrasena)
     {
+        $existe = false;
         $sql = "SELECT user_login FROM usuarios ";
         $sql .= "WHERE user_login='$usuario' ";
         $sql .= "AND contrasena='" . md5($contrasena) . "';";
         $resultado = self::ejecutaConsulta($sql);
-        if (isset($resultado)) {
-            $fila = $resultado->fetch();
-            if ($fila !== false) {
-                $_SESSION['usuario'] = $usuario;
-                header("Location: index.php");
-            } else {
-                echo "Usuario no registrado.";
-            }
+        if ($resultado->rowCount() > 0) {
+            $existe = true;
         }
+        return $existe;
     }
 
-    public static function crearLineasPedido($cesta, $id_pedido) {
-        foreach($cesta->get_productos() as $producto) {
+    public static function verificaExistenciaCliente($usuario)
+    {
+        $existe = false;
+        $sql = "SELECT user_login FROM usuarios ";
+        $sql .= "WHERE user_login='$usuario' ";
+        $resultado = self::ejecutaConsulta($sql);
+        if ($resultado->rowCount() > 0) {
+            $existe = true;
+        }
+        return $existe;
+    }
+
+    public static function crearLineasPedido($cesta, $id_pedido)
+    {
+        foreach ($cesta->get_productos() as $producto) {
             $sql = "INSERT INTO lineaspedidos (id_pedido, id_producto, cantidad, precio_venta, porcentaje_descuento, total) VALUES (";
             $sql .= "" . intval($id_pedido) . ", ";
             $sql .= "'" . $producto->getCodigo() . "', ";
@@ -51,7 +60,8 @@ class BD
         unset($_SESSION['cesta']);
     }
 
-    public static function crearPedido($id_usuario, $id_metodo, $total, $personaRecepcion) {
+    public static function crearPedido($id_usuario, $id_metodo, $total, $personaRecepcion)
+    {
 
         $sql = "INSERT INTO pedidos(id_usuario, id_metodo, fecha_pedido, fecha_entrega, estado, total, personaRecepcion) VALUES (";
         $sql .= "" . $id_usuario . ", ";
@@ -63,10 +73,10 @@ class BD
         $sql .= "'" . $personaRecepcion . "')";
         $id_pedido = "";
         $resultado = self::ejecutaConsulta($sql);
-        if($resultado) {
+        if ($resultado) {
             $select = "SELECT * FROM pedidos ORDER BY id_pedido DESC LIMIT 1";
             $resultadoSelect = self::ejecutaConsulta($select);
-            if($resultadoSelect) {
+            if ($resultadoSelect) {
                 $row = $resultadoSelect->fetch();
                 $id_pedido = $row['id_pedido'];
             }
@@ -74,17 +84,18 @@ class BD
         return $id_pedido;
     }
 
-    public static function crearMetodoCuenta($titular, $iban, $bic) {
+    public static function crearMetodoCuenta($titular, $iban, $bic)
+    {
         $sql = "INSERT INTO metodospagos(titular, iban, bic, tipoMetodo) VALUES (";
         $sql .= "'" . $titular . "', ";
         $sql .= "'" . $iban . "', ";
         $sql .= "'" . $bic . "', 0)";
         $id_metodo = "";
         $resultado = self::ejecutaConsulta($sql);
-        if($resultado) {
+        if ($resultado) {
             $select = "SELECT * FROM metodospagos ORDER BY id_metodo DESC LIMIT 1";
             $resultadoSelect = self::ejecutaConsulta($select);
-            if($resultadoSelect) {
+            if ($resultadoSelect) {
                 $row = $resultadoSelect->fetch();
                 $id_metodo = $row['id_metodo'];
             }
@@ -92,7 +103,8 @@ class BD
         return $id_metodo;
     }
 
-    public static function crearMetodoTarjeta($titular, $numero, $mes, $anio, $cvc) {
+    public static function crearMetodoTarjeta($titular, $numero, $mes, $anio, $cvc)
+    {
         $sql = "INSERT INTO metodospagos(titular, numero_tarjeta, mes_caducidad, ano_caducidad, cvc, tipoMetodo) VALUES (";
         $sql .= "'" . $titular . "', ";
         $sql .= "'" . $numero . "', ";
@@ -101,10 +113,10 @@ class BD
         $sql .= "" . $cvc . ", 1)";
         $id_metodo = "";
         $resultado = self::ejecutaConsulta($sql);
-        if($resultado) {
+        if ($resultado) {
             $select = "SELECT * FROM metodospagos ORDER BY id_metodo DESC LIMIT 1";
             $resultadoSelect = self::ejecutaConsulta($select);
-            if($resultadoSelect) {
+            if ($resultadoSelect) {
                 $row = $resultadoSelect->fetch();
                 $id_metodo = $row['id_metodo'];
             }
@@ -114,7 +126,6 @@ class BD
 
     public static function crearUsuario($nombre, $apellidos, $fechaNacimiento, $telefono, $email, $usuario, $contrasena, $direccion, $ciudad, $provincia, $pais, $codigopostal)
     {
-
         $sql = "INSERT INTO usuarios(tipo_usuario, nombre, apellidos, user_login, contrasena, fecha_nacimiento, correo, telefono, direccion, codigo_postal, ciudad, provincia, pais) VALUES (0, ";
         $sql .= "'" . $nombre . "', ";
         $sql .= "'" . $apellidos . "', ";
@@ -130,11 +141,7 @@ class BD
         $sql .= "'" . $pais . "')";
 
         $resultado = self::ejecutaConsulta($sql);
-        if ($resultado) {
-            echo "¡Se ha creado el usuario " . $usuario . " correctamente!";
-        } else {
-            header("Location: registro.php");
-        }
+        return $resultado;
     }
 
     public static function obtieneProductos($ctg, $mrc) //Categoria y marca
@@ -223,6 +230,17 @@ class BD
         return $existe;
     }
 
+    public static function verificaExisteEntrada($codigo)
+    {
+        $existe = false;
+        $sql = "SELECT * FROM blogs WHERE id_blog='$codigo'";
+        $resultado = self::ejecutaConsulta($sql);
+        if ($resultado->rowCount() > 0) {
+            $existe = true;
+        }
+        return $existe;
+    }
+
 
     public static function extraeProductosCod($codigo)
     {
@@ -240,6 +258,14 @@ class BD
         return $resultado;
     }
 
+
+    public static function extraeEntradaCod($codigo)
+    {
+        $sql = "SELECT * FROM blogs WHERE id_blog='$codigo'";
+        $resultado = self::ejecutaConsulta($sql);
+
+        return $resultado;
+    }
 
 
     public static function extraeProductosNm($nombre)
@@ -305,7 +331,7 @@ class BD
                     . '<a href=#><p>' . $curso->getTitulo() . '</p></a>'
                     . '<p> Autor: ' . $curso->getAutor() . '</p>'
                     . '<p>Nivel:' . $curso->getNivel() . '</p>'
-                    . '<p>Resumen: ' . $curso->getResumen() .'</p>'
+                    . '<p>Resumen: ' . $curso->getResumen() . '</p>'
                     . '<p>Precio: ' . $curso->getPrecio() . '€ (IVA incluido)</p>';
                 if (isset($_SESSION['usuario'])) {
                     echo '<input type="submit" name="aniadirCurso" value="Añadir al carrito"></input>';
@@ -368,7 +394,8 @@ class BD
         $existe = self::verificaExisteProducto($idProducto);
 
         if ($existe) {
-            $mensaje = "El producto ya existe en la Base de Datos";
+            $mensaje = "<div class ='alert alert-danger'>
+            <a class='close' data-dismiss='alert'> × </a>El producto ya existe en la base de datos</div>";
         } else {
             require 'conexion.php';
             try {
@@ -386,10 +413,12 @@ class BD
                     $consulta->bindParam(8, $valoracion);
 
                     $consulta->execute();
-                    $mensaje = "¡Se ha creado el añadido el producto " . $nombre . " correctamente!";
+                    $mensaje = "<div class ='alert alert-success'>
+                    <a class='close' data-dismiss='alert'> × </a>¡Se ha creado el añadido el producto " . $nombre . " correctamente!</div>";
                 }
             } catch (Exception $e) {
-                $mensaje = "No se ha podido añadir el producto";
+                $mensaje = "<div class ='alert alert-danger'>
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido añadir el producto</div>";
             }
         }
         return $mensaje;
@@ -403,7 +432,8 @@ class BD
         $existe = self::verificaExisteProducto($idProducto);
 
         if (!$existe) {
-            $mensaje = "El producto no existe en la Base de Datos";
+            $mensaje = "<div class ='alert alert-danger'>
+            <a class='close' data-dismiss='alert'> × </a>El producto no existe en la Base de Datos</div>";
         } else {
             require 'conexion.php';
             try {
@@ -427,10 +457,12 @@ class BD
                     $consulta->bindParam(7, $idProducto);
 
                     $consulta->execute();
-                    $mensaje = "¡Se ha modificado el producto " . $idProducto . " correctamente!";
+                    $mensaje = "<div class ='alert alert-success'>
+                    <a class='close' data-dismiss='alert'> × </a>¡Se ha modificado el producto " . $idProducto . " correctamente!</div>";
                 }
             } catch (Exception $e) {
-                $mensaje = "No se ha podido modificar el producto " . $e->getMessage();
+                $mensaje = "<div class ='alert alert-danger'>
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido modificar el producto " . $e->getMessage()."</div>";
             }
         }
         return $mensaje;
@@ -446,7 +478,8 @@ class BD
 
 
         if (!$existe) {
-            $mensaje = "El producto no existe en la Base de Datos";
+            $mensaje = "<div class ='alert alert-danger'>
+            <a class='close' data-dismiss='alert'> × </a>El producto no existe en la Base de Datos</div>";
         } else {
             require 'conexion.php';
             try {
@@ -458,10 +491,12 @@ class BD
                     $consulta->bindParam(1, $idProducto);
 
                     $consulta->execute();
-                    $mensaje = "¡Se ha borrado el producto " . $idProducto . " correctamente!";
+                    $mensaje = "<div class ='alert alert-success'>
+                    <a class='close' data-dismiss='alert'> × </a>¡Se ha borrado el producto " . $idProducto . " correctamente!</div>";
                 }
             } catch (Exception $e) {
-                $mensaje = "No se ha podido borrar el producto " . $e->getMessage();
+                $mensaje = "<div class ='alert alert-danger'>
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido borrar el producto " . $e->getMessage()."</div>";
             }
         }
         return $mensaje;
@@ -472,26 +507,26 @@ class BD
     public static function listarProductos()
     {
         $mensaje = "";
-            require 'conexion.php';
+        require 'conexion.php';
 
-            try {
-                //Verifica que la variable de conexión exista, ya que se encuentra en otro fichero
-                if (isset($dwes)) {
-                    $sql = "SELECT * FROM productos";
+        try {
+            //Verifica que la variable de conexión exista, ya que se encuentra en otro fichero
+            if (isset($dwes)) {
+                $sql = "SELECT * FROM productos";
 
-                    $consulta = $dwes->prepare($sql);
-                    $consulta->execute();
-                    return $consulta;
-                }
-            } catch (Exception $e) {
-                die($e->getMessage());
+                $consulta = $dwes->prepare($sql);
+                $consulta->execute();
+                return $consulta;
             }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
+    }
 
-    
-        // CRUD DE CURSOS
-           // CREACION DE CURSOS - PARTE ADMINISTRADOR- CRUD -ANADIR -ELIMINAR -ACTUALIZAR - 
-    public static function insertarCurso($id_curso,$id_categoria,$lema,$titulo,$autor,$nivel,$resumen,$descripcion,$precio,$video_promocional)
+
+    // CRUD DE CURSOS
+    // CREACION DE CURSOS - PARTE ADMINISTRADOR- CRUD -ANADIR -ELIMINAR -ACTUALIZAR - 
+    public static function insertarCurso($id_curso, $id_categoria, $lema, $titulo, $autor, $nivel, $resumen, $descripcion, $precio, $video_promocional)
     {
         $mensaje = "";
         $valoracion = 0.0;
@@ -500,7 +535,8 @@ class BD
         $existe = self::verificaExisteCurso($id_curso);
 
         if ($existe) {
-            $mensaje = "El curso ya existe en la Base de Datos";
+            $mensaje = "<div class ='alert alert-danger'>
+            <a class='close' data-dismiss='alert'> × </a>El curso ya existe en la Base de Datos</div>";
         } else {
             require 'conexion.php';
             try {
@@ -519,27 +555,30 @@ class BD
                     $consulta->bindParam(9, $precio);
                     $consulta->bindParam(10, $video_promocional);
                     $consulta->bindParam(11, $valoracion);
-                    
+
                     $consulta->execute();
-                    $mensaje = "¡Se ha creado el curso " . $titulo . " correctamente!";
+                    $mensaje = "<div class ='alert alert-success'>
+                    <a class='close' data-dismiss='alert'> × </a>¡Se ha creado el curso " . $titulo . " correctamente!</div>";
                 }
             } catch (Exception $e) {
-                $mensaje = "No se ha podido añadir el curso";
+                $mensaje = "<div class ='alert alert-danger'>
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido añadir el curso</div>";
             }
         }
         return $mensaje;
     }
 
-    public static function actualizarCurso($id_curso,$id_categoria,$lema,$titulo,$autor,$nivel,$resumen,$descripcion,$precio,$video_promocional)
+    public static function actualizarCurso($id_curso, $id_categoria, $lema, $titulo, $autor, $nivel, $resumen, $descripcion, $precio, $video_promocional)
     {
         $mensaje = "";
-        $valoracion=0.0;
+        $valoracion = 0.0;
 
         //llamar a getProducto con el id, y si no devuelve nada, proseguir con esto.
         $existe = self::verificaExisteCurso($id_curso);
 
         if (!$existe) {
-            $mensaje = "El curso no existe en la Base de Datos";
+            $mensaje = "<div class ='alert alert-danger'>
+            <a class='close' data-dismiss='alert'> × </a>El curso no existe en la Base de Datos</div>";
         } else {
             require 'conexion.php';
             try {
@@ -567,15 +606,17 @@ class BD
                     $consulta->bindParam(7, $descripcion);
                     $consulta->bindParam(8, $precio);
                     $consulta->bindParam(9, $video_promocional);
-                    $consulta->bindParam(10,$valoracion_media);
-                    $consulta->bindParam(11,$id_curso);
-                    
+                    $consulta->bindParam(10, $valoracion_media);
+                    $consulta->bindParam(11, $id_curso);
+
 
                     $consulta->execute();
-                    $mensaje = "¡Se ha modificado el curso " . $titulo . " correctamente!";
+                    $mensaje = "<div class ='alert alert-success'>
+                    <a class='close' data-dismiss='alert'> × </a>¡Se ha modificado el curso " . $titulo . " correctamente!</div>";
                 }
             } catch (Exception $e) {
-                $mensaje = "No se ha podido modificar el curso " . $e->getMessage();
+                $mensaje = "<div class ='alert alert-danger'>
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido modificar el curso " . $e->getMessage()."</div>";
             }
         }
         return $mensaje;
@@ -591,7 +632,8 @@ class BD
 
 
         if (!$existe) {
-            $mensaje = "El curso no existe en la Base de Datos";
+            $mensaje = "<div class ='alert alert-danger'>
+            <a class='close' data-dismiss='alert'> × </a>El curso no existe en la Base de Datos</div>";
         } else {
             require 'conexion.php';
             try {
@@ -603,10 +645,12 @@ class BD
                     $consulta->bindParam(1, $id_curso);
 
                     $consulta->execute();
-                    $mensaje = "¡Se ha borrado el curso " . $id_curso . " correctamente!";
+                    $mensaje = "<div class ='alert alert-success'>
+                    <a class='close' data-dismiss='alert'> × </a>¡Se ha borrado el curso " . $id_curso . " correctamente!</div>";
                 }
             } catch (Exception $e) {
-                $mensaje = "No se ha podido borrar el curso " . $e->getMessage();
+                $mensaje = "<div class ='alert alert-danger'>
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido borrar el curso " . $e->getMessage()."</div>";
             }
         }
         return $mensaje;
@@ -617,20 +661,149 @@ class BD
     public static function listarCursos()
     {
         $mensaje = "";
-            require 'conexion.php';
+        require 'conexion.php';
 
+        try {
+            //Verifica que la variable de conexión exista, ya que se encuentra en otro fichero
+            if (isset($dwes)) {
+                $sql = "SELECT * FROM cursos";
+
+                $consulta = $dwes->prepare($sql);
+                $consulta->execute();
+                return $consulta;
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+
+    // --------------------------------------------------------CRUD------------------------------------------------------------------------------------------------------
+    // CREACION DE ENTRADAs - PARTE ADMINISTRADOR- CRUD -ANADIR -ELIMINAR -ACTUALIZAR - 
+    public static function insertarEntrada($id_categoria, $autor, $titulo, $contenido, $fecha_publicacion)
+    {
+        $mensaje = "";
+
+            require 'conexion.php';
             try {
                 //Verifica que la variable de conexión exista, ya que se encuentra en otro fichero
                 if (isset($dwes)) {
-                    $sql = "SELECT * FROM cursos";
-
+                    $sql = "INSERT INTO blogs (id_categoriaB,autor,titulo,contenido,fecha_publicacion) VALUES(?,?,?,?,?)";
                     $consulta = $dwes->prepare($sql);
+                    $consulta->bindParam(1, $id_categoria);
+                    $consulta->bindParam(2, $autor);
+                    $consulta->bindParam(3, $titulo);
+                    $consulta->bindParam(4, $contenido);
+                    $consulta->bindParam(5, $fecha_publicacion);
+                    
                     $consulta->execute();
-                    return $consulta;
+                    print_r($consulta);
+                    $mensaje = "<div class ='alert alert-success'>
+                    <a class='close' data-dismiss='alert'> × </a>¡Se ha añadido la nueva entrada '" . $titulo . "' correctamente!</div>";
                 }
             } catch (Exception $e) {
-                die($e->getMessage());
+                $mensaje = "<div class ='alert alert-danger'>
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido añadir la entrada</div>";
+            }
+        return $mensaje;
+    }
+
+    public static function actualizarEntrada($id_blog, $id_categoria, $autor, $titulo, $contenido, $fecha_publicacion)
+    {
+        $mensaje = "";
+
+        //llamar a getProducto con el id, y si no devuelve nada, proseguir con esto.
+        $existe = self::verificaExisteEntrada($id_blog);
+
+        if (!$existe) {
+            $mensaje = "<div class ='alert alert-danger'>
+            <a class='close' data-dismiss='alert'> × </a>La entrada no existe en la base de datos</div>";
+        } else {
+            require 'conexion.php';
+            try {
+                //Verifica que la variable de conexión exista, ya que se encuentra en otro fichero
+                if (isset($dwes)) {
+                    $sql = "UPDATE blogs SET id_categoriaB=?,
+                    autor=?,
+                    titulo=?,
+                    contenido=?,
+                    fecha_publicacion=?
+                    WHERE id_blog=?";
+
+                    $consulta = $dwes->prepare($sql);
+                    $consulta->bindParam(1, $id_categoria);
+                    $consulta->bindParam(2, $autor);
+                    $consulta->bindParam(3, $titulo);
+                    $consulta->bindParam(4, $contenido);
+                    $consulta->bindParam(5, $fecha_publicacion);
+                    $consulta->bindParam(6, $id_blog);
+
+                    $consulta->execute();
+                    $mensaje = "<div class ='alert alert-success'>
+                    <a class='close' data-dismiss='alert'> × </a>¡Se ha modificado la entrada " . $titulo . " correctamente!</div>";
+                }
+            } catch (Exception $e) {
+                $mensaje = "<div class ='alert alert-danger'>
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido modificar la entrada" . $e->getMessage()."</div>";
             }
         }
-    
+        return $mensaje;
+    }
+
+
+    public static function eliminarEntrada($id_blog)
+    {
+        $mensaje = "";
+
+        //llamar a getProducto con el id, y si no devuelve nada, proseguir con esto.
+        $existe = self::verificaExisteEntrada($id_blog);
+
+        if (!$existe) {
+            $mensaje = "<div class ='alert alert-danger'>
+            <a class='close' data-dismiss='alert'> × </a>La entrada no existe en la base de datos</div>";
+        } else {
+            require 'conexion.php';
+            try {
+                //Verifica que la variable de conexión exista, ya que se encuentra en otro fichero
+                if (isset($dwes)) {
+                    $sql = "DELETE FROM blogs WHERE id_blog=?";
+
+                    $consulta = $dwes->prepare($sql);
+                    $consulta->bindParam(1, $id_blog);
+
+                    $consulta->execute();
+                    $mensaje = "<div class ='alert alert-success'>
+                    <a class='close' data-dismiss='alert'> × </a>¡Se ha borrado la entrada " . $id_blog . " correctamente!</div>";
+                }
+            } catch (Exception $e) {
+                $mensaje = "<div class ='alert alert-danger'>
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido borrar la entrada " . $e->getMessage()."</div>";
+            }
+        }
+        return $mensaje;
+    }
+
+
+
+    public static function listarEntradas()
+    {
+        $mensaje = "";
+        require 'conexion.php';
+
+        try {
+            //Verifica que la variable de conexión exista, ya que se encuentra en otro fichero
+            if (isset($dwes)) {
+                $sql = "SELECT * FROM blogs";
+
+                $consulta = $dwes->prepare($sql);
+                $consulta->execute();
+                return $consulta;
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+
 }
