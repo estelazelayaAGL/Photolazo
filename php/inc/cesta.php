@@ -22,7 +22,7 @@ ob_start();
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->
-        <div class="container seccion ">
+        <div class="container sinPad ">
 
             <!---	Incluye un breadcrumb que indique la sección actual-->
             <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
@@ -69,20 +69,9 @@ ob_start();
                 echo "<div>";
                 if (isset($_POST['aniadir'])) {
                     if (isset($_POST['codigo'])) {
-                        // if ((isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['marca'])) || ()) {
                         $codigo = $_POST['codigo'];
                         $cesta->nuevo_articulo($codigo);
                         $cesta->guarda_cesta();
-                        // $nombre = $_POST['nombre'];
-                        // $marca = $_POST['marca'];
-                        // $descripcion = $_POST['descripcion'];
-                        // $precio  = $_POST['precio'];
-
-                        //imprimir todo el artículo
-                        //echo $codigo;
-                        // } else {
-                        //     echo 'No has puesto alguno de los siguientes: nombre, descripción, nombre_corto, PVP.';
-                        // }
                     } else {
                         echo "No has puesto código.";
                     }
@@ -99,26 +88,13 @@ ob_start();
                 //$cesta->muestraCurso();
 
 
-
-
-                //Obtención del método de pago: a través de post
-                //(si es la primera vez en la página), o a través de la sesión.
-                // $pago = '';
-                // if (isset($_POST['codigo'])) {
-                //     $codigo = $_POST["codigo"];
-                //     $_SESSION['codigo'] = $codigo;
-                // } else {
-                //     $codigo = $_SESSION['codigo'];
-                // }
-
-                // echo $codigo
-
+                
                 ?>
 
             </div>
 
         </div>
-
+        
 
     </section>
 

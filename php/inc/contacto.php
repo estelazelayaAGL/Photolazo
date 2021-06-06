@@ -76,8 +76,8 @@
 
                         <div class="row form-group">
                             <div class="col-xs-12 col-sm-12 col-md-6">
-                                <input value="Limpiar" class="btn btn-success" type="reset" name="reset" />
-                                <input value="Enviar" class="btn btn-primary" type="submit" name="enviar" />
+                                <input value="Limpiar" class="btn btn-primary btn-lg gris" type="reset" name="reset" />
+                                <input value="Enviar" class="btn btn-primary btn-lg" type="submit" name="enviar" />
                             </div>
                         </div>
 

@@ -1,6 +1,6 @@
 <?php 
 
-class Curso{
+class Blog{
     private $codigo;
     private $categoria;
     private $autor;
@@ -9,7 +9,7 @@ class Curso{
     private $fechaPublicacion;
     
     function __construct($row){
-        $this->codigo=$row['id_curso'];
+        $this->codigo=$row['id_blog'];
         $this->categoria=$row['id_categoriaB'];
         $this->autor=$row['autor'];
         $this->titulo=$row['titulo'];

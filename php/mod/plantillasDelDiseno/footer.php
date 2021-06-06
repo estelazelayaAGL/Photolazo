@@ -1,10 +1,10 @@
 <footer class="container-fluid ">
     <div class="container">
         <!-- copyright -->
-        <div class="redesnombre col-xs-12 col-sm-12 col-md-6 col-lg-6 footer1">
-            <h1>PHOTOLAZO</h1>
+        <div class="redesnombre col-xs-12 col-sm-12 col-md-12 col-lg-6 footer1">
+            <h1 class="centrado">PHOTOLAZO</h1>
         </div>
-        <div class="redesnombre col-xs-12 col-sm-12 col-md-6 col-lg-6 footer1">
+        <div class="redesnombre col-xs-12 col-sm-12 col-md-12 col-lg-6 footer1">
             <ul class="iconos-social ">
                 <li><a href="#"><i class="fab fa-youtube glyphiconPlus"></i></a></li>
                 <li><a href="#"><i class="fab fa-facebook glyphiconPlus "></i></a></li>
@@ -14,7 +14,7 @@
         </div>
     </div>
     <!-- POLITICAS -->
-    <div class="container ft1 footer2">
+    <div class="footer2 col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
         <ul>
             <li>Información Legal |</li>
             <li>Política de Cookies |</li>
@@ -22,7 +22,7 @@
             <li>Política de privacidad |</li>
         </ul>
     </div>
-    <div class="footer2">
+    <div class="footer2 col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
         <ul>
             <li>Copyright &#169; 2020</li>
             <li>PhotoLazo</li>

@@ -8,7 +8,7 @@
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->
-        <div class="container seccion ">
+        <div class="container sinPad ">
 
             <!---	Incluye un breadcrumb que indique la sección actual-->
             <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
@@ -68,6 +68,13 @@
                     ?>
                 </div>
 
+                <h4>Fujifilm</h4>
+                <div class="row">
+                    <?php
+                    $productos = BD::obtieneProductos('objetivos', 'Fujifilm');
+                    BD::muestraProductos($productos);
+                    ?>
+                </div>
                 
 
             </div>

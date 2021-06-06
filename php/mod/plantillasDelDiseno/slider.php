@@ -1,6 +1,6 @@
 
             <!-- Slider - Carrusel-->
-            <div class="container" id="titulo" id="slider" class="row">
+            <div class="container sinPad" id="titulo" id="slider" class="row">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">

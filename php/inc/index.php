@@ -12,9 +12,8 @@
 
     <section class="container-fluid">
 
-
         <!-- ENCABEZADO -->
-        <div class="container seccion ">
+        <div class="container sinPad ">
 
             <!---	Incluye un breadcrumb que indique la sección actual-->
             <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
@@ -57,7 +56,7 @@
                     Recuenda “pasito a pasito por la dirección adecuada se llega a la meta.”
                 </p>
 
-                <span><a class="btn btn-primary btn-lg col-xs-6 col-sm-6 col-md-2" href="#slider">Ver cursos</a></span>
+                <a href="cursos.php"><button class="btn btn-primary btn-lg">Ver cursos</button></a>
             </div>
         </div>
     </section>

@@ -18,8 +18,6 @@ function principal() {
 
 
 function anadeEntrada() {
-    console.log("anadeEntradas");
-    
     if (divAnadeEntrada.style.display === "none") {
 
         divAnadeEntrada.style.display = "block";
@@ -30,11 +28,9 @@ function anadeEntrada() {
 }
 
 function tablaMuestraEntrada(){
-    console.log("muestra entrada");
      var tablaMuestraEntradas = document.getElementById('tablaMuestraEntradas');
      
      if (tablaMuestraEntradas.style.display === "none") {
-        console.log("HOLAmuestra entrada");
         tablaMuestraEntradas.style.display = "block";
      }
  else {

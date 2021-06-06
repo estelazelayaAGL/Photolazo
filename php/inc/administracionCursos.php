@@ -32,7 +32,39 @@
         $precio = $_POST['precio'];
         $video_promocional = $_POST['video_promocional'];
 
-        $mensaje = BD::insertarCurso($id_curso, $id_categoria, $lema, $titulo, $autor, $nivel, $resumen, $descripcion, $precio, $video_promocional);
+
+        $tamano = $_FILES["imagenCurso"]['size'];
+        $tipo = $_FILES["imagenCurso"]['type'];
+        $archivo = $_FILES["imagenCurso"]['name'];
+
+        $status = "";
+        if (!empty($archivo)) {
+            if (!BD::checkExtension($archivo))
+                $status = "Tipo incorrecto";
+            else {
+                if ($tamano > 10000000000) {                  // ---------- tamaño en bytes --------------------------------
+                    $status = "ERROR, demasiado grande";
+                } else {
+                    // guardamos el archivo a la carpeta física creada
+                    $destino = "../../imagenes/imgObjetivas/cursos/" . $id_curso . ".png";
+                    if (move_uploaded_file($_FILES['imagenCurso']['tmp_name'], $destino)) {
+                        $status = "Archivo subido: <b>" . $archivo . "</b>";
+                    } else {
+                        $status = "Error al subir el archivo";
+                    }
+                }
+            }
+        } else {
+            $status = "Error falta fichero";
+        }
+
+        if ($status == ("Archivo subido: <b>" . $archivo . "</b>")) {
+            $mensaje = BD::insertarCurso($id_curso, $id_categoria, $lema, $titulo, $autor, $nivel, $resumen, $descripcion, $precio, $video_promocional);
+        } else {
+            $mensaje = "<div class ='alert alert-danger'>
+            <a class='close' data-dismiss='alert'> × </a>La imagen no se ha procesado correctamente</div>";
+        }
+
     }
 
     if (isset($_POST['actualizar'])) {
@@ -47,7 +79,44 @@
         $precio_M = $_POST['precio_M'];
         $videoPromocional_M = $_POST['video_promocional_M'];
 
-        $mensaje = BD::actualizarCurso($idCurso_M, $idCategoria_M, $lema_M, $titulo_M, $autor_M, $nivel_M, $resumen_M, $descripcion_M, $precio_M, $videoPromocional_M);
+
+        if ($_FILES["imagenCurso"]['size'] > 0) {
+            $tamano = $_FILES["imagenCurso"]['size'];
+            $tipo = $_FILES["imagenCurso"]['type'];
+            $archivo = $_FILES["imagenCurso"]['name'];
+
+            $status = "";
+            if (!empty($archivo)) {
+                if (!BD::checkExtension($archivo))
+                    $status = "Tipo incorrecto";
+                else {
+                    if ($tamano > 10000000) {                  // ---------- tamaño en bytes --------------------------------
+                        $status = "ERROR, demasiado grande";
+                    } else {
+                        // guardamos el archivo a la carpeta física creada
+                        $destino = "../../imagenes/imgObjetivas/cursos/" . $idCurso_M . ".png";
+                        if (move_uploaded_file($_FILES['imagenCurso']['tmp_name'], $destino)) {
+                            $status = "Archivo subido: <b>" . $archivo . "</b>";
+                        } else {
+                            $status = "Error al subir el archivo";
+                        }
+                    }
+                }
+            } else {
+                $status = "Error falta fichero";
+            }
+        }
+
+        if ($_FILES["imagenCurso"]['size'] > 0) {
+            if ($status == ("Archivo subido: <b>" . $archivo . "</b>")) {
+                $mensaje = BD::actualizarCurso($idCurso_M, $idCategoria_M, $lema_M, $titulo_M, $autor_M, $nivel_M, $resumen_M, $descripcion_M, $precio_M, $videoPromocional_M);
+            } else {
+                $mensaje = "<div class ='alert alert-danger'>
+                <a class='close' data-dismiss='alert'> × </a>La imagen no se ha procesado correctamente</div>";
+            }
+        } else {
+            $mensaje = BD::actualizarCurso($idCurso_M, $idCategoria_M, $lema_M, $titulo_M, $autor_M, $nivel_M, $resumen_M, $descripcion_M, $precio_M, $videoPromocional_M);
+        }
     }
 
     if (isset($_POST['modificar'])) {
@@ -69,7 +138,7 @@
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->
-        <div class="container seccion ">
+        <div class="container sinPad ">
 
             <!---	Incluye un breadcrumb que indique la sección actual-->
             <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
@@ -93,14 +162,14 @@
                 </div>
                 <fieldset>
                     <legend>Gestión de cursos</legend>
-                    <input type="button" name="anadeCurso" id="anadeCurso" value="Añadir nuevo curso" />
-                    <input type="button" name="obtieneLista" id="obtieneLista" value="Mostrar lista de cursos" />
+                    <input type="button" name="anadeCurso" id="anadeCurso" value="Añadir nuevo curso" class="btn btn-primary btn-lg" />
+                    <input type="button" name="obtieneLista" id="obtieneLista" value="Mostrar lista de cursos" class="btn btn-primary btn-lg" />
                 </fieldset>
                 <div id="divAnadeCurso" class="tarjeta-div" style="display: none;">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4>AÑADIR NUEVO CURSO</h4>
-                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
+                            <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                         <label>ID CURSO</label>
@@ -156,9 +225,15 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                                <label>Imagen del curso</label>
+                                                <input type="file" name="imagenCurso" required />
+                                            </div>
+                                        </div>
+                                <div class="row">
                                     <div class="form-group col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <input type="reset" name="limpiar" class="btn btn-info" value="Limpiar" />
-                                        <input type='submit' name='anadir' class='btn btn-primary' value='Añadir' />
+                                        <input type="reset" name="limpiar" class="btn btn-primary btn-lg gris" value="Limpiar" />
+                                        <input type='submit' name='anadir' class='btn btn-primary btn-lg' value='Añadir' />
                                     </div>
                                 </div>
                             </form>
@@ -176,7 +251,7 @@
                                 while ($row != null) {
                             ?>
                                     <h4>MODIFICAR CURSO <?php echo $row["id_curso"]; ?></h4>
-                                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
+                                    <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                                 <label> ID Categoria</label>
@@ -229,9 +304,15 @@
                                             </div>
                                         </div>
                                         <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                                <label>Imagen del curso</label>
+                                                <input type="file" name="imagenCurso" required />
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="form-group col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <input type="reset" name="limpiar" class="btn btn-info" value="Limpiar" />
-                                                <input type='submit' name='actualizar' class='btn btn-primary' value='Modificar' />
+                                                <input type="reset" name="limpiar" class="btn btn-primary btn-lg gris" value="Limpiar" />
+                                                <input type='submit' name='actualizar' class='btn btn-primary btn-lg' value='Modificar' />
                                             </div>
                                         </div>
                                 <?php
@@ -289,13 +370,13 @@
                                         <td>
                                             <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                 <input type="hidden" name="id_curso" value="<?php echo $row['id_curso'] ?>">
-                                                <input type="submit" id="modificar" name="modificar" value="Modificar">
+                                                <input type="submit" id="modificar" name="modificar" value="Modificar" class="btn btn-primary btn-lg ">
                                             </form>
                                             <!-- </td> -->
                                             <!-- <td> -->
                                             <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                 <input type="hidden" name="id_curso" value="<?php echo $row['id_curso'] ?>">
-                                                <input type="submit" id="eliminar" name="eliminar" value="Eliminar">
+                                                <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="btn btn-primary btn-lg gris">
 
                                             </form>
                                         </td>

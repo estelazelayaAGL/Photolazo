@@ -19,6 +19,8 @@ ob_start();
     <!-- BOOTSTRAP  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -40,7 +42,7 @@ ob_start();
 <header class="container-fluid">
     <div class="container menu">
         <!--Crea un barra top. Introduce el tlf, email a la izquierda e iconos sociales a la derecha(barra encima del menú, oculta para movil -->
-        <nav class="navbar top row topBarra ">
+        <nav class="navbar top row topBarra">
             <div class="topBarradiv col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <ul class="iconos-social-top">
                     <?php
@@ -103,7 +105,7 @@ ob_start();
                 </div>
             </nav>
 
-            <nav class="navbar navbar-expand-md  col-xs-12 col-sm-12 col-md-12">
+            <nav class="navbar navbar-expand-md  col-xs-12 col-sm-12 col-md-12 sinPad">
                 <div class="collapse navbar-collapse barratema" id="navbarSupportedContent">
                     <ul class="nav navbar-nav">
                         <li class="nav-item active">

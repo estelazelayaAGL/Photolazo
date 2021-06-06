@@ -3,6 +3,7 @@
 require_once '../mod/clases/Producto.php';
 require_once '../mod/clases/Curso.php';
 require_once '../mod/clases/Usuario.php';
+require_once '../mod/clases/Blog.php';
 include_once 'conexion.php';
 
 class BD
@@ -33,6 +34,18 @@ class BD
         return $existe;
     }
 
+    public static function verificaCompraCurso($id_usuario, $id_curso)
+    {
+        $comprado = false;
+        $sql = "SELECT * FROM usuarioscursos ";
+        $sql .= "WHERE id_usuario=$id_usuario AND id_curso='$id_curso' ";
+        $resultado = self::ejecutaConsulta($sql);
+        if ($resultado->rowCount() > 0) {
+            $comprado = true;
+        }
+        return $comprado;
+    }
+
     public static function verificaExistenciaCliente($usuario)
     {
         $existe = false;
@@ -43,6 +56,34 @@ class BD
             $existe = true;
         }
         return $existe;
+    }
+
+    public static function existeReceptor($usuario)
+    {
+        $existe = false;
+        $sql = "SELECT * FROM usuarios ";
+        $sql .= "WHERE user_login='$usuario' AND receptor IS NOT  NULL ";
+        $resultado = self::ejecutaConsulta($sql);
+        if ($resultado->rowCount() > 0) {
+            $existe = true;
+        }
+        return $existe;
+    }
+
+
+
+    public static function crearCursosUsuario($cesta, $id_usuario, $id_metodo)
+    {
+        foreach ($cesta->get_Cursos() as $curso) {
+            $sql = "INSERT INTO usuarioscursos (id_usuario, id_curso, precio, fecha_compra, valoracion, id_metodo) VALUES (";
+            $sql .= "" . $id_usuario . ", ";
+            $sql .= "'" . $curso->getCodigo() . "', ";
+            $sql .= "" . $curso->getPrecio() . ", ";
+            $sql .= "NOW(), ";
+            $sql .= "0, ";
+            $sql .= "" . $id_metodo . ")";
+            self::ejecutaConsulta($sql);
+        }
     }
 
     public static function crearLineasPedido($cesta, $id_pedido)
@@ -57,20 +98,20 @@ class BD
             $sql .= "" . $producto->getPrecio() . ")";
             self::ejecutaConsulta($sql);
         }
-        unset($_SESSION['cesta']);
     }
 
-    public static function crearPedido($id_usuario, $id_metodo, $total, $personaRecepcion)
+    public static function crearPedido($id_usuario, $id_metodo, $total, $personaRecepcion, $direccion)
     {
 
-        $sql = "INSERT INTO pedidos(id_usuario, id_metodo, fecha_pedido, fecha_entrega, estado, total, personaRecepcion) VALUES (";
+        $sql = "INSERT INTO pedidos(id_usuario, id_metodo, fecha_pedido, fecha_entrega, estado, total, personaRecepcion, direccionEntrega) VALUES (";
         $sql .= "" . $id_usuario . ", ";
         $sql .= "" . $id_metodo . ", ";
         $sql .= "NOW(), ";
         $sql .= "DATE_ADD(NOW(), INTERVAL 10 DAY), ";
         $sql .= "'Pendiente de pago', ";
         $sql .= "" . $total . ", ";
-        $sql .= "'" . $personaRecepcion . "')";
+        $sql .= "'" . $personaRecepcion . "',";
+        $sql .= "'" . $direccion . "')";
         $id_pedido = "";
         $resultado = self::ejecutaConsulta($sql);
         if ($resultado) {
@@ -285,7 +326,7 @@ class BD
                 echo '
                 <div class="col-xs-12 col-sm-6 col-md-4 ">
 						<div class="miembro-equipo cuadro"> 
-							<img class="img-fluid" src="../../imagenes/imgObjetivas/camara.jpeg">
+							<img style="width:100px; height=100px;" class="img-fluid" src="../../imagenes/imgObjetivas/productos/' . $producto->getCodigo() . '.png">
 							<div class="team-info">'
                     . '<form action="../inc/cesta.php" method="post">'
                     . '<input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>'
@@ -298,7 +339,8 @@ class BD
                     . '<p>' . $producto->getDescripcion() . '</p>'
                     . '<p>Precio: ' . $producto->getPrecio() . '€ (IVA incluido)</p>';
                 if (isset($_SESSION['usuario'])) {
-                    echo '<input type="submit" name="aniadir" value="Añadir al carrito"></input>';
+                    echo '<input id="botonProductos" type="submit" name="aniadir" class="hidden"></input>';
+                    echo '<label for="botonProductos" class="btn btn-info btn-lg">Añadir al carrito <i class="fas fa-shopping-cart"></i></label>';
                 }
                 echo ""
                     . '</form>'
@@ -310,7 +352,6 @@ class BD
         }
     }
 
-
     public static function muestraCursos($cursos)
     {
         if (count($cursos) == 0) {
@@ -319,22 +360,31 @@ class BD
             foreach ($cursos as $curso) {
                 echo '
                 <div class="col-xs-12 col-sm-6 col-md-4 ">
-						<div class="miembro-equipo cuadro"> 
-							<img class="img-fluid" src="../../imagenes/imgObjetivas/camara.jpeg">
-							<div class="team-info">'
+						<div class="cuadro"> 
+							<img class="img-fluid" src="../../imagenes/imgObjetivas/cursos/' . $curso->getCodigo() . '.png">
+							<div class="">'
                     . '<form action="../inc/cesta.php" method="post">'
                     . '<input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>'
-                    // . '<input type="hidden" name="categoria" value="' . $curso->getCategoria() . '"></input>'
-                    // . '<input type="hidden" name="lema" value="' . $curso->getLema() . '"></input>'
-                    // . '<input type="hidden" name="titulo" value="' . $curso->getTitulo() . '"></input>'
-                    // . '<input type="hidden" name="autor" value="' . $curso->getAutor() . '"></input>'
                     . '<a href=#><p>' . $curso->getTitulo() . '</p></a>'
                     . '<p> Autor: ' . $curso->getAutor() . '</p>'
                     . '<p>Nivel:' . $curso->getNivel() . '</p>'
                     . '<p>Resumen: ' . $curso->getResumen() . '</p>'
                     . '<p>Precio: ' . $curso->getPrecio() . '€ (IVA incluido)</p>';
+                $usuario = self::obtieneUsuario($_SESSION['usuario']);
+                $codigo = $usuario->getId_usuario();
+                $comprado = self::verificaCompraCurso($codigo, $curso->getCodigo());
+
+
+                // print_r($comprado);
                 if (isset($_SESSION['usuario'])) {
-                    echo '<input type="submit" name="aniadirCurso" value="Añadir al carrito"></input>';
+                    if (!$comprado) {
+                        //Si el usuario no ha comprado el curso: $curso->getCodigo()
+
+                        echo '<input id="botoncurso" type="submit" name="aniadirCurso" class="hidden"></input>';
+                        echo '<label for="botoncurso" class="btn btn-info btn-lg">Añadir al carrito <i class="fas fa-shopping-cart"></i></label>';
+                    } else {
+                        echo '';
+                    }
                 }
                 echo ""
                     . '</form>'
@@ -380,6 +430,13 @@ class BD
         $sql = "UPDATE usuarios SET direccion='$direccion' ,codigo_postal=$codigoPostal, ciudad='$ciudad',provincia='$provincia',pais='$pais'  WHERE user_login='$usuario'";
         $resultado = self::ejecutaConsulta($sql);
 
+        return $resultado;
+    }
+
+    public static function actualizarReceptor($usuario, $receptor)
+    {
+        $sql = "UPDATE usuarios SET receptor='$receptor' WHERE user_login='$usuario'";
+        $resultado = self::ejecutaConsulta($sql);
         return $resultado;
     }
 
@@ -462,7 +519,7 @@ class BD
                 }
             } catch (Exception $e) {
                 $mensaje = "<div class ='alert alert-danger'>
-                <a class='close' data-dismiss='alert'> × </a>No se ha podido modificar el producto " . $e->getMessage()."</div>";
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido modificar el producto " . $e->getMessage() . "</div>";
             }
         }
         return $mensaje;
@@ -496,7 +553,7 @@ class BD
                 }
             } catch (Exception $e) {
                 $mensaje = "<div class ='alert alert-danger'>
-                <a class='close' data-dismiss='alert'> × </a>No se ha podido borrar el producto " . $e->getMessage()."</div>";
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido borrar el producto " . $e->getMessage() . "</div>";
             }
         }
         return $mensaje;
@@ -616,7 +673,7 @@ class BD
                 }
             } catch (Exception $e) {
                 $mensaje = "<div class ='alert alert-danger'>
-                <a class='close' data-dismiss='alert'> × </a>No se ha podido modificar el curso " . $e->getMessage()."</div>";
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido modificar el curso " . $e->getMessage() . "</div>";
             }
         }
         return $mensaje;
@@ -650,7 +707,7 @@ class BD
                 }
             } catch (Exception $e) {
                 $mensaje = "<div class ='alert alert-danger'>
-                <a class='close' data-dismiss='alert'> × </a>No se ha podido borrar el curso " . $e->getMessage()."</div>";
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido borrar el curso " . $e->getMessage() . "</div>";
             }
         }
         return $mensaje;
@@ -685,27 +742,27 @@ class BD
     {
         $mensaje = "";
 
-            require 'conexion.php';
-            try {
-                //Verifica que la variable de conexión exista, ya que se encuentra en otro fichero
-                if (isset($dwes)) {
-                    $sql = "INSERT INTO blogs (id_categoriaB,autor,titulo,contenido,fecha_publicacion) VALUES(?,?,?,?,?)";
-                    $consulta = $dwes->prepare($sql);
-                    $consulta->bindParam(1, $id_categoria);
-                    $consulta->bindParam(2, $autor);
-                    $consulta->bindParam(3, $titulo);
-                    $consulta->bindParam(4, $contenido);
-                    $consulta->bindParam(5, $fecha_publicacion);
-                    
-                    $consulta->execute();
-                    print_r($consulta);
-                    $mensaje = "<div class ='alert alert-success'>
+        require 'conexion.php';
+        try {
+            //Verifica que la variable de conexión exista, ya que se encuentra en otro fichero
+            if (isset($dwes)) {
+                $sql = "INSERT INTO blogs (id_categoriaB,autor,titulo,contenido,fecha_publicacion) VALUES(?,?,?,?,?)";
+                $consulta = $dwes->prepare($sql);
+                $consulta->bindParam(1, $id_categoria);
+                $consulta->bindParam(2, $autor);
+                $consulta->bindParam(3, $titulo);
+                $consulta->bindParam(4, $contenido);
+                $consulta->bindParam(5, $fecha_publicacion);
+
+                $consulta->execute();
+
+                $mensaje = "<div class ='alert alert-success'>
                     <a class='close' data-dismiss='alert'> × </a>¡Se ha añadido la nueva entrada '" . $titulo . "' correctamente!</div>";
-                }
-            } catch (Exception $e) {
-                $mensaje = "<div class ='alert alert-danger'>
-                <a class='close' data-dismiss='alert'> × </a>No se ha podido añadir la entrada</div>";
             }
+        } catch (Exception $e) {
+            $mensaje = "<div class ='alert alert-danger'>
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido añadir la entrada</div>";
+        }
         return $mensaje;
     }
 
@@ -745,7 +802,7 @@ class BD
                 }
             } catch (Exception $e) {
                 $mensaje = "<div class ='alert alert-danger'>
-                <a class='close' data-dismiss='alert'> × </a>No se ha podido modificar la entrada" . $e->getMessage()."</div>";
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido modificar la entrada" . $e->getMessage() . "</div>";
             }
         }
         return $mensaje;
@@ -778,7 +835,7 @@ class BD
                 }
             } catch (Exception $e) {
                 $mensaje = "<div class ='alert alert-danger'>
-                <a class='close' data-dismiss='alert'> × </a>No se ha podido borrar la entrada " . $e->getMessage()."</div>";
+                <a class='close' data-dismiss='alert'> × </a>No se ha podido borrar la entrada " . $e->getMessage() . "</div>";
             }
         }
         return $mensaje;
@@ -805,5 +862,138 @@ class BD
         }
     }
 
+    // BLOG 
+    public static function  ultimasEntradas()
+    {
+        require 'conexion.php';
+        try {
+            //Verifica que la variable de conexión exista, ya que se encuentra en otro fichero
+            if (isset($dwes)) {
+                $sql = "SELECT * FROM blogs ORDER BY id_blog DESC LIMIT 3";
 
+                $consulta = $dwes->prepare($sql);
+                $consulta->execute();
+                $entradas = array();
+                if ($consulta) {
+                    // Añadimos un elemento por cada pizza leida
+                    $row = $consulta->fetch();
+                    while ($row != null) {
+                        $entradas[] = new Blog($row);
+                        $row = $consulta->fetch();
+                    }
+                }
+                return $entradas;
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public static function muestraUltimasEntradas($entradas)
+    {
+        if (count($entradas) == 0) {
+            echo '<div class="col-xs-12 col-sm-12 col-md-12"><p>No hay entradas</p></div>';
+        } else {
+            foreach ($entradas as $entrada) {
+                echo '
+                <div class="col-xs-12 col-sm-6 col-md-4 ">
+                                <div class=" cuadro panel-padre"> 
+                                <img class="img-fluid opaca" src="../../imagenes/imgObjetivas/entradas/Administración.png">
+                                        <div class="panel-titulo"> 
+                <label for="">' . $entrada->getTitulo() . '</label>
+                <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
+                <form action="../inc/detalleEntrada.php" method="post">
+                <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>    
+                <input type="hidden" name="autor" value="' . $entrada->getAutor() . '"></input>
+                <input type="hidden" name="titulo" value="' . $entrada->getTitulo() . '"></input>
+                <input type="hidden" name="contenido" value="' . $entrada->getContenido() . '"></input>
+                    <input type="hidden" name="fechaPublicacion" value="' . $entrada->getFechaPublicacion() . '"></input>
+                    <input type="hidden" name="categoria" value="' . $entrada->getCategoria() . '"></input>
+                    <input  type="submit" name="aniadir" value="Leer más" class="btn btn-info btn-lg espacio azul"></input>';
+                echo ""
+                    . '</form>';
+                echo '</div>
+                    </div>
+                    </div>';
+            }
+        }
+    }
+
+    public static function  todasLasEntradas()
+    {
+        require 'conexion.php';
+        try {
+            //Verifica que la variable de conexión exista, ya que se encuentra en otro fichero
+            if (isset($dwes)) {
+                $sql = "SELECT * FROM blogs ORDER BY titulo";
+
+                $consulta = $dwes->prepare($sql);
+                $consulta->execute();
+                $entradas = array();
+                if ($consulta) {
+                    // Añadimos un elemento por cada pizza leida
+                    $row = $consulta->fetch();
+                    while ($row != null) {
+                        $entradas[] = new Blog($row);
+                        $row = $consulta->fetch();
+                    }
+                }
+                return $entradas;
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public static function muestraTodasLasEntradas($entradas)
+    {
+        if (count($entradas) == 0) {
+            echo '<div class="col-xs-12 col-sm-12 col-md-12"><p>No hay entradas</p></div>';
+        } else {
+            foreach ($entradas as $entrada) {
+                echo '
+                <div class="col-xs-12 col-sm-6 col-md-4 ">
+                                <div class="">
+                                <img class="img-fluid opaca" src="../../imagenes/imgObjetivas/entradas/Administración.png">
+                                        <div class="">
+                                        <label for="">' . $entrada->getTitulo() . '</label>
+                                        <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
+                <form action="../inc/detalleEntrada.php" method="post">
+                <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>    
+                <input type="hidden" name="autor" value="' . $entrada->getAutor() . '"></input>
+                <input type="hidden" name="titulo" value="' . $entrada->getTitulo() . '"></input>
+                <input type="hidden" name="contenido" value="' . $entrada->getContenido() . '"></input>
+                    <input type="hidden" name="fechaPublicacion" value="' . $entrada->getFechaPublicacion() . '"></input>
+                    <input type="hidden" name="categoria" value="' . $entrada->getCategoria() . '"></input>
+                    <input  type="submit" name="aniadir" value="Leer más" class="btn btn-info btn-lg espacio azul"></input>';
+                echo ""
+                    . '</form>';
+                echo '</div>
+                    </a>
+                    </div>
+                    </div>';
+            }
+        }
+    }
+
+    // VERIFICAR EL TIPO DE EXTENSIÓN DE LA IMAGEN
+    public static function checkExtension($nombre)
+    {
+        //obtenemos la extension
+        /*
+        End requiere una referencia, porque modifica la representación interna de la matriz
+        (es decir, hace que el puntero del elemento actual apunte al último elemento).
+        El resultado de explode('.', $file_name)no se puede convertir en una referencia. Esta es una restricción
+        en el lenguaje PHP, que probablemente existe por razones de simplicidad.
+        */
+        $extensionE = explode(".", $nombre);
+        $extension = end($extensionE);
+        // echo "extension obtenida: " . $extension;
+        //aqui podemos añadir las extensiones que deseemos permitir
+        $extensiones = array("png", "PNG");
+        if (in_array(strtolower($extension), $extensiones))
+            return true;
+        else
+            return false;
+    }
 }

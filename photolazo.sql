@@ -103,6 +103,7 @@ estado VARCHAR(50) NOT NULL CHECK (estado IN ('Pendiente de pago','Pendiente de 
 total FLOAT NOT NULL,
 comentario VARCHAR(50) NULL,
 personaRecepcion VARCHAR(100) NOT NULL,
+direccionEntrega VARCHAR(200) NULL,
 
 CONSTRAINT pk_pedido PRIMARY KEY (id_pedido),
 CONSTRAINT fkUsuario_Pedido FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),

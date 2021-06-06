@@ -48,7 +48,7 @@
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->
-        <div class="container seccion ">
+        <div class="container sinPad ">
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <div>
                     <h1>Crea una cuenta</h1>

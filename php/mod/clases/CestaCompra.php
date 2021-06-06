@@ -79,62 +79,73 @@ class CestaCompra
         //  y si no está vacía, mostramos su contenido
         else {
             if(count($this->productosSeleccionados) > 0) {
+               echo " <table class='table table-striped'>
+                <thead>
+                  <tr>
+                    <th>Marca</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>";
                 foreach ($this->productosSeleccionados as $producto) {
-                    echo "<div class='col-xs-12 col-sm-12 col-md-12'>"
-                        // . "<div class='col-xs-2 col-sm-2 col-md-2'>"
-                        // . $producto->getCodigo()
-                        // . "</div>"
-                        . "<div class='col-xs-4 col-sm-4 col-md-4'>"
-                        . $producto->getNombre()
-                        . "</div>"
-                        . "<div class='col-xs-2 col-sm-2 col-md-2'>"
-                        . $producto->getPrecio()
-                        . "</div>"
-                        . "<div class='col-xs-4 col-sm-4 col-md-4'> "
-                        . '<form action="cesta.php" method="post">'
-                        . '<input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>'
-                        . '<input type="hidden" name="nombre" value="' . $producto->getNombre() . '"></input>'
-                        . '<input type="hidden" name="marca" value="' . $producto->getMarca() . '"></input>'
-                        . '<input type="hidden" name="descripcion" value="' . $producto->getDescripcion() . '"></input>'
-                        . '<input type="hidden" name="precio" value="' . $producto->getPrecio() . '"></input>'
-                        . '<input type="submit" name="quitar" value="Quitar"></input>'
-                        . '</form>'
-                        . "</div>"
-                        . "</div>";
-                }    
+                    echo "<tr>
+                    <td>" . $producto->getMarca()."</td>
+                    <td>".$producto->getNombre()."</td>
+                    <td>".$producto->getPrecio()."€</td>
+                    <form action='cesta.php' method='post'>
+                    <input type='hidden' name='codigo' value='" . $producto->getCodigo() . "'></input>
+                        <input type='hidden' name='nombre' value='" . $producto->getNombre() . "'></input>
+                        <input type='hidden' name='marca' value='" . $producto->getMarca() . "'></input>
+                        <input type='hidden' name='descripcion' value='" . $producto->getDescripcion() . "'></input>
+                        <input type='hidden' name='precio' value='" . $producto->getPrecio() . "'></input>
+                    <td><input type='submit' name='quitar' value='Quitar' class='btn btn-primary btn-xs'></input></td>
+                    </form>
+                  </tr>";
+                } 
+                echo "</tbody>
+                </table>";   
             }
             if(count($this->cursosSeleccionados) > 0) {
+                echo " <table class='table table-striped'>
+                <thead>
+                  <tr>
+                    <th>Título del curso</th>
+                    <th>Autor</th>
+                    <th>Precio</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>";
                 foreach ($this->cursosSeleccionados as $curso) {
-                    echo "<div class='col-xs-12 col-sm-12 col-md-12'>"
-                        // . "<div class='col-xs-2 col-sm-2 col-md-2'>"
-                        // . $curso->getCodigo()
-                        // . "</div>"
-                        . "<div class='col-xs-4 col-sm-4 col-md-4'>"
-                        . $curso->getTitulo()
-                        . "</div>"
-                        . "<div class='col-xs-2 col-sm-2 col-md-2'>"
-                        . $curso->getPrecio()
-                        . "</div>"
-                        . "<div class='col-xs-4 col-sm-4 col-md-4'> "
-                        . '<form action="cesta.php" method="post">'
-                        . '<input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>'
-                        . '<input type="submit" name="quitarCurso" value="Quitar"></input>'
-                        . '</form>'
-                        . "</div>"
-                        . "</div>";
+                    echo "<tr>
+                    <td>" . $curso->getTitulo()."</td>
+                    <td>".$curso->getAutor()."</td>
+                    <td>".$curso->getPrecio()."€</td>
+                    <form action='cesta.php' method='post'>
+                    <input type='hidden' name='codigo' value='" . $curso->getCodigo() . "'></input>
+                    <td><input type='submit' name='quitarCurso' value='Quitar' class='btn btn-primary btn-xs'></input></td>
+                    </form>
+                  </tr>";
                 }
+                echo "</tbody>
+                </table>"; 
             }
 
-            echo "<div class='col-xs-12 col-sm-12 col-md-12'>"
-                . "<div  class='col-xs-6 col-sm-6 col-md-6>'"
-                . "<label>TOTAL: </label></div>"
-                . "<div  class='col-xs-6 col-sm-6 col-md-6'>"
+            echo "<table class='azul table table-striped '>"
+                . "<tr>"
+                ."<td></td>"
+                . "<td>TOTAL: </td>"
+                . "<td>"
                 . $this->get_coste()
-                . "</div></div>";
+                . "€</td>
+                <td></td>
+                </tr></table>";
             echo  "<div class='col-xs-12 col-sm-12 col-md-12'>"
                 . '<form action="cesta.php" method="post">'
-                . '<input type="submit" name="vaciar" value="Vaciar cesta"></input>'
-                . '<input type="submit" name="tramitar" value="Tramitar pedido"></input>'
+                . '<input type="submit" name="vaciar" value="Vaciar cesta" class="btn btn-primary btn-lg gris"></input>'
+                . '<input type="submit" name="tramitar" value="Tramitar pedido" class="btn btn-primary btn-lg separacion"></input>'
                 . '</form>'
                 . "</div>";
         }
@@ -146,58 +157,69 @@ class CestaCompra
     {
         // Si la cesta está vacía, mostramos un mensaje
         if ((count($this->productosSeleccionados) == 0) && (count($this->cursosSeleccionados) == 0))
-            print "<p>Selección vacía</p>";
+            print "<p>Cesta vacía</p>";
         //  y si no está vacía, mostramos su contenido
         else {
-            print "<ul>";
             if(count($this->productosSeleccionados) > 0) {
+               echo " <table class='table table-striped table-condensed table-bordered'>
+                <thead>
+                  <tr>
+                    <th>Marca</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                  </tr>
+                </thead>
+                <tbody>";
                 foreach ($this->productosSeleccionados as $producto) {
-                    echo "<div class='col-xs-12 col-sm-12 col-md-12'>"
-                        // . "<div class='col-xs-2 col-sm-2 col-md-6'>"
-                        // . $producto->getCodigo()
-                        // . "</div>"
-                        . "<div class='col-xs-4 col-sm-4 col-md-4'>"
-                        . $producto->getNombre()
-                        . "</div>"
-                        . "<div class='col-xs-2 col-sm-2 col-md-2'>"
-                        . $producto->getPrecio()
-                        . "</div>"
-                        . "</div>";
-                }    
+                    echo "<tr>
+                    <td>" . $producto->getMarca()."</td>
+                    <td>".$producto->getNombre()."</td>
+                    <td>".$producto->getPrecio()."€</td>
+                  </tr>";
+                } 
+                echo "</tbody>
+                </table>";   
             }
             if(count($this->cursosSeleccionados) > 0) {
+                echo " <table class='table table-striped'>
+                <thead>
+                  <tr>
+                    <th>Título del curso</th>
+                    <th>Autor</th>
+                    <th>Precio</th>
+                  </tr>
+                </thead>
+                <tbody>";
                 foreach ($this->cursosSeleccionados as $curso) {
-                    echo "<div class='col-xs-12 col-sm-12 col-md-12'>"
-                        // . "<div class='col-xs-2 col-sm-2 col-md-2'>"
-                        // . $curso->getTitulo()
-                        // . "</div>"
-                        . "<div class='col-xs-4 col-sm-4 col-md-4'>"
-                        . $curso->getTitulo()
-                        . "</div>"
-                        . "<div class='col-xs-2 col-sm-2 col-md-2'>"
-                        . $curso->getPrecio()
-                        . "</div>"
-                        . "<div class='col-xs-4 col-sm-4 col-md-4'> "
-                        . '<form action="cesta.php" method="post">'
-                        . '<input type="hidden" name="codigo" value="' . $curso->getTitulo() . '"></input>'
-                        . '<input type="hidden" name="nombre" value="' . $curso->getTitulo() . '"></input>'
-                        . '<input type="hidden" name="marca" value="' . $curso->getTitulo() . '"></input>'
-                        . '<input type="hidden" name="descripcion" value="' . $curso->getTitulo() . '"></input>'
-                        . '<input type="hidden" name="precio" value="' . $curso->getPrecio() . '"></input>'
-                        . '</form>'
-                        . "</div>"
-                        . "</div>";
+                    echo "<tr>
+                    <td>" . $curso->getTitulo()."</td>
+                    <td>".$curso->getAutor()."</td>
+                    <td>".$curso->getPrecio()."€</td>
+                  </tr>";
                 }
+                echo "</tbody>
+                </table>"; 
             }
-            echo "<div class='col-xs-12 col-sm-12 col-md-12'>"
-                . "<div  class='col-xs-8 col-sm-8 col-md-6>'"
-                . "<label>TOTAL: </label></div>"
-                . "<div  class='col-xs-4 col-sm-4 col-md-6'>"
-                . $this->get_coste()
-                . "</div></div>";
+            echo "<table class='azul table table-striped '>"
+                . "<tr>"
+                . "<td colspan='2' class='text-right'>TOTAL: </td>"
+                . "<td>"
+                . number_format($this->get_coste(),2)
+                . "€</td>"
+                ."</tr>"
+                ."<tr>"
+                . "<td colspan='2' class='text-right'>Descuento: </td><td>"
+                . number_format($this->get_coste(),2)
+                ."</td></tr><tr>"
+                . "<td colspan='2' class='text-right'>Subtotal con descuento: </td><td>"
+                . number_format($this->get_coste(),2)
+                ."</td></tr>"
+                ."</table>";
             print "</ul>";
-        }
+            
+        
     }
+}
 
 
     // -------------------------------------------------------------------------- FUNCIONES PARA LOS CURSOS------------------------------------------------------------------
@@ -205,7 +227,15 @@ class CestaCompra
     public function nuevo_curso($codigo)
     {
         $curso = BD::obtieneCurso($codigo);
-        $this->cursosSeleccionados[] = $curso;
+        $existe=false;
+        foreach ($this->cursosSeleccionados as $c) {
+            if($c->getCodigo()==$codigo){
+                $existe=true;
+            }
+        }
+        if(!$existe) {
+            $this->cursosSeleccionados[] = $curso;
+        }
     }
 
     // Obtiene los artículos en la cesta

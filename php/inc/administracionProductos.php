@@ -29,7 +29,39 @@
         $precioA = $_POST['precioProducto_A'];
         $descripcionA = $_POST['descripcionProducto_A'];
 
-        $mensaje = BD::insertarProducto($idProductoA, $idCategoriaA, $idMarcaA, $nombreA, $unidadesA, $precioA, $descripcionA);
+        $tamano = $_FILES["imagenProducto"]['size'];
+        $tipo = $_FILES["imagenProducto"]['type'];
+        $archivo = $_FILES["imagenProducto"]['name'];
+
+        $status = "";
+        if (!empty($archivo)) {
+            if (!BD::checkExtension($archivo))
+                $status = "tipo incorrecto";
+            else {
+                if ($tamano > 10000000000) {                  // ---------- tamaño en bytes --------------------------------
+                    $status = "ERROR, demasiado grande";
+                } else {
+                    // guardamos el archivo a la carpeta física creada
+                    $destino = "../../imagenes/imgObjetivas/productos/" . $idProductoA . ".png";
+                    if (move_uploaded_file($_FILES['imagenProducto']['tmp_name'], $destino)) {
+                        $status = "Archivo subido: <b>" . $archivo . "</b>";
+                    } else {
+                        $status = "Error al subir el archivo";
+                    }
+                }
+            }
+        } else {
+            $status = "Error falta fichero";
+        }
+
+        // echo $status . "<br>";
+
+        if ($status == ("Archivo subido: <b>" . $archivo . "</b>")) {
+            $mensaje = BD::insertarProducto($idProductoA, $idCategoriaA, $idMarcaA, $nombreA, $unidadesA, $precioA, $descripcionA);
+        } else {
+            $mensaje = "<div class ='alert alert-danger'>
+            <a class='close' data-dismiss='alert'> × </a>La imagen no se ha procesado correctamente</div>";
+        }
     }
 
     if (isset($_POST['actualizar'])) {
@@ -40,9 +72,43 @@
         $unidadesM = $_POST['unidadesProducto_M'];
         $precioM = $_POST['precioProducto_M'];
         $descripcionM = $_POST['descripcionProducto_M'];
-        echo "LLEGO";
 
-        $mensaje = BD::actualizarProducto($idProductoM, $idCategoriaM, $idMarcaM, $nombreM, $unidadesM, $precioM, $descripcionM);
+        if ($_FILES["imagenProducto"]['size'] > 0) {
+            $tamano = $_FILES["imagenProducto"]['size'];
+            $tipo = $_FILES["imagenProducto"]['type'];
+            $archivo = $_FILES["imagenProducto"]['name'];
+
+            $status = "";
+            if (!empty($archivo)) {
+                if (!BD::checkExtension($archivo))
+                    $status = "Tipo incorrecto";
+                else {
+                    if ($tamano > 10000000) {                  // ---------- tamaño en bytes --------------------------------
+                        $status = "ERROR, demasiado grande";
+                    } else {
+                        // guardamos el archivo a la carpeta física creada
+                        $destino = "../../imagenes/imgObjetivas/productos/" . $idProductoM . ".png";
+                        if (move_uploaded_file($_FILES['imagenProducto']['tmp_name'], $destino)) {
+                            $status = "Archivo subido: <b>" . $archivo . "</b>";
+                        } else {
+                            $status = "Error al subir el archivo";
+                        }
+                    }
+                }
+            } else {
+                $status = "Error falta fichero";
+            }
+        }
+
+        if ($_FILES["imagenProducto"]['size'] > 0) {
+            if ($status == ("Archivo subido: <b>" . $archivo . "</b>")) {
+                $mensaje = BD::actualizarProducto($idProductoM, $idCategoriaM, $idMarcaM, $nombreM, $unidadesM, $precioM, $descripcionM);
+            } else {
+                $mensaje = "La imagen no se ha procesado correctamente";
+            }
+        } else {
+            $mensaje = BD::actualizarProducto($idProductoM, $idCategoriaM, $idMarcaM, $nombreM, $unidadesM, $precioM, $descripcionM);
+        }
     }
 
     if (isset($_POST['modificar'])) {
@@ -65,7 +131,7 @@
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->
-        <div class="container seccion ">
+        <div class="container sinPad ">
 
             <!---	Incluye un breadcrumb que indique la sección actual-->
             <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
@@ -89,15 +155,15 @@
                 </div>
                 <fieldset>
                     <legend>Gestión productos</legend>
-                    <input type="button" name="anadeProducto" id="anadeProducto" value="Añadir producto" />
-                    <input type="button" name="obtieneLista" id="obtieneLista" value="Mostrar lista de productos" />
+                    <input type="button" name="anadeProducto" id="anadeProducto" value="Añadir producto" class="btn btn-primary btn-lg" />
+                    <input type="button" name="obtieneLista" id="obtieneLista" value="Mostrar lista de productos" class="btn btn-primary btn-lg " />
                 </fieldset>
 
                 <div id="divAnadeProducto" class="tarjeta-div col-xs-12 col-sm-12 col-md-12" style="display: none;">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4>AÑADIR NUEVO PRODUCTO</h4>
-                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
+                            <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                         <label>ID Producto</label>
@@ -133,9 +199,15 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                        <label>Imagen del producto</label>
+                                        <input type="file" name="imagenProducto" required />
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="form-group col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <input type="reset" name="limpiar" class="btn btn-info" value="Limpiar" />
-                                        <input type='submit' name='anadir' class='btn btn-primary' value='Añadir' />
+                                        <input type="reset" name="limpiar" class="btn btn-primary btn-lg gris" value="Limpiar" />
+                                        <input type='submit' name='anadir' class='btn btn-primary btn-lg' value='Añadir' />
                                     </div>
                                 </div>
                             </form>
@@ -153,16 +225,16 @@
                                 while ($row != null) {
                             ?>
                                     <h4>MODIFICAR PRODUCTO <?php echo $row["id_producto"]; ?></h4>
-                                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
+                                    <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                                 <label>ID Categoria</label>
                                                 <input type="hidden" name="idProducto_M" class="form-control" placeholder="" value="<?php echo $row["id_producto"]; ?>" />
-                                                <input type="text" name="idCategoriaProd_M" class="form-control" placeholder="" value="<?php echo $row["id_categoria"]; ?>" required/>
+                                                <input type="text" name="idCategoriaProd_M" class="form-control" placeholder="" value="<?php echo $row["id_categoria"]; ?>" required />
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                                 <label>ID Marca</label>
-                                                <input type="text" name="idMarcaProd_M" class="form-control" placeholder="" value="<?php echo $row["id_marca"]; ?>" required/>
+                                                <input type="text" name="idMarcaProd_M" class="form-control" placeholder="" value="<?php echo $row["id_marca"]; ?>" required />
                                             </div>
                                         </div>
                                         <div class="row">
@@ -172,23 +244,29 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-2 pad-adjust">
                                                 <label>Unidades</label>
-                                                <input type="text" name="unidadesProducto_M" class="form-control" value="<?php echo $row["unidades"]; ?>" required/>
+                                                <input type="text" name="unidadesProducto_M" class="form-control" value="<?php echo $row["unidades"]; ?>" required />
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-2 pad-adjust">
                                                 <label>Precio</label>
-                                                <input type="text" name="precioProducto_M" class="form-control" value="<?php echo $row["precio"]; ?>" required/>
+                                                <input type="text" name="precioProducto_M" class="form-control" value="<?php echo $row["precio"]; ?>" required />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                                 <label>Descripción</label>
-                                                <input type="text" name="descripcionProducto_M" class="form-control" value="<?php echo $row["descripcion"]; ?>" required/>
+                                                <input type="text" name="descripcionProducto_M" class="form-control" value="<?php echo $row["descripcion"]; ?>" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                                <label>Imagen</label>
+                                                <input type="file" name="imagenProducto" />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <input type="reset" name="limpiar" class="btn btn-info" value="Limpiar" />
-                                                <input type='submit' name='actualizar' class='btn btn-primary' value='Modificar' />
+                                                <input type="reset" name="limpiar" class="btn btn-primary btn-lg gris" value="Limpiar" />
+                                                <input type='submit' name='actualizar' class='btn btn-primary btn-lg' value='Modificar' />
                                             </div>
                                         </div>
                                 <?php
@@ -236,13 +314,13 @@
                                         <td>
                                             <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                 <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
-                                                <input type="submit" id="modificar" name="modificar" value="Modificar">
+                                                <input type="submit" id="modificar" name="modificar" value="Modificar" class="btn btn-primary btn-lg">
                                             </form>
                                             <!-- </td> -->
                                             <!-- <td> -->
                                             <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                 <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
-                                                <input type="submit" id="eliminar" name="eliminar" value="Eliminar">
+                                                <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="btn btn-primary btn-lg gris">
 
                                             </form>
                                         </td>

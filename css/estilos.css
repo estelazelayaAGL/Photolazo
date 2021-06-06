@@ -106,6 +106,12 @@ ul li {
     top     : 3.1em;
 }
 
+@media only screen and (min-width: 1200px){
+    .container,.container-lg, .container-md, .container-sm, .container-xl{
+    width: 80%;
+    }
+    }
+
 #myNavbar {
     background: #94938f;
     color     : white;
@@ -278,6 +284,10 @@ a.nav-link {
     font-size       : 1vw !important;
 }
 
+.separacion{
+    margin-left: 2em;
+}
+
 .nav-link {
     font-size: 1.5em;
     font-size: 1.5vw;
@@ -336,6 +346,13 @@ section {
     height: min-content;
 }
 
+.sinPad {
+ padding: 0% !important;
+}
+
+
+
+
 .cabecera-seccion {
     /* background              : #f8f4f4; */
     background                 : #f7f7f7;
@@ -361,6 +378,7 @@ section {
     display                    : grid;
     justify-content            : center;
     align-items                : center;
+
 }
 
 .cabecera-seccion h1,
@@ -396,7 +414,7 @@ section {
 
 
 /* FOOTER*/
-.footer-fluid {
+footer.container-fluid {
     padding-right: 0% !important;
     padding-left : 0% !important;
     margin-left  : 0% !important;
@@ -418,9 +436,6 @@ section {
     font-size       : 1.5vw;
 }
 
-.ft1 {
-    margin-top: 1em;
-}
 
 .footer2 ul {
 
@@ -453,12 +468,12 @@ section {
 .redesnombre {
     padding-right: 0% !important;
     padding-left : 0% !important;
+    /* display: table; */
 }
 
 
-
-
 .redesnombre h1 {
+    display: table-cell;
     color            : #FFF;
     padding-top      : 5%;
     text-align       : center;
@@ -472,26 +487,13 @@ section {
     font-weight      : bold;
 }
 
-@media only screen and (min-width : 1050px) {
-    .redesnombre h1 {
-        border-right: #fc6625 solid 10px;
-    }
-}
-
-@media only screen and (max-width : 1050px) {
-    .redesnombre h1 {
-        border-bottom : #fc6625 solid 10px;
-        padding-bottom: 5%;
-    }
-}
-
 ul.iconos-social {
     list-style-type: none;
     margin         : 0;
     padding        : 0% !important;
     overflow       : hidden;
     display        : flex;
-    justify-content: normal;
+    justify-content: center;
     font           : 2vw;
 }
 
@@ -500,7 +502,6 @@ ul.iconos-social li {
     margin    : 22px;
     margin-top: 32px;
 }
-
 
 
 
@@ -516,6 +517,21 @@ ul.iconos-social li {
     color: red;
 }
 
+.azul {
+    background: steelblue !important;
+    color: white !important;
+    opacity: 1 !important;
+}
+
+
+.blanco {
+    color: white;
+}
+
+.gris{
+    background: #555555 !important;
+}
+
 
 /* PRODUCTOS */
 .cuadro {
@@ -525,6 +541,7 @@ ul.iconos-social li {
     color        : #FFF;
     font-size    : 3vh;
 }
+
 
 .opaca {
     opacity: 0.6;
@@ -565,6 +582,10 @@ a.passOlvidada {
 
 
 /* CESTA */
+.panel{
+width: 100% !important;
+
+}
 .panel-default>.panel-heading {
     background-color: rgba(252, 102, 37, 0.4) !Important;
 }
@@ -616,15 +637,6 @@ a.passOlvidada {
     background-color: #fc6625;
 }
 
-.panel-titulo{
-    position: absolute;    /* posición absolute con respecto al padre */
-    bottom: 2%;             /* posicionada en la esquina inferior derecha */
-    right: 5%;
-    /* font-size: 1.8em; */
-    font-size: 1.8vw;
-    color:#000000;
-    text-align: center;
-}
 
 .tablaMuestraProductos{
     position: absolute;
@@ -636,4 +648,29 @@ fieldset{
 
 form label, table tr, table th, table td{
     font-size: .8em;
+}
+
+/* BLOG */
+.izquierda{
+    text-align: left !important;
+}
+
+.azul{
+    color: blue;
+    font-weight: bold;
+}
+
+.iconos{
+text-align: center;
+background: #8f9491 ;
+}
+
+.fecha{
+    color: #2E2E2E;
+    font-weight: lighter;
+ font-size: .5em;
+}
+
+.espacio{
+    margin-bottom: 1em !important;
 }

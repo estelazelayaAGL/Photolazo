@@ -32,7 +32,7 @@
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->
-        <div class="container seccion ">
+        <div class="container sinPad ">
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <div class=" col-xs-12 col-sm-12 col-md-12">
                     <h1>Bienvenido de nuevo</h1>
