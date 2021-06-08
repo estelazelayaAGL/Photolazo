@@ -64,7 +64,6 @@
             $mensaje = "<div class ='alert alert-danger'>
             <a class='close' data-dismiss='alert'> × </a>La imagen no se ha procesado correctamente</div>";
         }
-
     }
 
     if (isset($_POST['actualizar'])) {
@@ -134,6 +133,10 @@
         $idCurso = $_POST['id_curso'];
         $mensaje = BD::eliminarCurso($idCurso);
     }
+
+    // ESTRAE LAS CATEFGORIAS DE PRODUCTO Y CURSO
+    $categorias = BD::categoriasProductoCurso();
+    $niveles = BD::nivelesCurso();
     ?>
 
     <section class="container-fluid">
@@ -177,7 +180,13 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                         <label> ID Categoria</label>
-                                        <input type="text" name="id_categoria" class="form-control" placeholder="" required />
+                                        <!-- <input type="text" name="id_categoria" class="form-control" placeholder="" required /> -->
+                                        <select name="id_categoria" id="id_categoria" required>
+                                            <?php foreach ($categorias as $categoria) {
+                                                echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                         <label>Precio</label>
@@ -199,7 +208,13 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
                                         <label>Nivel</label>
-                                        <input type="text" name="nivel" class="form-control" required />
+                                        <!-- <input type="text" name="nivel" class="form-control" required /> -->
+                                        <select name="nivel" id="nivel" class="form-control" required>
+                                            <?php foreach ($niveles as $nivel) {
+                                                echo  "<option value=" . $nivel['nivel'] . ">" . $nivel['nivel'] . "</option>";
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
                                         <label>Autor</label>
@@ -225,11 +240,11 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <label>Imagen del curso</label>
-                                                <input type="file" name="imagenCurso" required />
-                                            </div>
-                                        </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                        <label>Imagen del curso</label>
+                                        <input type="file" name="imagenCurso" required />
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="form-group col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                         <input type="reset" name="limpiar" class="btn btn-primary btn-lg gris" value="Limpiar" />
@@ -252,11 +267,23 @@
                             ?>
                                     <h4>MODIFICAR CURSO <?php echo $row["id_curso"]; ?></h4>
                                     <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
+                                        <input type="hidden" name="id_curso_M" class="form-control" value="<?php echo $row['id_curso']; ?>" />
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                                <label> ID Categoria</label>
-                                                <input type="hidden" name="id_curso_M" class="form-control" value="<?php echo $row['id_curso']; ?>" />
-                                                <input type="text" name="id_categoria_M" class="form-control" placeholder="" value="<?php echo $row['id_categoria']; ?>" />
+                                                <label>Categoría</label>
+                                                <select name="id_categoria_M" id="id_categoria_M" required>
+                                                    <?php
+                                                    $categorias = BD::categoriasProductoCurso();
+                                                    foreach ($categorias as $categoria) {
+                                                        echo $categoria['nombre'];
+                                                        if ($categoria['id_categoria'] == $row['id_categoria']) {
+                                                            echo  "<option selected value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                                        } else {
+                                                            echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                                 <label>Precio</label>

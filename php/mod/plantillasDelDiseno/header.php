@@ -27,6 +27,8 @@ ob_start();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- PARA TABLAS DE ADMINISTRACION -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- BORRAR -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -37,6 +39,7 @@ ob_start();
 
 <?php include("../mod/accesoDatos/conexion.php")  ?>
 <?php include("../mod/accesoDatos/BD.php")  ?>
+<?php include("../mod/accesoDatos/funciones.php")  ?>
 
 <!-- SECCION CABECERA -->
 <header class="container-fluid">

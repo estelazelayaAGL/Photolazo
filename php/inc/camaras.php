@@ -25,33 +25,19 @@
                 <h1>Cámaras</h1>
                 <hr>
 
-                <h4>Nikon</h4>
-                <div class="row">
-                    <!-- <span> -->
-                    <?php
-                    $productos = BD::obtieneProductos('camaras', 'nikon');
-                    BD::muestraProductos($productos);
-                    ?>
-                    <!-- </span> -->
-                </div>
-                <h4>Canon</h4>
-                <div class="row">
-                    <!-- <span> -->
-                    <?php
-                    $productos = BD::obtieneProductos('camaras', 'Canon');
-                    BD::muestraProductos($productos);
-                    ?>
-                    <!-- </span> -->
-                </div>
-                <h4>Fujifilm</h4>
-                <div class="row">
-                    <!-- <span> -->
-                    <?php
-                    $productos = BD::obtieneProductos('camaras', 'Fujifilm');
-                    BD::muestraProductos($productos);
-                    ?>
-                    <!-- </span> -->
-                </div>
+                <?php
+                $marcas = BD::obtieneTodasLasMarcas();
+                foreach($marcas as $marca) {
+                    $productos = BD::obtieneProductos('camaras', $marca['nombre']);
+                    if(count($productos) > 0) {
+                        echo '<h2>'. $marca['nombre'].'</h2>';
+                        echo '<div class="row">';
+                        BD::muestraProductos($productos);
+                        echo '</div>';
+                    }
+                }
+                ?>
+
             </div>
         </div>
 

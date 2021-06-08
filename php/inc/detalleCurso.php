@@ -2,9 +2,17 @@
 <html lang="en">
 
 <body>
-    <?php $titulo = 'Iluminación'; ?>
+    <?php $titulo = 'Libros'; ?>
 
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
+
+    <?php
+    
+    if(isset($_POST['codigo'])) {
+        $curso = BD::obtieneCurso($_POST['codigo']);
+    }
+    
+    ?>
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->
@@ -15,31 +23,19 @@
                 <div class="">
                     <ol class="breadcrumb">
                         <li><a href="index.php">Inicio </a></li>
-                        <li><a href="productos.php">Productos </a></li>
-                        <li class="active">Iluminación </li>
+                        <li><a href="cursos.php">Cursos </a></li>
+                        <li class="active">Detalle de curso </li>
                     </ol>
                 </div>
             </div>
 
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
-                <h1>Iluminación</h1>
+                <h1><?php echo $curso->getTitulo()?></h1><br>
                 <hr>
+                
 
-                <?php
-                $marcas = BD::obtieneTodasLasMarcas();
-                foreach($marcas as $marca) {
-                    $productos = BD::obtieneProductos('iluminacion', $marca['nombre']);
-                    if(count($productos) > 0) {
-                        echo '<h2>'. $marca['nombre'].'</h2>';
-                        echo '<div class="row">';
-                        BD::muestraProductos($productos);
-                        echo '</div>';
-                    }
-                }
-                ?>
 
             </div>
-
         </div>
 
 

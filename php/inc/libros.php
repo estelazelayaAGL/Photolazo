@@ -22,20 +22,23 @@
             </div>
 
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
-            <h1>Libros</h1><br>
-            <hr>
-                <div class="row">
-                    <!-- <span> -->
-                    <?php
-                    $productos = BD::obtieneProductos('libros', 'SIN MARCA');
-                    BD::muestraProductos($productos);
-                    ?>
-                    <!-- </span> -->
-                </div>
-        </div>
+                <h1>Libros</h1><br>
+                <hr>
+                <?php
+                $marcas = BD::obtieneTodasLasMarcas();
+                foreach($marcas as $marca) {
+                    $productos = BD::obtieneProductos('libros', $marca['nombre']);
+                    if(count($productos) > 0) {
+                        echo '<div class="row">';
+                        BD::muestraProductos($productos);
+                        echo '</div>';
+                    }
+                }
+                ?>
+            </div>
         </div>
 
-     
+
     </section>
 
     <?php include("../mod/plantillasDelDiseno/footer.php")  ?>

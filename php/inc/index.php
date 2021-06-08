@@ -26,7 +26,7 @@
 
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <h1>¡Bienvenidos PhotoLazeros!</h1>
-                <p>Si estas aquí es porque seguro sabes de fotografía, o simplemente quieres
+                <p class="texto">Si estas aquí es porque seguro sabes de fotografía, o simplemente quieres
                     aprender y conocer un poco más este mundo. Si es así, déjame decirte que estás
                     en el lugar correcto.
                     Para PhotoLazo, los protagonistas son todas las personas que quieren ir un paso

@@ -126,6 +126,9 @@
         $mensaje = BD::eliminarProducto($idProducto);
     }
 
+    // ESTRAE LAS CATEFGORIAS DE PRODUCTO Y CURSO
+    $categorias = BD::categoriasProductoCurso();
+    $marcas = BD::marcasProductoCurso();
 
     ?>
 
@@ -171,11 +174,24 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                         <label>ID Categoria</label>
-                                        <input type="text" name="idCategoriaProd_A" class="form-control" placeholder="" required />
+                                        <!-- <input type="text" name="idCategoriaProd_A" class="form-control" placeholder="" required />
+                                     -->
+                                        <select name="idCategoriaProd_A" id="idCategoriaProd_A" required>
+                                            <?php foreach ($categorias as $categoria) {
+                                                echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                         <label>ID Marca</label>
-                                        <input type="text" name="idMarcaProd_A" class="form-control" placeholder="" required />
+                                        <!-- <input type="text" name="idMarcaProd_A" class="form-control" placeholder="" required /> -->
+                                        <select name="idMarcaProd_A" id="idMarcaProd_A" required>
+                                            <?php foreach ($marcas as $marca) {
+                                                echo  "<option value=" . $marca['id_marca'] . ">" . $marca['nombre'] . "</option>";
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -226,11 +242,23 @@
                             ?>
                                     <h4>MODIFICAR PRODUCTO <?php echo $row["id_producto"]; ?></h4>
                                     <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
+                                        <input type="hidden" name="idProducto_M" class="form-control" placeholder="" value="<?php echo $row["id_producto"]; ?>" />
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                                <label>ID Categoria</label>
-                                                <input type="hidden" name="idProducto_M" class="form-control" placeholder="" value="<?php echo $row["id_producto"]; ?>" />
-                                                <input type="text" name="idCategoriaProd_M" class="form-control" placeholder="" value="<?php echo $row["id_categoria"]; ?>" required />
+                                                <label>Categoría</label>
+                                                <select name="idCategoriaProd_M" id="idCategoriaProd_M" required>
+                                                    <?php
+                                                    $categorias = BD::categoriasProductoCurso();
+                                                    foreach ($categorias as $categoria) {
+                                                        echo $categoria['nombre'];
+                                                        if ($categoria['id_categoria'] == $row['id_categoria']) {
+                                                            echo  "<option selected value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                                        } else {
+                                                            echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                                 <label>ID Marca</label>

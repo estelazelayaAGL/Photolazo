@@ -25,56 +25,18 @@
                 <h1>Objetivos</h1>
                 <hr>
 
-                <h4>Canon</h4>
-                <div class="row">
-                    <?php
-                    $productos = BD::obtieneProductos('objetivos', 'canon');
-                    BD::muestraProductos($productos);
-                    ?>
-                </div>
-
-                <h4>Nikon</h4>
-                <div class="row">
-                    <?php
-                    $productos = BD::obtieneProductos('objetivos', 'nikon');
-                    BD::muestraProductos($productos);
-                    ?>
-                </div>
-
-                <h4>Sigma</h4>
-                <div class="row">
-                    <?php
-                    $productos = BD::obtieneProductos('objetivos', 'SIGMA');
-                    BD::muestraProductos($productos);
-                    ?>
-                </div>
-
-                
-                
-                <h4>Sony</h4>
-                <div class="row">
-                    <?php
-                    $productos = BD::obtieneProductos('objetivos', 'Sony');
-                    BD::muestraProductos($productos);
-                    ?>
-                </div>
-
-                
-                <h4>Tamron</h4>
-                <div class="row">
-                    <?php
-                    $productos = BD::obtieneProductos('objetivos', 'TAMRON');
-                    BD::muestraProductos($productos);
-                    ?>
-                </div>
-
-                <h4>Fujifilm</h4>
-                <div class="row">
-                    <?php
-                    $productos = BD::obtieneProductos('objetivos', 'Fujifilm');
-                    BD::muestraProductos($productos);
-                    ?>
-                </div>
+                <?php
+                $marcas = BD::obtieneTodasLasMarcas();
+                foreach($marcas as $marca) {
+                    $productos = BD::obtieneProductos('objetivos', $marca['nombre']);
+                    if(count($productos) > 0) {
+                        echo '<h2>'. $marca['nombre'].'</h2>';
+                        echo '<div class="row">';
+                        BD::muestraProductos($productos);
+                        echo '</div>';
+                    }
+                }
+                ?>
                 
 
             </div>

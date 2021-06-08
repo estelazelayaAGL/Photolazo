@@ -155,7 +155,7 @@ CREATE TABLE blogs(
 
 
 CREATE TABLE comentarios(
-    id_comentario VARCHAR(6) NOT NULL,
+    id_comentario INT(6) AUTO_INCREMENT NOT NULL,
     id_blog INT(6) NOT NULL,
     autor VARCHAR(60) NOT NULL,
     correo VARCHAR(60) NOT NULL,

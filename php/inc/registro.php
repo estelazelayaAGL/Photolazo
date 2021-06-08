@@ -4,9 +4,8 @@
 <body>
     <?php $titulo = 'Registro';
     ?>
-
-
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
+    <script src="../../js/validaFormRegistro.js"></script>
     <?php
     //Para intentar dar de alta un registro
     if (isset($_POST['enviar'])) {
@@ -54,16 +53,17 @@
                     <h1>Crea una cuenta</h1>
                     <h4>Es fácil y rápido</h4>
                     <hr>
-                    <div><?php
+                    <div id="mensaje"><?php
                             if (isset($mensaje)) {
                                 echo $mensaje;
                             }
                             ?>
                     </div>
                 </div>
+        
                 <div class="registro col-xs-12 col-sm-12 col-md-10 ">
                     <!-- INICIO FORMULARIO HTML -->
-                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
+                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="registroForm" class="needs-validation" novalidate>
                         <!-- DATOS DEL CLIENTE -->
                         <div class="form-group col-xs-6 col-sm-6 col-md-6">
                             <label for="validarNombre">Nombre:<span class="rojo">*</span></label>

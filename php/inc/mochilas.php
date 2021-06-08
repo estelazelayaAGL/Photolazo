@@ -25,26 +25,19 @@
                 <h1>Mochilas</h1>
                 <hr>
 
-                <h4>Peak</h4>
-                <div class="row">
-                    <!-- <span> -->
-                    <?php
-                    $productos = BD::obtieneProductos('mochilas', 'PEAK');
-                    BD::muestraProductos($productos);
-                    ?>
-                    <!-- </span> -->
-                </div>
+                <?php
+                $marcas = BD::obtieneTodasLasMarcas();
+                foreach($marcas as $marca) {
+                    $productos = BD::obtieneProductos('mochilas', $marca['nombre']);
+                    if(count($productos) > 0) {
+                        echo '<h2>'. $marca['nombre'].'</h2>';
+                        echo '<div class="row">';
+                        BD::muestraProductos($productos);
+                        echo '</div>';
+                    }
+                }
+                ?>
 
-
-                <h4>Lowepro</h4>
-                <div class="row">
-                    <!-- <span> -->
-                    <?php
-                    $productos = BD::obtieneProductos('mochilas', 'LOWEPRO');
-                    BD::muestraProductos($productos);
-                    ?>
-                    <!-- </span> -->
-                </div>
             </div>
         </div>
 

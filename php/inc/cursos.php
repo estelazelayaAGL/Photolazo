@@ -24,20 +24,26 @@
                 <h1>Los mejores cursos que podrás encontrar</h1>
                 <hr>
 
-                <h4>Retrato</h4>
+                <?php
+                $categorias = BD::categoriasProductoCurso();
+                foreach ($categorias as $categoria) {
+                    $cursos = BD::obtieneCursos($categoria['nombre']);
+                    if (count($cursos) > 0) {
+                        echo '<h2>' . $categoria['nombre'] . '</h2>';
+                        echo '<div class="row">';
+                        BD::muestraCursos($cursos);
+                        echo '</div>';
+                    }
+                }
+                ?>
+                <!-- <h4>Retrato</h4>
                 <div class="row">
                     <?php
-                    $cursos = BD::obtieneCursos('Retrato');
-                    BD::muestraCursos($cursos);
+                    //$cursos = BD::obtieneCursos('Retrato');
+                    //BD::muestraCursos($cursos);
                     ?>
-                </div>
-                <h4>Naturaleza</h4>
-                <div class="row">
-                    <?php
-                    $cursos = BD::obtieneCursos('Naturaleza');
-                    BD::muestraCursos($cursos);
-                    ?>
-                </div>
+                </div> -->
+
             </div>
         </div>
 

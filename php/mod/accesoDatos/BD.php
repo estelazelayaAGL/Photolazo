@@ -4,10 +4,48 @@ require_once '../mod/clases/Producto.php';
 require_once '../mod/clases/Curso.php';
 require_once '../mod/clases/Usuario.php';
 require_once '../mod/clases/Blog.php';
+require_once '../mod/clases/Comentario.php';
 include_once 'conexion.php';
 
 class BD
 {
+
+
+    public static function obtenerComentarios($blog)
+    {
+        $sql = "SELECT * FROM comentarios WHERE id_blog = " . $blog . "";
+        $resultado = self::ejecutaConsulta($sql);
+        $comentarios = null;
+        $row = $resultado->fetch();
+        if ($resultado->rowCount() > 0) {
+            while ($row != null) {
+                $comentarios[] = new Comentario($row);
+                $row = $resultado->fetch();
+            }
+        }
+        return $comentarios;
+    }
+
+    public static function crearComentario($nombre, $correo, $contenido, $blog)
+    {
+        $sql = "INSERT INTO comentarios(id_blog, autor, correo, contenido, fecha_publicacion) VALUES (";
+        $sql .= "" . $blog . ", ";
+        $sql .= "'" . $nombre . "', ";
+        $sql .= "'" . $correo . "', ";
+        $sql .= "'" . $contenido . "', ";
+        $sql .= "NOW())";
+        $id_metodo = "";
+        $resultado = self::ejecutaConsulta($sql);
+        if ($resultado) {
+            $select = "SELECT * FROM metodospagos ORDER BY id_metodo DESC LIMIT 1";
+            $resultadoSelect = self::ejecutaConsulta($select);
+            if ($resultadoSelect) {
+                $row = $resultadoSelect->fetch();
+                $id_metodo = $row['id_metodo'];
+            }
+        }
+        return $id_metodo;
+    }
 
     public static function obtieneUsuario($usuario)
     {
@@ -361,25 +399,26 @@ class BD
                 echo '
                 <div class="col-xs-12 col-sm-6 col-md-4 ">
 						<div class="cuadro"> 
-							<img class="img-fluid" src="../../imagenes/imgObjetivas/cursos/' . $curso->getCodigo() . '.png">
+                        <form method="post" action="../inc/detalleCurso.php">
+                            <input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>
+                            <img class="img-fluid" src="../../imagenes/imgObjetivas/cursos/' . $curso->getCodigo() . '.png">
+                            <input id="detalleCurso" type="submit" name="detalleCurso" class="hidden"></input>
+                            <label for="detalleCurso" class="btn btn-info">' .$curso->getTitulo(). '</label>
+                        </form>
 							<div class="">'
                     . '<form action="../inc/cesta.php" method="post">'
                     . '<input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>'
-                    . '<a href=#><p>' . $curso->getTitulo() . '</p></a>'
                     . '<p> Autor: ' . $curso->getAutor() . '</p>'
                     . '<p>Nivel:' . $curso->getNivel() . '</p>'
                     . '<p>Resumen: ' . $curso->getResumen() . '</p>'
                     . '<p>Precio: ' . $curso->getPrecio() . '€ (IVA incluido)</p>';
-                $usuario = self::obtieneUsuario($_SESSION['usuario']);
-                $codigo = $usuario->getId_usuario();
-                $comprado = self::verificaCompraCurso($codigo, $curso->getCodigo());
-
 
                 // print_r($comprado);
                 if (isset($_SESSION['usuario'])) {
+                    $usuario = self::obtieneUsuario($_SESSION['usuario']);
+                    $codigo = $usuario->getId_usuario();
+                    $comprado = self::verificaCompraCurso($codigo, $curso->getCodigo());
                     if (!$comprado) {
-                        //Si el usuario no ha comprado el curso: $curso->getCodigo()
-
                         echo '<input id="botoncurso" type="submit" name="aniadirCurso" class="hidden"></input>';
                         echo '<label for="botoncurso" class="btn btn-info btn-lg">Añadir al carrito <i class="fas fa-shopping-cart"></i></label>';
                     } else {
@@ -407,6 +446,20 @@ class BD
         return $resultado;
     }
 
+    public static function obtieneTodasLasMarcas() {
+        $sql = "SELECT nombre FROM marcas";
+        $resultado = self::ejecutaConsulta($sql);
+        $marcas = array();
+        if ($resultado) {
+            // Añadimos un elemento por cada marca leida
+            $row = $resultado->fetch();
+            while ($row != null) {
+                $marcas[] = $row;
+                $row = $resultado->fetch();
+            }
+        }
+        return $marcas;
+    }
 
     public static function obtieneMarca()
     {
@@ -580,7 +633,6 @@ class BD
         }
     }
 
-
     // CRUD DE CURSOS
     // CREACION DE CURSOS - PARTE ADMINISTRADOR- CRUD -ANADIR -ELIMINAR -ACTUALIZAR - 
     public static function insertarCurso($id_curso, $id_categoria, $lema, $titulo, $autor, $nivel, $resumen, $descripcion, $precio, $video_promocional)
@@ -734,7 +786,33 @@ class BD
         }
     }
 
+    public static function categoriasProductoCurso()
+    {
+        $sql = "SELECT * FROM categorias";
+        $resultado = self::ejecutaConsulta($sql);
+        return $resultado;
+    }
 
+    public static function marcasProductoCurso()
+    {
+        $sql = "SELECT * FROM marcas";
+        $resultado = self::ejecutaConsulta($sql);
+        return $resultado;
+    }
+
+    public static function nivelesCurso()
+    {
+        $sql = "SELECT nivel FROM cursos";
+        $resultado = self::ejecutaConsulta($sql);
+        return $resultado;
+    }
+
+    public static function categoriasBlog()
+    {
+        $sql = "SELECT * FROM categoriasBlog";
+        $resultado = self::ejecutaConsulta($sql);
+        return $resultado;
+    }
 
     // --------------------------------------------------------CRUD------------------------------------------------------------------------------------------------------
     // CREACION DE ENTRADAs - PARTE ADMINISTRADOR- CRUD -ANADIR -ELIMINAR -ACTUALIZAR - 
@@ -903,12 +981,7 @@ class BD
                 <label for="">' . $entrada->getTitulo() . '</label>
                 <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
                 <form action="../inc/detalleEntrada.php" method="post">
-                <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>    
-                <input type="hidden" name="autor" value="' . $entrada->getAutor() . '"></input>
-                <input type="hidden" name="titulo" value="' . $entrada->getTitulo() . '"></input>
-                <input type="hidden" name="contenido" value="' . $entrada->getContenido() . '"></input>
-                    <input type="hidden" name="fechaPublicacion" value="' . $entrada->getFechaPublicacion() . '"></input>
-                    <input type="hidden" name="categoria" value="' . $entrada->getCategoria() . '"></input>
+                <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>
                     <input  type="submit" name="aniadir" value="Leer más" class="btn btn-info btn-lg espacio azul"></input>';
                 echo ""
                     . '</form>';
@@ -959,12 +1032,7 @@ class BD
                                         <label for="">' . $entrada->getTitulo() . '</label>
                                         <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
                 <form action="../inc/detalleEntrada.php" method="post">
-                <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>    
-                <input type="hidden" name="autor" value="' . $entrada->getAutor() . '"></input>
-                <input type="hidden" name="titulo" value="' . $entrada->getTitulo() . '"></input>
-                <input type="hidden" name="contenido" value="' . $entrada->getContenido() . '"></input>
-                    <input type="hidden" name="fechaPublicacion" value="' . $entrada->getFechaPublicacion() . '"></input>
-                    <input type="hidden" name="categoria" value="' . $entrada->getCategoria() . '"></input>
+                <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>
                     <input  type="submit" name="aniadir" value="Leer más" class="btn btn-info btn-lg espacio azul"></input>';
                 echo ""
                     . '</form>';
@@ -974,6 +1042,44 @@ class BD
                     </div>';
             }
         }
+    }
+
+    public static function obtieneEntrada($codigo)
+    {
+        $sql = "SELECT * FROM blogs WHERE id_blog = " . $codigo . "";
+        $resultado = self::ejecutaConsulta($sql);
+        $blog = null;
+        if ($resultado) {
+            $row = $resultado->fetch();
+            $blog = new Blog($row);
+        }
+        return $blog;
+    }
+
+    public static function siguienteEntrada($codigo)
+    {
+        $codigo = $codigo - 1;
+        $sql = "SELECT * FROM blogs WHERE id_blog = " . $codigo . "";
+        $resultado = self::ejecutaConsulta($sql);
+        $blog = null;
+        if ($resultado->rowCount() > 0) {
+            $row = $resultado->fetch();
+            $blog = new Blog($row);
+        }
+        return $blog;
+    }
+
+    public static function anteriorEntrada($codigo)
+    {
+        $codigo = $codigo + 1;
+        $sql = "SELECT * FROM blogs WHERE id_blog = " . $codigo . "";
+        $resultado = self::ejecutaConsulta($sql);
+        $blog = null;
+        if ($resultado->rowCount() > 0) {
+            $row = $resultado->fetch();
+            $blog = new Blog($row);
+        }
+        return $blog;
     }
 
     // VERIFICAR EL TIPO DE EXTENSIÓN DE LA IMAGEN

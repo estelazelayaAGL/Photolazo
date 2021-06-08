@@ -26,12 +26,20 @@
         <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
             <h1>Accesorios</h1><br>
             <hr>
-            <div class="row">
-                <?php
-                    // $Productos = BD::obtieneProductos('accesorios');
-                    // BD::muestraProductos($Productos);
+            
+            <?php
+                $marcas = BD::obtieneTodasLasMarcas();
+                foreach($marcas as $marca) {
+                    $productos = BD::obtieneProductos('accesorios', $marca['nombre']);
+                    if(count($productos) > 0) {
+                        echo '<h2>'. $marca['nombre'].'</h2>';
+                        echo '<div class="row">';
+                        BD::muestraProductos($productos);
+                        echo '</div>';
+                    }
+                }
                 ?>
-            </div>
+
         </div>
     </section>
 
