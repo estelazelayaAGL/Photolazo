@@ -367,9 +367,8 @@ class BD
                         <form method="post" action="../inc/detalleProducto.php">
                         <input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>
 						<img class="img-fluid" src="../../imagenes/imgObjetivas/productos/' . $producto->getCodigo() . '.png">
-                    <input id="detalleProducto" name="detalleProducto" type="submit" class="hidden"></input>
-                    <label for="detalleProducto" class="btn btn-primary textoEnlace">' .  $producto->getNombre() . '</label>
-					</form>	
+                    <input id="detalleProducto" name="detalleProducto" type="submit" value="' .  $producto->getNombre() . '" class=""></input>
+                    </form>	
                     <div class="detalles">'
                     . '<form method="post" action="../inc/cesta.php">'
                     . '<input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>'
@@ -378,8 +377,7 @@ class BD
                     . '<p class="negrita derecha">Precio:</p>'
                     . '<p class="derecha iva"><label class="negrita precio">' . $producto->getPrecio() . ' €</label> (IVA no incluido)</p>';
                 if (isset($_SESSION['usuario'])) {
-                    echo '<input id="botonProductos" type="submit" name="aniadir" class="hidden"></input>';
-                    echo '<label for="botonProductos" class="btn btn-info btn-lg">Añadir al carrito <i class="fas fa-shopping-cart"></i></label>';
+                    echo '<input id="botonProductos" type="submit" name="aniadir" value="Añadir al carrito" class="btn btn-info btn-lg"></input>';
                 }
                 echo ""
                     . '</form>'
@@ -403,8 +401,7 @@ class BD
                         <form method="post" action="../inc/detalleCurso.php">
                             <input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>
                             <img class="img-fluid" src="../../imagenes/imgObjetivas/cursos/' . $curso->getCodigo() . '.png">
-                            <input id="detalleCurso" type="submit" name="detalleCurso" class="hidden"></input>
-                            <label for="detalleCurso" class="btn btn-primary textoEnlace">' . $curso->getTitulo() . '</label>
+                            <input id="detalleCurso" type="submit" value="' . $curso->getTitulo() . '" name="detalleCurso" class=""></input>
                         </form>
 							<div class="detalles">'
                     . '<form action="../inc/cesta.php" method="post">'
@@ -422,10 +419,7 @@ class BD
                     $codigo = $usuario->getId_usuario();
                     $comprado = self::verificaCompraCurso($codigo, $curso->getCodigo());
                     if (!$comprado) {
-                        echo '<input id="botoncurso" type="submit" name="aniadirCurso" class="hidden"></input>';
-                        echo '<label for="botoncurso" class="btn btn-info btn-lg">Añadir al carrito <i class="fas fa-shopping-cart"></i></label>';
-                    } else {
-                        echo '';
+                        echo '<input id="botoncurso" type="submit" name="aniadirCurso" value="Añadir al carrito" class="btn btn-info btn-lg"></input>';
                     }
                 }
                 echo ""
