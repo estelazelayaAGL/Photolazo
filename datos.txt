@@ -128,3 +128,5 @@ INSERT INTO `categoriasblog`(`id_categoriaB`, `nombre`) VALUES ('ENT001','Cursos
 INSERT INTO `categoriasblog`(`id_categoriaB`, `nombre`) VALUES ('ENT002','Accesorios');
 INSERT INTO `categoriasblog`(`id_categoriaB`, `nombre`) VALUES ('ENT003','Materiales');
 INSERT INTO `categoriasblog`(`id_categoriaB`, `nombre`) VALUES ('ENT004','Tips/Consejos');
+
+ALTER TABLE `usuarios` CHANGE `receptor` `receptor` VARCHAR(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;

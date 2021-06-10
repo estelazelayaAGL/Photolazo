@@ -212,7 +212,7 @@ class BD
         $sql .= "'" . md5($contrasena) . "', ";
         $sql .= "'" . $fechaNacimiento . "', ";
         $sql .= "'" . $email . "', ";
-        $sql .= "" . $telefono . ", ";
+        $sql .= "'" . $telefono . "', ";
         $sql .= "'" . $direccion . "', ";
         $sql .= "" . $codigopostal . ", ";
         $sql .= "'" . $ciudad . "', ";
@@ -363,19 +363,20 @@ class BD
             foreach ($productos as $producto) {
                 echo '
                 <div class="col-xs-12 col-sm-6 col-md-4 ">
-						<div class="miembro-equipo cuadro"> 
-							<img style="width:100px; height=100px;" class="img-fluid" src="../../imagenes/imgObjetivas/productos/' . $producto->getCodigo() . '.png">
-							<div class="team-info">'
-                    . '<form action="../inc/cesta.php" method="post">'
-                    . '<input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>'
-                    . '<input type="hidden" name="nombre" value="' . $producto->getNombre() . '"></input>'
-                    . '<input type="hidden" name="marca" value="' . $producto->getMarca() . '"></input>'
-                    . '<input type="hidden" name="descripcion" value="' . $producto->getDescripcion() . '"></input>'
-                    . '<input type="hidden" name="precio" value="' . $producto->getPrecio() . '"></input>'
-                    . '<a href=#><p>' . $producto->getNombre() . '</p></a>'
-                    . '<p> Marca: ' . $producto->getMarca() . '</p>'
-                    . '<p>' . $producto->getDescripcion() . '</p>'
-                    . '<p>Precio: ' . $producto->getPrecio() . '€ (IVA incluido)</p>';
+						<div class="cuadro"> 
+                        <form method="post" action="../inc/detalleProducto.php">
+                        <input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>
+						<img class="img-fluid" src="../../imagenes/imgObjetivas/productos/' . $producto->getCodigo() . '.png">
+                    <input id="detalleProducto" name="detalleProducto" type="submit" class="hidden"></input>
+                    <label for="detalleProducto" class="btn btn-primary textoEnlace">' .  $producto->getNombre() . '</label>
+					</form>	
+                    <div class="detalles">'
+                    .'<form method="post" action="../inc/cesta.php">'
+                    .'<input type="hidden" name="codigo" value="' . $producto->getCodigo() .'"></input>'
+                    . '<p class="negrita "> Descripción: </p>'
+                    . '<p class="separado">' . $producto->getDescripcion() . '</p>'
+                    . '<p class="negrita derecha">Precio:</p>'
+                    . '<p class="derecha iva"><label class="negrita precio">' . $producto->getPrecio() . ' €</label> (IVA no incluido)</p>';
                 if (isset($_SESSION['usuario'])) {
                     echo '<input id="botonProductos" type="submit" name="aniadir" class="hidden"></input>';
                     echo '<label for="botonProductos" class="btn btn-info btn-lg">Añadir al carrito <i class="fas fa-shopping-cart"></i></label>';
@@ -397,21 +398,23 @@ class BD
         } else {
             foreach ($cursos as $curso) {
                 echo '
-                <div class="col-xs-12 col-sm-6 col-md-4 ">
-						<div class="cuadro"> 
+                <div class="col-xs-12 col-sm-6 col-md-4">
+						<div class="cuadro "> 
                         <form method="post" action="../inc/detalleCurso.php">
                             <input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>
                             <img class="img-fluid" src="../../imagenes/imgObjetivas/cursos/' . $curso->getCodigo() . '.png">
                             <input id="detalleCurso" type="submit" name="detalleCurso" class="hidden"></input>
-                            <label for="detalleCurso" class="btn btn-info">' .$curso->getTitulo(). '</label>
+                            <label for="detalleCurso" class="btn btn-primary textoEnlace">' . $curso->getTitulo() . '</label>
                         </form>
-							<div class="">'
+							<div class="detalles">'
                     . '<form action="../inc/cesta.php" method="post">'
                     . '<input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>'
-                    . '<p> Autor: ' . $curso->getAutor() . '</p>'
-                    . '<p>Nivel:' . $curso->getNivel() . '</p>'
-                    . '<p>Resumen: ' . $curso->getResumen() . '</p>'
-                    . '<p>Precio: ' . $curso->getPrecio() . '€ (IVA incluido)</p>';
+                    . '<p class="letrapequena">' . $curso->getAutor() . '</p>'
+                    . '<p>' . $curso->getLema() . '</p>'
+                    . '<p>Nivel: ' . $curso->getNivel() . '</p>'
+                    . '<p class="negrita derecha">Precio: </p>'
+                    . '<p class="derecha iva"><label class="negrita precio">' . $curso->getPrecio() . ' €</label> (IVA no incluido)</p>';
+
 
                 // print_r($comprado);
                 if (isset($_SESSION['usuario'])) {
@@ -446,7 +449,8 @@ class BD
         return $resultado;
     }
 
-    public static function obtieneTodasLasMarcas() {
+    public static function obtieneTodasLasMarcas()
+    {
         $sql = "SELECT nombre FROM marcas";
         $resultado = self::ejecutaConsulta($sql);
         $marcas = array();

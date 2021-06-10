@@ -24,7 +24,6 @@
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <h1>Cámaras</h1>
                 <hr>
-
                 <?php
                 $marcas = BD::obtieneTodasLasMarcas();
                 foreach($marcas as $marca) {

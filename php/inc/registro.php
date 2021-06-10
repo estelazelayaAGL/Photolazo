@@ -5,12 +5,12 @@
     <?php $titulo = 'Registro';
     ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
-    <script src="../../js/validaFormRegistro.js"></script>
+
     <?php
     //Para intentar dar de alta un registro
     if (isset($_POST['enviar'])) {
         $nombre = $_POST['validarNombre'];
-        $apellidos = $_POST['validarApellido'];
+        $apellidos = $_POST['validarApellidos'];
         $fechaNacimiento = $_POST['validarNacimiento'];
         $telefono = NULL;
         if (isset($_POST['validarTelefono'])) {
@@ -53,56 +53,91 @@
                     <h1>Crea una cuenta</h1>
                     <h4>Es fácil y rápido</h4>
                     <hr>
-                    <div id="mensaje"><?php
-                            if (isset($mensaje)) {
-                                echo $mensaje;
-                            }
-                            ?>
+                    <div id="mensaje">
+                        <div class="formulario_mensaje" id="formulario_mensaje">
+                            <p><i class="fas fa-exclamation-triangle"></i><b> Error </b>Por favor rellene el formulario correctamente</p>
+                        </div>
                     </div>
+
                 </div>
-        
+
                 <div class="registro col-xs-12 col-sm-12 col-md-10 ">
                     <!-- INICIO FORMULARIO HTML -->
-                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="registroForm" class="needs-validation" novalidate>
-                        <!-- DATOS DEL CLIENTE -->
-                        <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                            <label for="validarNombre">Nombre:<span class="rojo">*</span></label>
-                            <input type="text" class="form-control" id="validarNombre" name="validarNombre" placeholder="Estela Rosinda" required>
-                        </div>
-                        <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                            <label for="validarApellido">Apellidos:<span class="rojo">*</span></label>
-                            <input type="text" class="form-control" id="validarApellido" name="validarApellido" placeholder="Zelaya Lazo" required>
-                        </div>
 
+                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="registroForm" class="needs-validation" autocomplete="off">
+                        <!-- DATOS DEL CLIENTE -->
+                        <!-- GRUPO: Nombre -->
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarNombre" class="formulario_grupo">
+                            <label for="validarNombre" class="formulario_label">Nombre:<span class="rojo">*</span></label>
+                            <div class="formulario_grupo-input">
+                                <input type="text" class="formulario_input form-control" id="validarNombre" name="validarNombre" placeholder="Estela Rosinda" required>
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario_input-error">El nombre solo puede contener letras, espacios y acentos. <strong>(Max. 35 caracteres)</strong></p>
+                        </div>
+                        <!-- GRUPO: Apellidos -->
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarApellidos" class="formulario_grupo">
+                            <label for="validarApellidos" class="formulario_label">Apellidos:<span class="rojo">*</span></label>
+                            <div class="formulario_grupo-input">
+                                <input type="text" class="formulario_input form-control" id="validarApellidos" name="validarApellidos" placeholder="Zelaya Lazo" required>
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario_input-error">El nombre solo puede contener letras, espacios y acentos. <strong>(Max. 50 caracteres)</strong></p>
+                        </div>
                         <div class="form-group col-xs-6 col-sm-6 col-md-6">
                             <label for="validarNacimiento">Fecha de nacimiento:<span class="rojo">*</span></label>
-                            <input type="date" class="form-control" id="validarNacimiento" name="validarNacimiento" placeholder="año-mes-dia" required>
+                            <input type="date" class="form-control" id="validarNacimiento" name="validarNacimiento" required>
                         </div>
 
-                        <div class="form-group col-xs-6 col-sm-6   col-md-6">
-                            <label for="validarTelefono">Teléfono:</label>
-                            <input type="number" class="form-control" id="validarTelefono" name="validarTelefono" max="999999999" placeholder="661908318">
+                        <!-- GRUPO: Telefono -->
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarTelefono" class="formulario_grupo">
+                            <label for="validarTelefono" class="formulario_label">Teléfono:</label>
+                            <div class="formulario_grupo-input">
+                                <input type="text" class="formulario_input form-control" id="validarTelefono" name="validarTelefono" placeholder="661908318">
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario_input-error">Prefijo ( + seguido de 2 o 3 cifras) espacio en blanco y 9 cifras consecutivas.</p>
                         </div>
 
-                        <div class="form-group col-xs-6 col-sm-6   col-md-6">
-                            <label for="validarEmail">Email:<span class="rojo">*</span></label>
-                            <input type="email" class="form-control" id="validarEmail" name="validarEmail" placeholder="tucorreo@tucorreo.com" required>
+                        <!-- GRUPO: Email -->
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarEmail" class="formulario_grupo">
+                            <label for="validarEmail" class="formulario_label">Email:<span class="rojo">*</span></label>
+                            <div class="formulario_grupo-input">
+                                <input type="text" class="formulario_input form-control" id="validarEmail" name="validarEmail" placeholder="tucorreo@tucorreo.com">
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario_input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.(Máx. 40 caracteres)</p>
                         </div>
 
 
-                        <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                            <label for="validarUsuario">Usuario:<span class="rojo">*</span></label>
-                            <input type="text" class="form-control" id="validarUsuario" name="validarUsuario" placeholder="estelaz97" required>
+                        <!-- GRUPO: Usuario -->
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarUsuario" class="formulario_grupo">
+                            <label for="validarUsuario" class="formulario_label">Usuario:<span class="rojo">*</span></label>
+                            <div class="formulario_grupo-input">
+                                <input type="text" class="formulario_input form-control" id="validarUsuario" name="validarUsuario" placeholder="estelaz_97">
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario_input-error">El Usuario solo puede contener letras, numeros, guion y guion_bajo (Máx. 35 caracteres)</p>
                         </div>
 
-                        <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                            <label for="validarContrasena">Contraseña:<span class="rojo">*</span></label>
-                            <input type="password" class="form-control" id="validarContrasena" name="validarContrasena" required>
+                        <!-- GRUPO: Contrasena -->
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarContrasena" class="formulario_grupo">
+                            <label for="validarContrasena" class="formulario_label">Contraseña:<span class="rojo">*</span></label>
+                            <div class="formulario_grupo-input">
+                                <input type="password" class="formulario_input form-control" id="validarContrasena" name="validarContrasena">
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario_input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
                         </div>
 
-                        <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                            <label for="validarRContrasena">Repita contraseña:<span class="rojo">*</span></label>
-                            <input type="password" class="form-control" id="validarRContrasena" name="validarRContrasena" required>
+                        <!-- GRUPO: Contrasena2 -->
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarContrasena2" class="formulario_grupo">
+                            <label for="validarContrasena2" class="formulario_label">Repita contraseña:<span class="rojo">*</span></label>
+                            <div class="formulario_grupo-input">
+                                <input type="password" class="formulario_input form-control" id="validarContrasena2" name="validarContrasena2">
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario_input-error">Ambas contraseñas deben ser iguales</p>
                         </div>
 
                         <!-- DATOS NECESARIOS PARA ENVIOS DE LOS PEDIDOS -->
@@ -111,34 +146,61 @@
                         </div>
 
 
-                        <div class="form-group col-xs-12 col-sm-12   col-md-12">
-                            <label for="validarDireccion">Dirección:<span class="rojo">*</span></label>
-                            <input type="text" class="form-control" id="validarDireccion" name="validarDireccion" placeholder="Ej: Avenida Vicente Trueba 3,38" required>
+                        <!-- GRUPO: Direccion -->
+                        <div class="formulario_grupo form-group col-xs-12 col-sm-12 col-md-12" id="grupo_validarDireccion" class="formulario_grupo">
+                            <label for="validarDireccion" class="formulario_label">Direccion:<span class="rojo">*</span></label>
+                            <div class="formulario_grupo-input">
+                                <input type="text" class="formulario_input form-control" id="validarDireccion" name="validarDireccion" >
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario_input-error">Solo puedes ingresar letras, numeros, espacios, comas y acentos (Máx. 35 caracteres )</p>
                         </div>
 
-
-                        <div class="form-group col-xs-6 col-sm-6   col-md-6">
-                            <label for="validarCiudad">Ciudad:<span class="rojo">*</span></label>
-                            <input type="text" class="form-control" id="validarCiudad" name="validarCiudad" placeholder="Santander" required>
+                        <!-- GRUPO: Ciudad -->
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarCiudad" class="formulario_grupo">
+                            <label for="validarCiudad" class="formulario_label">Ciudad:<span class="rojo">*</span></label>
+                            <div class="formulario_grupo-input">
+                                <input type="text" class="formulario_input form-control" id="validarCiudad" name="validarCiudad">
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario_input-error">Solo puedes ingresar letras, numeros, espacios, comas y acentos (Máx. 20 caracteres )</p>
                         </div>
 
-                        <div class="form-group col-xs-6 col-sm-6   col-md-6">
-                            <label for="validarProvincia">Provincia:<span class="rojo">*</span></label>
-                            <input type="text" class="form-control" id="validarProvincia" name="validarProvincia" placeholder="Cantabria" required>
+                        <!-- GRUPO: Provincia -->
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarProvincia" class="formulario_grupo">
+                            <label for="validarProvincia" class="formulario_label">Provincia:<span class="rojo">*</span></label>
+                            <div class="formulario_grupo-input">
+                                <input type="text" class="formulario_input form-control" id="validarProvincia" name="validarProvincia">
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario_input-error">Solo puedes ingresar letras, numeros, espacios, comas y acentos (Máx. 20 caracteres )</p>
                         </div>
 
-                        <div class="form-group col-xs-6 col-sm-6   col-md-6">
-                            <label for="validarPais">Pais:<span class="rojo">*</span></label>
-                            <input type="text" class="form-control" id="validarPais" name="validarPais" placeholder="España" required>
+                        <!-- GRUPO: Pais -->
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarPais" class="formulario_grupo">
+                            <label for="validarPais" class="formulario_label">Pais:<span class="rojo">*</span></label>
+                            <div class="formulario_grupo-input">
+                                <input type="text" class="formulario_input form-control" id="validarPais" name="validarPais">
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario_input-error">Solo puedes ingresar letras, numeros, espacios, comas y acentos (Máx. 35 caracteres )</p>
                         </div>
+                        <!-- GRUPO: Codigo postal-->
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarCPostal" class="formulario_grupo" >
+                            <label for="validarCPostal" class="formulario_label">Codigo postal:<span class="rojo">*</span></label>
+                            <div class="formulario_grupo-input">
+                                <input type="number" class="formulario_input form-control" id="validarCPostal" name="validarCPostal" max="6" >
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario_input-error">Solo puedes ingresar numeros (Máx. 6 )</p>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-12 formulario_grupo formulario_grupo-btn-enviar">
+                            <div>
+                                <button class="btn btn-info" type="reset" name="reset">Limpiar</button>
+                                <button class="btn btn-primary" type="submit" name="enviar">Enviar</button>
+                            </div>
 
-                        <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                            <label for="validarCPostal">Codigo postal:<span class="rojo">*</span></label>
-                            <input type="number" class="form-control" id="validarCPostal" name="validarCPostal" placeholder="39011" required>
-                        </div>
-                        <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                            <button class="btn btn-info" type="reset" name="reset">Limpiar</button>
-                            <button class="btn btn-primary" type="submit" name="enviar">Enviar</button>
+                            <p class="formulario_mensaje-exito" id="formulario_mensaje-exito">Formulario enviado exitosamente!</p>
                         </div>
                     </form>
                 </div>
@@ -146,6 +208,7 @@
         </div>
     </section>
 
+    <script src="../../js/validaFormRegistro.js"></script>
     <?php include("../mod/plantillasDelDiseno/footer.php")  ?>
 </body>
 

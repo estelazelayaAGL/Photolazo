@@ -20,9 +20,12 @@
 				</div>
 			</div>
 
-			<div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
+			
+            <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
 				<h1>Nuestros productos</h1>
-				<h4>Los mejores del mercado</h4>
+				<h3>Los mejores del mercado</h3>
 				<hr>
 
 				<div class="row">
@@ -88,6 +91,8 @@
 
 				</div>
 				<a href="recursos.php"><button class="btn btn-primary btn-lg">Material gratuito</button></a>
+			</div>
+				</div>
 			</div>
 			
 	</section>

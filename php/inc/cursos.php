@@ -23,7 +23,6 @@
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <h1>Los mejores cursos que podrás encontrar</h1>
                 <hr>
-
                 <?php
                 $categorias = BD::categoriasProductoCurso();
                 foreach ($categorias as $categoria) {
@@ -36,14 +35,6 @@
                     }
                 }
                 ?>
-                <!-- <h4>Retrato</h4>
-                <div class="row">
-                    <?php
-                    //$cursos = BD::obtieneCursos('Retrato');
-                    //BD::muestraCursos($cursos);
-                    ?>
-                </div> -->
-
             </div>
         </div>
 

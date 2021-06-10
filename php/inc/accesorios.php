@@ -16,30 +16,34 @@
                     <ol class="breadcrumb">
                         <li><a href="index.php">Inicio </a></li>
                         <li><a href="productos.php">Productos </a></li>
-                        <li class="active">Mochilas </li>
+                        <li class="active"> Otros accesorios </li>
                     </ol>
                 </div>
             </div>
-        </div>
 
 
-        <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
-            <h1>Accesorios</h1><br>
-            <hr>
-            
-            <?php
-                $marcas = BD::obtieneTodasLasMarcas();
-                foreach($marcas as $marca) {
-                    $productos = BD::obtieneProductos('accesorios', $marca['nombre']);
-                    if(count($productos) > 0) {
-                        echo '<h2>'. $marca['nombre'].'</h2>';
-                        echo '<div class="row">';
-                        BD::muestraProductos($productos);
-                        echo '</div>';
-                    }
-                }
-                ?>
 
+            <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1>Accesorios</h1><br>
+                        <hr>
+
+                        <?php
+                        $marcas = BD::obtieneTodasLasMarcas();
+                        foreach ($marcas as $marca) {
+                            $productos = BD::obtieneProductos('accesorios', $marca['nombre']);
+                            if (count($productos) > 0) {
+                                echo '<h2>' . $marca['nombre'] . '</h2>';
+                                echo '<div class="row">';
+                                BD::muestraProductos($productos);
+                                echo '</div>';
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

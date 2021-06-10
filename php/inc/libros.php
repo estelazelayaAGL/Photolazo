@@ -22,19 +22,23 @@
             </div>
 
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
-                <h1>Libros</h1><br>
-                <hr>
-                <?php
-                $marcas = BD::obtieneTodasLasMarcas();
-                foreach($marcas as $marca) {
-                    $productos = BD::obtieneProductos('libros', $marca['nombre']);
-                    if(count($productos) > 0) {
-                        echo '<div class="row">';
-                        BD::muestraProductos($productos);
-                        echo '</div>';
-                    }
-                }
-                ?>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1>Libros</h1><br>
+                        <hr>
+                        <?php
+                        $marcas = BD::obtieneTodasLasMarcas();
+                        foreach ($marcas as $marca) {
+                            $productos = BD::obtieneProductos('libros', $marca['nombre']);
+                            if (count($productos) > 0) {
+                                echo '<div class="row">';
+                                BD::muestraProductos($productos);
+                                echo '</div>';
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
             </div>
         </div>
 
