@@ -129,7 +129,7 @@ ob_start();
                             <a class="nav-link" href="cursos.php">Cursos <img src="../../imagenes/imgMaquetacion/cursos.png" alt=""></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="blog.php">Blog <img src="../../imagenes/imgMaquetacion/blog.png" alt=""></a>
+                            <a class="nav-link" href="entradas.php">Blog <img src="../../imagenes/imgMaquetacion/blog.png" alt=""></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="recursos.php">Recursos <img src="../../imagenes/imgMaquetacion/recursos.png" alt=""></a>

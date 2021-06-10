@@ -22,7 +22,7 @@
                 <div class="panel panel-default blog">
                     <div class="panel-body">
                         <h1 class="izquierda">Blog PhotoLazo</h1>
-                        <h4 class="izquierda">Entradas más recientes</h4>
+                        <h2 class="">Entradas más recientes</h2>
                         <hr>
                         <div class="row">
                             <?php $entradas = BD::ultimasEntradas(); ?>
@@ -55,7 +55,7 @@
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <div class="panel panel-default blog">
                     <div class="panel-body">
-                        <h4 class="izquierda azul">Más entradas</h4>
+                        <h2 class="">Más entradas</h2>
                         <hr>
                         <div class="row">
                             <?php $entradas = BD::todasLasEntradas(); ?>

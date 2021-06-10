@@ -371,8 +371,8 @@ class BD
                     <label for="detalleProducto" class="btn btn-primary textoEnlace">' .  $producto->getNombre() . '</label>
 					</form>	
                     <div class="detalles">'
-                    .'<form method="post" action="../inc/cesta.php">'
-                    .'<input type="hidden" name="codigo" value="' . $producto->getCodigo() .'"></input>'
+                    . '<form method="post" action="../inc/cesta.php">'
+                    . '<input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>'
                     . '<p class="negrita "> Descripción: </p>'
                     . '<p class="separado">' . $producto->getDescripcion() . '</p>'
                     . '<p class="negrita derecha">Precio:</p>'
@@ -986,7 +986,7 @@ class BD
                 <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
                 <form action="../inc/detalleEntrada.php" method="post">
                 <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>
-                    <input  type="submit" name="aniadir" value="Leer más" class="btn btn-info btn-lg espacio azul"></input>';
+                    <input type="submit" name="aniadir" value="Leer más" class="btn btn-info btn-lg espacio azul"></input>';
                 echo ""
                     . '</form>';
                 echo '</div>

@@ -8,7 +8,7 @@
 
     <?php
 
-    if (isset($_POST['codigo'])) {
+    if (isset($_POST['detalleCurso'])) {
         $curso = BD::obtieneCurso($_POST['codigo']);
     }
 
@@ -47,7 +47,6 @@
                                 <h1>¿Que aprenderás?</h1>
                                 <p><?php echo $curso->getResumen(); ?></p>
                             </div>
-                            
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <h3>Vista previa del curso:</h3>

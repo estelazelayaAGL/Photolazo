@@ -53,10 +53,21 @@
                     <h1>Crea una cuenta</h1>
                     <h4>Es fácil y rápido</h4>
                     <hr>
+                    <div class="formulario_mensaje alert alert-danger" id="formulario_mensaje">
+                        <a class='close' data-dismiss='alert'> × </a>
+                        <p><i class="fas fa-exclamation-triangle"></i><b> Error: </b>Por favor rellene el formulario correctamente</p>
+                    </div>
+                    <div class="formulario_mensaje-exito" id="formulario_mensaje-exito">
+                        <a class='close' data-dismiss='alert'> × </a>
+                        <p>Formulario enviado exitosamente!</p></p>
+                    </div>
+                    
                     <div id="mensaje">
-                        <div class="formulario_mensaje" id="formulario_mensaje">
-                            <p><i class="fas fa-exclamation-triangle"></i><b> Error </b>Por favor rellene el formulario correctamente</p>
-                        </div>
+                        <?php
+                        if (isset($mensaje)) {
+                            echo "<a class='close' data-dismiss='alert'> × </a>" . $mensaje;
+                        }
+                        ?>
                     </div>
 
                 </div>
@@ -64,13 +75,13 @@
                 <div class="registro col-xs-12 col-sm-12 col-md-10 ">
                     <!-- INICIO FORMULARIO HTML -->
 
-                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="registroForm" class="needs-validation" autocomplete="off">
+                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="registroForm" class="needs-validation" novalidate autocomplete="off">
                         <!-- DATOS DEL CLIENTE -->
                         <!-- GRUPO: Nombre -->
                         <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarNombre" class="formulario_grupo">
                             <label for="validarNombre" class="formulario_label">Nombre:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
-                                <input type="text" class="formulario_input form-control" id="validarNombre" name="validarNombre" placeholder="Estela Rosinda" required>
+                                <input type="text" class="formulario_input form-control" id="validarNombre" name="validarNombre" placeholder="Estela Rosinda">
                                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p class="formulario_input-error">El nombre solo puede contener letras, espacios y acentos. <strong>(Max. 35 caracteres)</strong></p>
@@ -79,21 +90,24 @@
                         <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarApellidos" class="formulario_grupo">
                             <label for="validarApellidos" class="formulario_label">Apellidos:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
-                                <input type="text" class="formulario_input form-control" id="validarApellidos" name="validarApellidos" placeholder="Zelaya Lazo" required>
+                                <input type="text" class="formulario_input form-control" id="validarApellidos" name="validarApellidos" placeholder="Zelaya Lazo">
                                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p class="formulario_input-error">El nombre solo puede contener letras, espacios y acentos. <strong>(Max. 50 caracteres)</strong></p>
                         </div>
-                        <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                            <label for="validarNacimiento">Fecha de nacimiento:<span class="rojo">*</span></label>
-                            <input type="date" class="form-control" id="validarNacimiento" name="validarNacimiento" required>
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarNacimiento" class="formulario_grupo">
+                            <label for="validarNacimiento" class="formulario_label">Fecha de nacimiento:<span class="rojo">*</span></label>
+                            <div class="formulario_grupo-input">
+                            <input type="date" class="formulario_input form-control" id="validarNacimiento" name="validarNacimiento">
+                            <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                            </div>
                         </div>
 
                         <!-- GRUPO: Telefono -->
                         <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarTelefono" class="formulario_grupo">
                             <label for="validarTelefono" class="formulario_label">Teléfono:</label>
                             <div class="formulario_grupo-input">
-                                <input type="text" class="formulario_input form-control" id="validarTelefono" name="validarTelefono" placeholder="661908318">
+                                <input type="text" class="formulario_input form-control" id="validarTelefono" name="validarTelefono" placeholder="+(34) 661908318">
                                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p class="formulario_input-error">Prefijo ( + seguido de 2 o 3 cifras) espacio en blanco y 9 cifras consecutivas.</p>
@@ -150,7 +164,7 @@
                         <div class="formulario_grupo form-group col-xs-12 col-sm-12 col-md-12" id="grupo_validarDireccion" class="formulario_grupo">
                             <label for="validarDireccion" class="formulario_label">Direccion:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
-                                <input type="text" class="formulario_input form-control" id="validarDireccion" name="validarDireccion" >
+                                <input type="text" class="formulario_input form-control" id="validarDireccion" name="validarDireccion">
                                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p class="formulario_input-error">Solo puedes ingresar letras, numeros, espacios, comas y acentos (Máx. 35 caracteres )</p>
@@ -186,21 +200,20 @@
                             <p class="formulario_input-error">Solo puedes ingresar letras, numeros, espacios, comas y acentos (Máx. 35 caracteres )</p>
                         </div>
                         <!-- GRUPO: Codigo postal-->
-                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarCPostal" class="formulario_grupo" >
+                        <div class="formulario_grupo form-group col-xs-6 col-sm-6 col-md-6" id="grupo_validarCPostal" class="formulario_grupo">
                             <label for="validarCPostal" class="formulario_label">Codigo postal:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
-                                <input type="number" class="formulario_input form-control" id="validarCPostal" name="validarCPostal" max="6" >
+                                <input type="number" class="formulario_input form-control" id="validarCPostal" name="validarCPostal" max="6">
                                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p class="formulario_input-error">Solo puedes ingresar numeros (Máx. 6 )</p>
                         </div>
                         <div class="form-group col-xs-12 col-sm-12 col-md-12 formulario_grupo formulario_grupo-btn-enviar">
                             <div>
-                                <button class="btn btn-info" type="reset" name="reset">Limpiar</button>
-                                <button class="btn btn-primary" type="submit" name="enviar">Enviar</button>
+                                <button class="btn btn-info btn-lg formulario_btn" type="reset" name="reset">Limpiar</button>
+                                <button class="btn btn-primary btn-lg formulario_btn" id="enviar" type="submit" name="enviar">Enviar</button>
                             </div>
-
-                            <p class="formulario_mensaje-exito" id="formulario_mensaje-exito">Formulario enviado exitosamente!</p>
+                            
                         </div>
                     </form>
                 </div>
