@@ -1019,3 +1019,11 @@ input[type = "radio"]:checked ~ .estrella{
     font-size  : 1.5em !important;
     color:orange;
 }
+
+.blanco {
+    color:white;
+}
+
+.negro {
+    color: black;
+}

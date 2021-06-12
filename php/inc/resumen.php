@@ -69,7 +69,7 @@
                         <h1>Resumen del pedido</h1>
                         <hr>
                         <div class="row text-left">
-                            <div class="col-xs-10 col-sm-10 col-md-10">
+                            <div class="col-xs-8 col-sm-8 col-md-8">
                                 <h2 class="sinMargin">PhotoLazo</h2>
                                 <label>http://photolazo.es</label>
                             </div>
@@ -77,6 +77,11 @@
                                 <strong>Fecha</strong>
                                 <br>
                                 <?php echo $fecha ?>
+                            </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2 text-center">
+                                <strong>Fecha de entrega</strong>
+                                <br>
+                                <?php echo BD::obtieneFechaEntrega($id_pedido) ?>
                             </div>
                         </div>
                         <hr>

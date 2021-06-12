@@ -64,8 +64,8 @@
                                     <label class="letraGrisPequena"><br><?php echo $blog->getFechaPublicacion(); ?></label>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <label>Categoria:</label>
-                                    <label class="letraGrisPequena"><br><?php echo $blog->getCategoria(); ?></label>
+                                    <label>Categoría:</label>
+                                    <label class="letraGrisPequena"><br><?php echo BD::obtieneNombreCategoriaBlog($blog->getCategoria()); ?></label>
                                 </div>
                             </div>
 

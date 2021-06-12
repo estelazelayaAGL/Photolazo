@@ -5,7 +5,19 @@
     <?php $titulo = 'Contacto'; ?>
 
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
-
+    <!---	Incluye un breadcrumb que indique la sección actual-->
+    <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+        <div class="">
+            <ol class="breadcrumb">
+                <li><a href="index.php">Inicio </a></li>
+                <li class="active">Iniciar sesión</li>
+            </ol>
+        </div>
+    </div>
+    </nav>
+    </div>
+    <!-- Termina el header -->
+    </header>
 
     <?php
 
@@ -21,14 +33,13 @@
             $_SESSION['usuario'] = $usuario;
             header("Location: index.php");
         } else {
-            $mensaje= "<div class ='alert alert-danger'>
+            $mensaje = "<div class ='alert alert-danger'>
             <a class='close' data-dismiss='alert'> × </a>Usuario no registrado</div>";
         }
         // }
     }
 
     ?>
-
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->

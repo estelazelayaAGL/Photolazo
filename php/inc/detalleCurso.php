@@ -40,7 +40,7 @@
                             <h2><?php echo $curso->getLema(); ?></h2>
                             <h3><label class="class=" negrita""> Creado por:</label> <?php echo $curso->getAutor(); ?></h3>
                             <h3><label class="negrita">Nivel:</label> <?php echo $curso->getNivel(); ?></h3>
-                            <h3><label class="negrita">Categoria:</label> <?php echo $curso->getCategoria(); ?></h3>
+                            <h3><label class="negrita">Categoría:</label> <?php echo BD::obtieneNombreCategoria($curso->getCategoria()); ?></h3>
 
                             <div class="panelCentral">
                                 <h1>¿Que aprenderás?</h1>

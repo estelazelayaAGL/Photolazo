@@ -10,6 +10,39 @@ include_once 'conexion.php';
 class BD
 {
 
+    public static function obtieneFechaEntrega($pedido) {
+        $sql = "SELECT fecha_entrega FROM pedidos WHERE id_pedido = $pedido";
+        $resultado = self::ejecutaConsulta($sql);
+        $fecha = "";
+        if($resultado->rowCount() > 0) {
+            $row = $resultado->fetch();
+            $fecha = $row['fecha_entrega'];
+        }
+        return $fecha;
+    }
+
+    public static function obtieneNombreCategoriaBlog($categoria) {
+        $sql = "SELECT nombre FROM categoriasblog WHERE id_categoriaB = '$categoria'";
+        $resultado = self::ejecutaConsulta($sql);
+        $nombre = "";
+        if($resultado->rowCount() > 0) {
+            $row = $resultado->fetch();
+            $nombre = $row['nombre'];
+        }
+        return $nombre;
+    }
+
+    public static function obtieneNombreCategoria($categoria) {
+        $sql = "SELECT nombre FROM categorias WHERE id_categoria = '$categoria'";
+        $resultado = self::ejecutaConsulta($sql);
+        $nombre = "";
+        if($resultado->rowCount() > 0) {
+            $row = $resultado->fetch();
+            $nombre = $row['nombre'];
+        }
+        return $nombre;
+    }
+
     public static function mediaResenas($producto) {
         $sql = "SELECT AVG(valoracion) AS media FROM resenas WHERE id_producto = '$producto'";
         $resultado = self::ejecutaConsulta($sql);
@@ -1050,7 +1083,7 @@ class BD
         } else {
             foreach ($entradas as $entrada) {
                 echo '
-                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 ">' . $entrada->getTitulo() . '
+                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 blanco">' . $entrada->getTitulo() . '
                                 <div class=" cuadro panel-padre"> 
                                 <img class="img-fluid opaca" src="../../imagenes/imgObjetivas/entradas/Administración.png">
                                         <div class="panel-titulo"> 
@@ -1101,11 +1134,11 @@ class BD
         } else {
             foreach ($entradas as $entrada) {
                 echo '
-                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 ">' . $entrada->getTitulo() . '
+                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 blanco">' . $entrada->getTitulo() . '
                                 <div class="">
                                 <img class="img-fluid opaca" src="../../imagenes/imgObjetivas/entradas/Administración.png">
                                         <div class="">
-                                        <label class="list-group-item" for="">' . $entrada->getTitulo() . '</label>
+                                        <label class="list-group-item negro" for="">' . $entrada->getTitulo() . '</label>
                                         <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
                 <form action="../inc/detalleEntrada.php" method="post">
                 <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>
