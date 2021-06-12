@@ -58,6 +58,8 @@
                 $existe = false;
                 if (isset($_SESSION['receptor'])) {
                     $existe = true;
+                } else {
+                    $_SESSION['receptor'] = $nombre;
                 }
                 if (isset($_POST['actualizarReceptor'])) {
                     $receptor = $_POST['nombreUsuario'];
@@ -75,7 +77,8 @@
                     <div><strong><?php
                                     if ($existe) {
                                         echo $_SESSION['receptor'] . '</strong> | <input type="checkbox" id="modificarNombre" value="modificarNombre"> <label for="modificarNombre">Modificar</label></div>';
-                                    } else {
+                                    }
+                                    else {
                                         echo $nombre . '</strong> | <input type="checkbox" id="modificarNombre" value="modificarNombre"> <label for="modificarNombre">Modificar</label></div>';
                                     }
                                     ?>
@@ -165,6 +168,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                             <input type="hidden" name="cuentaH" class="form-control" value="Cuenta bancaria" required />
+                                            <!-- <input type="hidden" name="receptor" class="form-control" value="<?php //echo $_SESSION['receptor']; ?>" /> -->
                                             <input type="text" name="titular" class="form-control" placeholder="Titular" required />
                                         </div>
                                     </div>
@@ -193,6 +197,7 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                            <!-- <input type="hidden" name="receptor" class="form-control" value="<?php //echo $_SESSION['receptor']; ?>" /> -->
                                             <input type="hidden" name="tarjetaH" class="form-control" value="Tarjeta de crédito/débito" />
                                             <input type="text" name="titular" class="form-control" placeholder="Titular" required />
                                         </div>
@@ -215,7 +220,7 @@
                                             <span class="help-block text-muted letra-peq">CVC</span>
                                             <input type="text" name="cvc" class="form-control" placeholder="CVC" required />
                                         </div>
-                                        <div class="col-md-3 col-sm-3 col-xs-3 hidden-xs ">
+                                        <div class="col-md-3 col-sm-3 col-xs-3 hidden-xs">
                                             <img src="../../imagenes/imgMaquetacion/tarjetaPago.png" class="" />
                                         </div>
 

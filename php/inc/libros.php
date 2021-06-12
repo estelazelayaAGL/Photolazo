@@ -27,14 +27,22 @@
                         <h1>Libros</h1><br>
                         <hr>
                         <?php
+                        $vacio = true;
                         $marcas = BD::obtieneTodasLasMarcas();
                         foreach ($marcas as $marca) {
                             $productos = BD::obtieneProductos('libros', $marca['nombre']);
                             if (count($productos) > 0) {
+                                echo '<h2>' . $marca['nombre'] . '</h2>';
                                 echo '<div class="row">';
                                 BD::muestraProductos($productos);
                                 echo '</div>';
+                                $vacio = false;
                             }
+                        }
+                        if ($vacio) {
+                            echo '<div class="col-xs-12 col-sm-12 col-md-12">';
+                            echo '<h3>Lista vacía.</h3>';
+                            echo '</div>';
                         }
                         ?>
                     </div>

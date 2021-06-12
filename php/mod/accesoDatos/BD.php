@@ -223,6 +223,23 @@ class BD
         return $resultado;
     }
 
+    public static function obtieneProductosPorNombre($palabras) //Categoria y marca
+    {
+        $sql = "SELECT p.id_producto AS codigo, p.nombre, p.precio, p.descripcion, m.nombre AS marca, c.nombre AS categoria FROM productos p INNER JOIN marcas m ON p.id_marca = m.id_marca INNER JOIN categorias c ON p.id_categoria = c.id_categoria";
+        $sql .= " WHERE p.nombre LIKE '%" . $palabras. "%'";
+        $resultado = self::ejecutaConsulta($sql);
+        $productos = array();
+        if ($resultado) {
+            // Añadimos un elemento por cada producto leido
+            $row = $resultado->fetch();
+            while ($row != null) {
+                $productos[] = new Producto($row);
+                $row = $resultado->fetch();
+            }
+        }
+        return $productos;
+    }
+
     public static function obtieneProductos($ctg, $mrc) //Categoria y marca
     {
         $sql = "SELECT p.id_producto AS codigo, p.nombre, p.precio, p.descripcion, m.nombre AS marca, c.nombre AS categoria FROM productos p INNER JOIN marcas m ON p.id_marca = m.id_marca INNER JOIN categorias c ON p.id_categoria = c.id_categoria";
@@ -240,6 +257,24 @@ class BD
         return $productos;
     }
 
+
+    public static function obtieneCursosPorNombre($palabras)
+    {
+        $sql = "SELECT c.* FROM cursos c INNER JOIN categorias categ ON c.id_categoria = categ.id_categoria";
+        $sql .= " WHERE c.titulo LIKE '%" . $palabras . "%'";
+        //echo $sql;
+        $resultado = self::ejecutaConsulta($sql);
+        $cursos = array();
+        if ($resultado) {
+            // Añadimos un elemento por cada curso leido
+            $row = $resultado->fetch();
+            while ($row != null) {
+                $cursos[] = new Curso($row);
+                $row = $resultado->fetch();
+            }
+        }
+        return $cursos;
+    }
 
     public static function obtieneCursos($ctg) //Categoria
     {
@@ -259,6 +294,8 @@ class BD
         return $cursos;
     }
 
+    
+    
     //Este no vale para el CRUD
     public static function obtieneProducto($codigo)
     {
@@ -367,7 +404,7 @@ class BD
                         <form method="post" action="../inc/detalleProducto.php">
                         <input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>
 						<img class="img-fluid" src="../../imagenes/imgObjetivas/productos/' . $producto->getCodigo() . '.png">
-                    <input id="detalleProducto" name="detalleProducto" type="submit" value="' .  $producto->getNombre() . '" class=""></input>
+                    <input id="detalleProducto" name="detalleProducto" type="submit" value="' .  $producto->getNombre() . '" class="btn btn-primary"></input>
                     </form>	
                     <div class="detalles">'
                     . '<form method="post" action="../inc/cesta.php">'
@@ -401,7 +438,7 @@ class BD
                         <form method="post" action="../inc/detalleCurso.php">
                             <input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>
                             <img class="img-fluid" src="../../imagenes/imgObjetivas/cursos/' . $curso->getCodigo() . '.png">
-                            <input id="detalleCurso" type="submit" value="' . $curso->getTitulo() . '" name="detalleCurso" class=""></input>
+                            <input id="detalleCurso" type="submit" value="' . $curso->getTitulo() . '" name="detalleCurso" class="btn btn-primary"></input>
                         </form>
 							<div class="detalles">'
                     . '<form action="../inc/cesta.php" method="post">'
@@ -972,7 +1009,7 @@ class BD
         } else {
             foreach ($entradas as $entrada) {
                 echo '
-                <div class="col-xs-12 col-sm-6 col-md-4 ">
+                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 ">' . $entrada->getTitulo() . '
                                 <div class=" cuadro panel-padre"> 
                                 <img class="img-fluid opaca" src="../../imagenes/imgObjetivas/entradas/Administración.png">
                                         <div class="panel-titulo"> 
@@ -1023,11 +1060,11 @@ class BD
         } else {
             foreach ($entradas as $entrada) {
                 echo '
-                <div class="col-xs-12 col-sm-6 col-md-4 ">
+                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 ">' . $entrada->getTitulo() . '
                                 <div class="">
                                 <img class="img-fluid opaca" src="../../imagenes/imgObjetivas/entradas/Administración.png">
                                         <div class="">
-                                        <label for="">' . $entrada->getTitulo() . '</label>
+                                        <label class="list-group-item" for="">' . $entrada->getTitulo() . '</label>
                                         <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
                 <form action="../inc/detalleEntrada.php" method="post">
                 <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>

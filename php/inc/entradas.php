@@ -4,6 +4,7 @@
 <body>
     <?php $titulo = 'Blog princiopal'; ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
+    <script src="../../js/filtroEntradas.js"></script>
     <section class="container-fluid">
         <!-- ENCABEZADO -->
         <div class="container sinPad ">
@@ -22,14 +23,19 @@
                 <div class="panel panel-default blog">
                     <div class="panel-body">
                         <h1 class="izquierda">Blog PhotoLazo</h1>
-                        <h2 class="">Entradas más recientes</h2>
+                        <div class="margen col-xs-12 col-sm-12 col-md-12">
+                            <label class="col-xs-12 col-sm-12 col-md-6" for="myInput">Filtro de entradas</label>
+                            <input class="form-control col-xs-12 col-sm-12 col-md-6" id="myInput" type="text" placeholder="Filtrar">
+                        </div>
+                        
+                        <h2>Entradas más recientes</h2>
                         <hr>
-                        <div class="row">
+                        <div class="row" id="myList">
                             <?php $entradas = BD::ultimasEntradas(); ?>
                             <?php BD::muestraUltimasEntradas($entradas); ?>
                         </div>
                         <a href="productos.php"><input type="button" value="Productos" class="btn btn-primary btn-lg"></a>
-                        <a href="cursos.php"><input type="button" value="Cursos" class="btn btn-primary btn-lg" ></a>
+                        <a href="cursos.php"><input type="button" value="Cursos" class="btn btn-primary btn-lg"></a>
                     </div>
                 </div>
             </div>
@@ -55,13 +61,13 @@
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <div class="panel panel-default blog">
                     <div class="panel-body">
-                        <h2 class="">Más entradas</h2>
+                        <h2 class="">Todas las entradas</h2>
                         <hr>
-                        <div class="row">
+                        <div class="row" id="myList">
                             <?php $entradas = BD::todasLasEntradas(); ?>
                             <?php BD::muestraTodasLasEntradas($entradas); ?>
                         </div>
-                        <a href="recursos.php" ><input type="button" value="Material gratis" class="btn btn-primary btn-lg" ></a>
+                        <a href="recursos.php"><input type="button" value="Material gratis" class="btn btn-primary btn-lg"></a>
                     </div>
                 </div>
             </div>

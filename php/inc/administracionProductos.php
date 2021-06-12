@@ -173,7 +173,7 @@
                                         <input type="text" name="idProducto_A" class="form-control" required />
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                        <label>ID Categoria</label>
+                                        <label>Categoría</label>
                                         <!-- <input type="text" name="idCategoriaProd_A" class="form-control" placeholder="" required />
                                      -->
                                         <select name="idCategoriaProd_A" id="idCategoriaProd_A" required>
@@ -184,7 +184,7 @@
                                         </select>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                        <label>ID Marca</label>
+                                        <label>Marca</label>
                                         <!-- <input type="text" name="idMarcaProd_A" class="form-control" placeholder="" required /> -->
                                         <select name="idMarcaProd_A" id="idMarcaProd_A" required>
                                             <?php foreach ($marcas as $marca) {
@@ -261,8 +261,20 @@
                                                 </select>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                                <label>ID Marca</label>
-                                                <input type="text" name="idMarcaProd_M" class="form-control" placeholder="" value="<?php echo $row["id_marca"]; ?>" required />
+                                                <label>Marca</label>
+                                                <!-- <input type="text" name="idMarcaProd_M" class="form-control" placeholder="" value="<?php //echo $row["id_marca"]; ?>" required /> -->
+                                                <select name="idMarcaProd_M" id="idMarcaProd_M" required>
+                                                    <?php
+                                                    $marcas = BD::marcasProductoCurso();
+                                                    foreach ($marcas as $marca) {
+                                                        if($marca['id_marca'] == $row['id_marca']) {
+                                                            echo  "<option selected value=" . $marca['id_marca'] . ">" . $marca['nombre'] . "</option>";
+                                                        } else {
+                                                            echo  "<option value=" . $marca['id_marca'] . ">" . $marca['nombre'] . "</option>";
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="row">

@@ -21,20 +21,31 @@
             </div>
 
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
-                <h1>Los mejores cursos que podrás encontrar</h1>
-                <hr>
-                <?php
-                $categorias = BD::categoriasProductoCurso();
-                foreach ($categorias as $categoria) {
-                    $cursos = BD::obtieneCursos($categoria['nombre']);
-                    if (count($cursos) > 0) {
-                        echo '<h2>' . $categoria['nombre'] . '</h2>';
-                        echo '<div class="row">';
-                        BD::muestraCursos($cursos);
-                        echo '</div>';
-                    }
-                }
-                ?>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1>Los mejores cursos que podrás encontrar</h1>
+                        <hr>
+                        <?php
+                        $vacio = true;
+                        $categorias = BD::categoriasProductoCurso();
+                        foreach ($categorias as $categoria) {
+                            $cursos = BD::obtieneCursos($categoria['nombre']);
+                            if (count($cursos) > 0) {
+                                echo '<h2>' . $categoria['nombre'] . '</h2>';
+                                echo '<div class="row">';
+                                BD::muestraCursos($cursos);
+                                echo '</div>';
+                                $vacio = false;
+                            }
+                        }
+                        if ($vacio) {
+                            echo '<div class="col-xs-12 col-sm-12 col-md-12">';
+                            echo '<h3>Lista vacía.</h3>';
+                            echo '</div>';
+                        }
+                        ?>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -135,13 +135,19 @@ class CestaCompra
 
             echo "<table class='azul table table-striped '>"
                 . "<tr>"
-                ."<td></td>"
-                . "<td>TOTAL: </td>"
+                . "<td colspan='2' class='text-right'>TOTAL: </td>"
                 . "<td>"
-                . $this->get_coste()
-                . "€</td>
-                <td></td>
-                </tr></table>";
+                . number_format($this->get_coste(),2)
+                . "€</td>"
+                ."</tr>"
+                ."<tr>"
+                ."<td colspan='2' class='text-right'>IVA: </td><td>"
+                .number_format(($this->get_coste()*0.21),2)
+                ."</td></tr><tr>"
+                . "<td colspan='2' class='text-right'>Subtotal: </td><td>"
+                . number_format((($this->get_coste()*0.21)+ $this->get_coste()),2)
+                ."</td></tr>"
+                ."</table>";
             echo  "<div class='col-xs-12 col-sm-12 col-md-12'>"
                 . '<form action="cesta.php" method="post">'
                 . '<input type="submit" name="vaciar" value="Vaciar cesta" class="btn btn-primary btn-lg gris"></input>'
@@ -208,11 +214,11 @@ class CestaCompra
                 . "€</td>"
                 ."</tr>"
                 ."<tr>"
-                . "<td colspan='2' class='text-right'>Descuento: </td><td>"
-                . number_format($this->get_coste(),2)
+                . "<td colspan='2' class='text-right'>IVA: </td><td>"
+                . number_format(($this->get_coste()*0.21),2)
                 ."</td></tr><tr>"
-                . "<td colspan='2' class='text-right'>Subtotal con descuento: </td><td>"
-                . number_format($this->get_coste(),2)
+                . "<td colspan='2' class='text-right'>Subtotal: </td><td>"
+                . number_format((($this->get_coste()*0.21)+ $this->get_coste()),2)
                 ."</td></tr>"
                 ."</table>";
             print "</ul>";

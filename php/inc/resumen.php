@@ -16,7 +16,7 @@
                 <div class="">
                     <ol class="breadcrumb">
                         <li><a href="index.php">Inicio </a></li>
-                        <li><a href="productos.php">Productos </a></li>
+                        <li><a href="productos.php">Productos</a></li>
                         <li class="active">Resumen </li>
                     </ol>
                 </div>
@@ -72,10 +72,6 @@
                         <strong>Fecha</strong>
                         <br>
                         <?php echo $fecha ?>
-                        <br>
-                        <strong>Factura No.</strong>
-                        <br>
-                        <?php echo $numero ?>
                     </div>
                 </div>
 
@@ -94,7 +90,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 text-center">
-                        <p class="h5"><?php echo $mensajePie ?></p>
+                        <p class="h5">Gracias por tu compra</p>
                     </div>
                 </div>
             </div>

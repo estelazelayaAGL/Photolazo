@@ -1,13 +1,13 @@
 window.addEventListener("load", principal);
 
-const expresiones = {
+var expresiones = {
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,35}$/, // Letras y espacios, pueden llevar acentos.
     apellidos: /^[a-zA-ZÀ-ÿ\s]{1,50}$/, // Letras y espacios, pueden llevar acentos.
-    usuario: /^[a-zA-Z0-9\_\-]{4,35}$/, // Letras, numeros, guion y guion_bajo
+    usuario: /^[a-zA-Z0-9\_\-]{1,35}$/, // Letras, numeros, guion y guion_bajo
     password: /^.{1,12}$/, // 4 a 12 digitos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    fecha: /^\d{2}\/\d{2}\/\d{4}$/,
-    telefono: /^\+\d{2,3}\s\d{9}$/, //	Prefijo internacional ( + seguido de 2 o 3 cifras) espacio en blanco y 9 cifras consecutivas
+    fecha: /^\d{4}\-\d{2}\-\d{2}$/,
+    telefono: /^\+\d{2,3}\s\d{9}/, //	Prefijo internacional ( + seguido de 2 o 3 cifras) espacio en blanco y 9 cifras consecutivas
     direccion: /^[a-zA-ZÀ-ÿ0-9\,\s]{1,35}$/, // Letras, numeros, espacios, comas y acentos
     codigoPostal: /^\d{1,6}$/,
     ciudad: /^[a-zA-ZÀ-ÿ\,\s]{1,20}$/, // Letras, espacios, comas y acentos
@@ -15,10 +15,10 @@ const expresiones = {
     pais: /^[a-zA-ZÀ-ÿ\,\s]{1,35}$/ // Letras, espacios, comas y acentos
 }
 
-const campos = {
+var campos = {
     validarNombre: false,
     validarApellidos: false,
-    validarNacimiento:false,
+    validarNacimiento: false,
     validarTelefono: false,
     validarEmail: false,
     validarUsuario: false,
@@ -30,7 +30,8 @@ const campos = {
     validarCPostal: false
 }
 var formulario;
-var TodosLosInputs
+var TodosLosInputs;
+var submt;
 
 function principal(e) {
     formulario = document.getElementById('registroForm');
@@ -52,7 +53,7 @@ function validarFormulario(e) {
         case "validarApellidos":
             validarCampo(expresiones.apellidos, e.target, 'validarApellidos');
             break;
-            case "validarNacimiento":
+        case "validarNacimiento":
             validarCampo(expresiones.fecha, e.target, 'validarNacimiento');
             break;
         case "validarTelefono":
@@ -90,7 +91,7 @@ function validarFormulario(e) {
 }
 
 function validarCampo(expresion, input, campo) {
-    if (expresion.test(input.value) && input.value!=="") {
+    if (expresion.test(input.value) && input.value !== "") {
         document.getElementById(`grupo_${campo}`).classList.remove('formulario_grupo-incorrecto');
         document.getElementById(`grupo_${campo}`).classList.add('formulario_grupo-correcto');
         document.querySelector(`#grupo_${campo} i`).classList.add('fa-check-circle');
@@ -108,8 +109,8 @@ function validarCampo(expresion, input, campo) {
 }
 
 function validaContrasena2() {
-    const inputContrasena1 = document.getElementById('validarContrasena');
-    const inputContrasena2 = document.getElementById('validarContrasena2');
+    var inputContrasena1 = document.getElementById('validarContrasena');
+    var inputContrasena2 = document.getElementById('validarContrasena2');
 
     if (inputContrasena1.value !== inputContrasena2.value) {
         document.getElementById(`grupo_validarContrasena2`).classList.add('formulario_grupo-incorrecto');
@@ -131,20 +132,39 @@ function validaContrasena2() {
 
 function enviarFormulario(e) {
     e.preventDefault();
+    submt = document.getElementById('enviar');
 
-    // const terminos = document.getElementById('terminos');
-    if (campos.validarNombre && campos.validarApellidos && campos.validarFecha && campos.validarTelefono && campos.validarEmail && campos.validarUsuario && campos.validarContrasena && campos.validarDireccion &&
+    if (campos.validarNombre && campos.validarApellidos && campos.validarNacimiento && campos.validarTelefono && campos.validarEmail && campos.validarUsuario && campos.validarContrasena && campos.validarDireccion &&
         campos.validarCiudad && campos.validarProvincia && campos.validarPais && campos.validarCPostal) { // && terminos.checked
-        formulario.submit();
+        submt.setAttribute("disabled", "");
 
-        document.getElementById('formulario_mensaje-exito').classList.add('formulario_mensaje-exito-activo');
-        setTimeout(() => {
-            document.getElementById('formulario_mensaje-exito').classList.remove('formulario_mensaje-exito-activo');
-        }, 5000);
+        var fd = new FormData(formulario);
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', 'registro.php');
 
-        document.querySelectorAll('.formulario_grupo-correcto').forEach((icono) => {
-            icono.classList.remove('formulario_grupo-correcto');
-        });
+        ajax.onload = function () {
+            if (ajax.status==200) {
+                submt.removeAttribute("disabled");
+                document.getElementById('formulario_mensaje-exito').classList.add('formulario_mensaje-exito-activo');
+
+                setTimeout(() => {
+                    document.getElementById('formulario_mensaje-exito').classList.remove('formulario_mensaje-exito-activo');
+                }, 5000);
+
+                document.querySelectorAll('.formulario_grupo-correcto').forEach((icono) => {
+                    icono.classList.remove('formulario_grupo-correcto');
+                });
+            }
+            this.DONE((res) =>{
+                document.getElementById("mensaje").innerHTML=res;
+            });
+
+        }
+        ajax.send(fd);
+        //document.getElementById("mensaje").innerHTML=ajax.responseText;
+        // console.log(ajax.responseText);
+        // window.location.reload();
+
     } else {
         document.getElementById('formulario_mensaje').classList.add('formulario_mensaje-activo');
     }

@@ -94,9 +94,9 @@ ob_start();
                 </div>
                 <div class="col-xs-0 col-sm-12 col-md-6 col-lg-6">
                     <div class="cajabuscar col-xs-0 col-sm-12 col-md-12 col-lg-12 d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block d-lg-none d-xl-block">
-                        <form method="get" id="buscarform" class="">
+                        <form action="busqueda.php" method="post" id="buscarform" class="">
                             <div class="input-group">
-                                <input type="text" id="buscar" class="form-control" placeholder="Search">
+                                <input type="text" name="buscar" id="buscar" class="form-control" placeholder="Buscar">
                                 <div class="input-group-btn">
                                     <button class="btn btn-default" type="submit">
                                         <i class="glyphicon glyphicon-search"></i>
