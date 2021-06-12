@@ -6,11 +6,13 @@ ob_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../imagenes/imgMaquetacion/favicon.png"/>
 
     <title><?php echo $titulo;
             session_start(); ?></title>
     <!-- CSS PROPIO -->
     <link rel="stylesheet" href="../../css/estilos.css">
+    
 
     <!-- JAVASCRIP PROPIO -->
     <script src="../../js/cookies.js"></script>
@@ -159,9 +161,4 @@ ob_start();
                 </div>
             </nav>
 
-
-
-        </div>
-        <!-- Termina el header -->
-
-</header>
+            <nav class="navbar navbar-expand-md col-xs-12 col-sm-12 col-md-12 sinPad">

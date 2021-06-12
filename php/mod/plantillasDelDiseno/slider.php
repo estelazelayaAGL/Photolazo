@@ -1,8 +1,7 @@
 
             <!-- Slider - Carrusel-->
-            <div class="container sinPad" id="titulo" id="slider" class="row">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="container sinPad" id="titulo" class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12" id="slider">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
@@ -40,5 +39,4 @@
                             </a>
                         </div>
                     </div>
-                </div>
             </div>

@@ -3,9 +3,8 @@
 
 <body>
     <?php $titulo = 'Cursos'; ?>
-    <?php include("../mod/plantillasDelDiseno/header.php")  ?>
     <script src="../../js/imagenAleatoria.js"></script>
-
+    <?php include("../mod/plantillasDelDiseno/header.php")  ?>
     <?php
     $codigo = "";
     if (isset($_POST['codigo'])) {
@@ -29,21 +28,24 @@
 
     ?>
 
+    <!---	Incluye un breadcrumb que indique la sección actual-->
+    <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+        <div class="">
+            <ol class="breadcrumb">
+                <li><a href="index.php">Inicio </a></li>
+                <li><a href="cursos.php"> Blog </a></li>
+                <li class="active"><?php echo $blog->getTitulo(); ?> </li>
+            </ol>
+        </div>
+    </div>
+    </nav>
+    </div>
+    <!-- Termina el header -->
+    </header>
+
     <section class="container-fluid">
         <!-- ENCABEZADO -->
         <div class="container sinPad ">
-
-            <!---	Incluye un breadcrumb que indique la sección actual-->
-            <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
-                <div class="">
-                    <ol class="breadcrumb">
-                        <li><a href="index.php">Inicio </a></li>
-                        <li><a href="cursos.php"> Blog </a></li>
-                        <li class="active"><?php echo $blog->getTitulo(); ?> </li>
-                    </ol>
-                </div>
-            </div>
-
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -128,7 +130,9 @@
                             funciones::mostrarComentarios($comentarios);
                             ?>
                         </div>
+
                         
+
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <h2>Deja una respuesta<br></h2>
                             <h4 class="font-italic">Tu dirección de correo electrónico no será publicado. Los campos obligatorios están marcados con <span class="rojo">*</span></h4>
@@ -163,12 +167,12 @@
                                         </div>
                                     </div>
                                 </form>
-                            
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
 
 

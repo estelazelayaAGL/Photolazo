@@ -362,6 +362,8 @@ ul li.nav-item {
 
 #slider {
     background-color: #474747;
+    padding-right: 0% !important;
+    padding-left: 0% !important;
 }
 
 
@@ -552,6 +554,13 @@ ul.iconos-social li {
     opacity   : 1 !important;
 }
 
+.rosa_tabla{
+    background-color: rgba(252, 102, 37, 0.4) !Important;
+    color     : #000000 !important;
+    opacity   : 1 !important;
+    font-weight: bold !important;
+}
+
 
 .blanco {
     color: white;
@@ -629,6 +638,12 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 p.derecha {
     text-align   : right !important;
     padding-right: 1em !important;
+}
+
+.derecha {
+    text-align   : right !important;
+    padding-right: 1em !important;
+    
 }
 
 .letraAzul {
@@ -770,8 +785,13 @@ a.passOlvidada {
 
 }
 
+.sinMargin{
+margin: 0% !important;
+}
+
 .panel-default>.panel-heading {
     background-color: rgba(252, 102, 37, 0.4) !Important;
+    width: 100% !important;
 }
 
 .tarjeta-div span {
@@ -848,10 +868,6 @@ table td {
     padding-left: 0% !important;
 }
 
-.azul {
-    color      : #0000ff;
-    font-weight: bold;
-}
 
 .iconos {
     text-align: center;
@@ -863,6 +879,11 @@ table td {
     font-weight: lighter;
     font-size  : .5em;
 }
+    th {
+       background-color:rgba(252, 102, 37, 0.4) !Important;
+       font-size: 100% !important;
+    }
+
 
 .espacio {
     margin-bottom: 1em !important;
@@ -934,6 +955,7 @@ h2.espacio {
     margin-bottom: 1.5em !important;
     margin-top   : 1.7em !important;
     font-size    : 0.9em;
+    border-bottom: .1px solid #a4a4a4 ;
 }
 
 .letraGrisPequena {
@@ -967,4 +989,33 @@ h4 {
 
 .margen {
     margin: 2% 0;
+}
+
+.estrella {
+    font-size  : 1.5em !important;
+    color:grey;
+}
+
+input[type = "radio"] {
+    display:none;
+}
+
+.clasificacion{
+    direction: rtl;/* right to left */
+    unicode-bidi: bidi-override;/* bidi de bidireccional */
+}
+
+.estrella:hover{
+    font-size  : 1.5em !important;
+    color:orange;
+}
+
+.estrella:hover ~ .estrella{
+    font-size  : 1.5em !important;
+    color:orange;
+}
+
+input[type = "radio"]:checked ~ .estrella{
+    font-size  : 1.5em !important;
+    color:orange;
 }

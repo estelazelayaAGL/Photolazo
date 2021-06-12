@@ -5,31 +5,30 @@
     <?php $titulo = 'Detalle de curso'; ?>
 
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
-
     <?php
-
     if (isset($_POST['detalleCurso'])) {
         $curso = BD::obtieneCurso($_POST['codigo']);
     }
-
     ?>
+    
+    <!---	Incluye un breadcrumb que indique la sección actual-->
+    <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+        <div class="">
+            <ol class="breadcrumb">
+                <li><a href="index.php">Inicio </a></li>
+                <li><a href="cursos.php">Cursos </a></li>
+                <li class="active"><?php $curso->getTitulo(); ?></li>
+            </ol>
+        </div>
+    </div>
+    </nav>
+    </div>
+    <!-- Termina el header -->
+    </header>
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->
         <div class="container sinPad ">
-
-            <!---	Incluye un breadcrumb que indique la sección actual-->
-            <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
-                <div class="">
-                    <ol class="breadcrumb">
-                        <li><a href="index.php">Inicio </a></li>
-                        <li><a href="cursos.php">Cursos </a></li>
-                        <li class="active"><?php $curso->getTitulo(); ?></li>
-                    </ol>
-                </div>
-            </div>
-
-
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">

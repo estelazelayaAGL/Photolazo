@@ -133,7 +133,7 @@ class CestaCompra
                 </table>"; 
             }
 
-            echo "<table class='azul table table-striped '>"
+            echo "<table class='rosa_tabla table table-striped col-xs-12 col-sm-12 col-md-12'>"
                 . "<tr>"
                 . "<td colspan='2' class='text-right'>TOTAL: </td>"
                 . "<td>"
@@ -206,7 +206,7 @@ class CestaCompra
                 echo "</tbody>
                 </table>"; 
             }
-            echo "<table class='azul table table-striped '>"
+            echo "<table class='rosa_tabla table table-striped derecha'>"
                 . "<tr>"
                 . "<td colspan='2' class='text-right'>TOTAL: </td>"
                 . "<td>"

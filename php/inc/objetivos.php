@@ -6,29 +6,29 @@
 
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
 
+    <!---	Incluye un breadcrumb que indique la sección actual-->
+    <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+        <div class="">
+            <ol class="breadcrumb">
+                <li><a href="index.php">Inicio </a></li>
+                <li><a href="productos.php">Productos </a></li>
+                <li class="active">Objetivos </li>
+            </ol>
+        </div>
+    </div>
+    </nav>
+    </div>
+    <!-- Termina el header -->
+    </header>
+
     <section class="container-fluid">
         <!-- ENCABEZADO -->
         <div class="container sinPad ">
-
-            <!---	Incluye un breadcrumb que indique la sección actual-->
-            <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
-                <div class="">
-                    <ol class="breadcrumb">
-                        <li><a href="index.php">Inicio </a></li>
-                        <li><a href="productos.php">Productos </a></li>
-                        <li class="active">Objetivos </li>
-                    </ol>
-                </div>
-            </div>
-
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
                                 <h1>Objetivos</h1>
                                 <hr>
-
                                 <?php
                                 $vacio = true;
                                 $marcas = BD::obtieneTodasLasMarcas();
@@ -48,16 +48,10 @@
                                     echo '</div>';
                                 }
                                 ?>
-
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-
-
     </section>
     <?php include("../mod/plantillasDelDiseno/footer.php")  ?>
 

@@ -2,23 +2,26 @@
 <html lang="en">
 
 <body>
-    <?php $titulo = 'Blog princiopal'; ?>
-    <?php include("../mod/plantillasDelDiseno/header.php")  ?>
+    <?php $titulo = 'Blog principal'; ?>
     <script src="../../js/filtroEntradas.js"></script>
+    <?php include("../mod/plantillasDelDiseno/header.php")  ?>
+    <!---	Incluye un breadcrumb que indique la sección actual-->
+    <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+        <div class="">
+            <ol class="breadcrumb">
+                <li><a href="index.php"> Inicio </a></li>
+                <li class="active">Blog</li>
+            </ol>
+        </div>
+    </div>
+    </nav>
+    </div>
+    <!-- Termina el header -->
+    </header>
+
     <section class="container-fluid">
         <!-- ENCABEZADO -->
         <div class="container sinPad ">
-
-            <!---	Incluye un breadcrumb que indique la sección actual-->
-            <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
-                <div class="">
-                    <ol class="breadcrumb">
-                        <li><a href="index.php"> Inicio </a></li>
-                        <li class="active">Blog</li>
-                    </ol>
-                </div>
-            </div>
-
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <div class="panel panel-default blog">
                     <div class="panel-body">
@@ -27,7 +30,7 @@
                             <label class="col-xs-12 col-sm-12 col-md-6" for="myInput">Filtro de entradas</label>
                             <input class="form-control col-xs-12 col-sm-12 col-md-6" id="myInput" type="text" placeholder="Filtrar">
                         </div>
-                        
+
                         <h2>Entradas más recientes</h2>
                         <hr>
                         <div class="row" id="myList">

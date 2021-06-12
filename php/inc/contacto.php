@@ -6,25 +6,41 @@
     ?>
 
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
+    <?php include("../../mail/src/PHPMailer.php")  ?>
+    <?php include("../../mail/src/SMTP.php")  ?>
+
+    <!---	Incluye un breadcrumb que indique la sección actual-->
+    <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+        <div class="">
+            <ol class="breadcrumb">
+                <li><a href="index.php"> Inicio </a></li>
+                <li class="active">Contacto</li>
+            </ol>
+        </div>
+    </div>
+    </nav>
+    </div>
+    <!-- Termina el header -->
+    </header>
 
     <?php
     if (isset($_POST['enviar'])) {
+
+        
         $nombre = $_POST['validarNombre'];
         $correo = $_POST['validarTelefono'];
         $email = $_POST['validarEmail'];
-        $mensaje = $_POST['validarMensaje'];
         $para = "ezelayal01@educantabria.es";
         $titulo = "Consulta a Photolazo";
         $headers  = 'MIME-Version: 1.0' . "\r\n"
             . 'Content-type: text/html; charset=utf-8' . "\r\n"
             . 'From: ' . $email . "\r\n";
 
-        if (mail($para, $titulo, $mensaje, $headers)) {
+        if (mail($para, $titulo, $mensaje)) {
             echo "<p>Thank you for contacting us, $nombre. You will get a reply within 24 hours.</p>";
         } else {
             echo '<p>We are sorry but the email did not go through.</p>';
         }
-    } else {
     }
     ?>
 
@@ -32,17 +48,6 @@
     <section class="container-fluid">
         <!-- ENCABEZADO -->
         <div class="container ">
-            <!---	Incluye un breadcrumb que indique la sección actual-->
-            <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
-                <div class="">
-                    <ol class="breadcrumb">
-                        <li><a href="index.php"> Inicio </a></li>
-                        <li class="active">Contacto</li>
-                    </ol>
-                </div>
-            </div>
-
-
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <div class="panel panel-default ">
                     <div class="panel-body">
@@ -73,15 +78,15 @@
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <label for="validationMensaje">Su mensaje:<span class="rojo">*</span></label>
+                                        <label for="validarMensaje">Su mensaje:<span class="rojo">*</span></label>
                                         <textarea class="form-control" id="validarMensaje" name="validarMensaje" rows="5" min="25" required></textarea>
                                     </div>
 
 
-                                        <div class="col-xs-12 col-sm-12 col-md-12 espacio">
-                                            <input value="Limpiar" class="btn btn-primary btn-lg gris" type="reset" name="reset" />
-                                            <input value="Enviar" class="btn btn-primary btn-lg" type="submit" name="enviar" />
-                                        </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 espacio">
+                                        <input value="Limpiar" class="btn btn-primary btn-lg gris" type="reset" name="reset" />
+                                        <input value="Enviar" class="btn btn-primary btn-lg" type="submit" name="enviar" />
+                                    </div>
 
                                 </form>
                             </div>

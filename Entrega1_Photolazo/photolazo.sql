@@ -133,10 +133,8 @@ CONSTRAINT fklfProducto FOREIGN KEY (id_producto) REFERENCES productos(id_produc
 )ENGINE = INNODB;
 
 CREATE TABLE resenas(
-    id_pedido VARCHAR(6) NOT NULL,
+    
     id_producto VARCHAR(6) NOT NULL,
-    comentario VARCHAR(100) NOT NULL,
-    foto MEDIUMBLOB NULL,
     valoracion INT NOT NULL CHECK (valoracion IN (1,2,3,4,5) ),
     CONSTRAINT pk_resena PRIMARY KEY (id_pedido,id_producto),
     CONSTRAINT fkresenaProd FOREIGN KEY (id_producto) REFERENCES productos(id_producto),

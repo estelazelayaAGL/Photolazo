@@ -5,6 +5,20 @@
     <script src="../../js/administracionCursos.js"></script>
     <?php $titulo = 'Administración'; ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
+    <!---	Incluye un breadcrumb que indique la sección actual-->
+    <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+        <div class="">
+            <ol class="breadcrumb">
+                <li><a href="index.php"> Inicio </a></li>
+                <li><a href="panelDeadministracion.php"> Administración </a></li>
+                <li class="active">Gestión de cursos</li>
+            </ol>
+        </div>
+    </div>
+    </nav>
+    </div>
+    <!-- Termina el header -->
+    </header>
 
     <!-- Impide el acceso a esta página a menos que se haya iniciado sesión como usuario administrador (campo tipo_usuario = 1) -->
     <?php
@@ -143,16 +157,7 @@
         <!-- ENCABEZADO -->
         <div class="container sinPad ">
 
-            <!---	Incluye un breadcrumb que indique la sección actual-->
-            <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
-                <div class="">
-                    <ol class="breadcrumb">
-                        <li><a href="index.php"> Inicio </a></li>
-                        <li><a href="panelDeadministracion.php"> Administración </a></li>
-                        <li class="active">Gestión de cursos</li>
-                    </ol>
-                </div>
-            </div>
+
 
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <h1>Gestión de los cursos</h1>

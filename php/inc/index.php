@@ -5,24 +5,29 @@
     <?php $titulo = 'Inicio';
     ?>
 
-    <?php 
+    <?php
     include("../mod/plantillasDelDiseno/header.php");
-    include("../mod/plantillasDelDiseno/slider.php");
     ?>
+
+    <!---	Incluye un breadcrumb que indique la sección actual-->
+    <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+        <?php include("../mod/plantillasDelDiseno/slider.php"); ?>
+        <div class="">
+            <ol class="breadcrumb">
+                <li class="active"><?php echo $titulo ?> </li>
+            </ol>
+        </div>
+    </div>
+    </nav>
+    </div>
+    <!-- Termina el header -->
+    </header>
+
 
     <section class="container-fluid">
 
         <!-- ENCABEZADO -->
         <div class="container sinPad ">
-
-            <!---	Incluye un breadcrumb que indique la sección actual-->
-            <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
-                <div class="">
-                    <ol class="breadcrumb">
-                        <li class="active"><?php echo $titulo ?> </li>
-                    </ol>
-                </div>
-            </div>
 
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <h1>¡Bienvenidos PhotoLazeros!</h1>

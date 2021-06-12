@@ -10,6 +10,35 @@ include_once 'conexion.php';
 class BD
 {
 
+    public static function mediaResenas($producto) {
+        $sql = "SELECT AVG(valoracion) AS media FROM resenas WHERE id_producto = '$producto'";
+        $resultado = self::ejecutaConsulta($sql);
+        $media = 0;
+        if($resultado->rowCount() > 0) {
+            $row = $resultado->fetch();
+            $media = $row['media'];
+        }
+        if($media == "") {
+            $media = 0;
+        }
+        return $media;
+    }
+
+    public static function verificarResena($usuario, $producto) {
+        $valorado = false;
+        $sql = 'SELECT * FROM resenas';
+        $sql .= " WHERE id_usuario = $usuario AND id_producto = '$producto'";
+        $resultado = self::ejecutaConsulta($sql);
+        if ($resultado->rowCount() > 0) {
+            $valorado = true;
+        }
+        return $valorado;
+    }
+
+    public static function anhadeResena($usuario, $producto, $valoracion) {
+        $sql = "INSERT INTO resenas VALUES ($usuario, '$producto', $valoracion)";
+        self::ejecutaConsulta($sql);
+    }
 
     public static function obtenerComentarios($blog)
     {
@@ -70,6 +99,17 @@ class BD
             $existe = true;
         }
         return $existe;
+    }
+
+    public static function verificaCompraProducto($login, $producto) {
+        $comprado = false;
+        $sql = "select * from productos p inner join lineaspedidos lp on p.id_producto = lp.id_producto inner join pedidos pe on lp.id_pedido = pe.id_pedido inner join usuarios u on pe.id_usuario = u.id_usuario";
+        $sql .= " where u.user_login = '$login' and p.id_producto = '$producto'";
+        $resultado = self::ejecutaConsulta($sql);
+        if ($resultado->rowCount() > 0) {
+            $comprado = true;
+        }
+        return $comprado;
     }
 
     public static function verificaCompraCurso($id_usuario, $id_curso)
@@ -412,9 +452,10 @@ class BD
                     . '<p class="negrita "> Descripción: </p>'
                     . '<p class="separado">' . $producto->getDescripcion() . '</p>'
                     . '<p class="negrita derecha">Precio:</p>'
-                    . '<p class="derecha iva"><label class="negrita precio">' . $producto->getPrecio() . ' €</label> (IVA no incluido)</p>';
+                    . '<p class="derecha iva"><label class="negrita precio">' . $producto->getPrecio() . ' €</label> (IVA no incluido)</p>'
+                    . '<p class="separado">Valoración media: ' . self::mediaResenas($producto->getCodigo()) . '</p>';
                 if (isset($_SESSION['usuario'])) {
-                    echo '<input id="botonProductos" type="submit" name="aniadir" value="Añadir al carrito" class="btn btn-info btn-lg"></input>';
+                    echo '<input id="botonProductos" type="submit" name="aniadir" value="Añadir al carrito" class="btn btn-info btn-lg espacio"></input>';
                 }
                 echo ""
                     . '</form>'

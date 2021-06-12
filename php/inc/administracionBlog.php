@@ -5,6 +5,20 @@
     <script src="../../js/administracionBlog.js"></script>
     <?php $titulo = 'Administración'; ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
+    <!---	Incluye un breadcrumb que indique la sección actual-->
+    <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+        <div class="">
+            <ol class="breadcrumb">
+                <li><a href="index.php"> Inicio </a></li>
+                <li><a href="panelDeadministracion.php"> Administración </a></li>
+                <li class="active">Gestión de Blog</li>
+            </ol>
+        </div>
+    </div>
+    </nav>
+    </div>
+    <!-- Termina el header -->
+    </header>
 
     <!-- Impide el acceso a esta página a menos que se haya iniciado sesión como usuario administrador (campo tipo_usuario = 1) -->
     <?php
@@ -130,17 +144,6 @@
         <!-- ENCABEZADO -->
         <div class="container sinPad ">
 
-            <!---	Incluye un breadcrumb que indique la sección actual-->
-            <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
-                <div class="">
-                    <ol class="breadcrumb">
-                        <li><a href="index.php"> Inicio </a></li>
-                        <li><a href="panelDeadministracion.php"> Administración </a></li>
-                        <li class="active">Gestión de Blog</li>
-                    </ol>
-                </div>
-            </div>
-
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <h1>Gestión del Blog</h1>
                 <hr>
@@ -225,7 +228,8 @@
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
                                                 <label> ID Categoria</label>
-                                                <!-- <input type="text" name="id_categoria_M" class="form-control" placeholder="" value="<?php //echo $row['id_categoriaB']; ?>" required /> -->
+                                                <!-- <input type="text" name="id_categoria_M" class="form-control" placeholder="" value="<?php //echo $row['id_categoriaB']; 
+                                                                                                                                            ?>" required /> -->
                                                 <select name="id_categoria_M" id="id_categoria_M" required>
                                                     <?php
                                                     $categorias = BD::categoriasBlog();
