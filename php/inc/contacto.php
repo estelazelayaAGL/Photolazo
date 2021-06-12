@@ -6,8 +6,6 @@
     ?>
 
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
-    <?php include("../../mail/src/PHPMailer.php")  ?>
-    <?php include("../../mail/src/SMTP.php")  ?>
 
     <!---	Incluye un breadcrumb que indique la sección actual-->
     <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
@@ -26,21 +24,21 @@
     <?php
     if (isset($_POST['enviar'])) {
 
-        
+        /*
         $nombre = $_POST['validarNombre'];
         $correo = $_POST['validarTelefono'];
-        $email = $_POST['validarEmail'];
+        $mensaje = $_POST['validarMensaje'];
+        $mensaje = wordwrap($mensaje, 70, "\r\n");
+
         $para = "ezelayal01@educantabria.es";
         $titulo = "Consulta a Photolazo";
-        $headers  = 'MIME-Version: 1.0' . "\r\n"
-            . 'Content-type: text/html; charset=utf-8' . "\r\n"
-            . 'From: ' . $email . "\r\n";
 
-        if (mail($para, $titulo, $mensaje)) {
+        if (imap_mail($para, $titulo, $mensaje)) {
             echo "<p>Thank you for contacting us, $nombre. You will get a reply within 24 hours.</p>";
         } else {
             echo '<p>We are sorry but the email did not go through.</p>';
-        }
+        }*/
+        
     }
     ?>
 
