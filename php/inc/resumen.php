@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once("../mod/clases/CestaCompra.php")  ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
 
 <body>
     <?php $titulo = 'Resumen del pedido'; ?>
@@ -109,7 +110,7 @@
                 </div>
             </div>
         </div>
-        < </section>
+     </section>
 
             <?php include("../mod/plantillasDelDiseno/footer.php")  ?>
 </body>

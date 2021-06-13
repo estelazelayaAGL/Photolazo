@@ -36,7 +36,7 @@
                             if (count($productos) > 0) {
                                 echo '<h2>' . $marca['nombre'] . '</h2>';
                                 echo '<div class="row">';
-                                BD::muestraProductos($productos);
+                                funciones::muestraProductos($productos);
                                 echo '</div>';
                                 $vacio = false;
                             }

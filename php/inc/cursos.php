@@ -5,6 +5,7 @@
     <?php $titulo = 'Cursos'; ?>
 
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
+    <!-- <script src="../../js/verMas.js"></script> -->
 
     <!---	Incluye un breadcrumb que indique la sección actual-->
     <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
@@ -38,7 +39,7 @@
                             if (count($cursos) > 0) {
                                 echo '<h2>' . $categoria['nombre'] . '</h2>';
                                 echo '<div class="row">';
-                                BD::muestraCursos($cursos);
+                                funciones::muestraCursos($cursos);
                                 echo '</div>';
                                 $vacio = false;
                             }

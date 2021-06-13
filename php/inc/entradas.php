@@ -27,7 +27,7 @@
                     <div class="panel-body">
                         <h1 class="izquierda">Blog PhotoLazo</h1>
                         <div class="margen col-xs-12 col-sm-12 col-md-12">
-                            <label class="col-xs-12 col-sm-12 col-md-6" for="myInput">Filtro de entradas</label>
+                            <label class="col-xs-12 col-sm-12 col-md-6 text-right" for="myInput">Filtro de entradas:</label>
                             <input class="form-control col-xs-12 col-sm-12 col-md-6" id="myInput" type="text" placeholder="Filtrar">
                         </div>
 
@@ -35,7 +35,7 @@
                         <hr>
                         <div class="row" id="myList">
                             <?php $entradas = BD::ultimasEntradas(); ?>
-                            <?php BD::muestraUltimasEntradas($entradas); ?>
+                            <?php funciones::muestraUltimasEntradas($entradas); ?>
                         </div>
                         <a href="productos.php"><input type="button" value="Productos" class="btn btn-primary btn-lg"></a>
                         <a href="cursos.php"><input type="button" value="Cursos" class="btn btn-primary btn-lg"></a>
@@ -44,7 +44,7 @@
             </div>
 
             <div class="iconos col-xs-12 col-sm-12 col-md-12">
-                <h4>Siguinos en nuestras redes sociales</h4>
+                <h1 class="espacio blanco">Siguenos en nuestras redes sociales</h1>
                 <ul class="iconos-social-top">
                     <li>
                         <a id='' href='https://www.youtube.com/'><img src='../../imagenes/imgMaquetacion/youtube.png' alt=''></a>
@@ -68,7 +68,7 @@
                         <hr>
                         <div class="row" id="myList">
                             <?php $entradas = BD::todasLasEntradas(); ?>
-                            <?php BD::muestraTodasLasEntradas($entradas); ?>
+                            <?php funciones::muestraTodasLasEntradas($entradas); ?>
                         </div>
                         <a href="recursos.php"><input type="button" value="Material gratis" class="btn btn-primary btn-lg"></a>
                     </div>

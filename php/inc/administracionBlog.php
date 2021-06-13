@@ -294,10 +294,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID Entrada</th>
-                                <th scope="col">ID Categoria</th>
                                 <th scope="col">Autor</th>
                                 <th scope="col">Titulo</th>
-                                <th scope="col">Contenido</th>
                                 <th scope="col">Fecha de publicación</th>
                                 <th scope="col"></th>
                             </tr>
@@ -311,23 +309,23 @@
                             ?>
                                     <tr>
                                         <td><?php echo $row["id_blog"]; ?></td>
-                                        <td><?php echo $row["id_categoriaB"]; ?></td>
                                         <td><?php echo $row["autor"]; ?></td>
                                         <td><?php echo $row["titulo"]; ?></td>
-                                        <td><?php echo $row["contenido"]; ?></td>
                                         <td><?php echo $row["fecha_publicacion"]; ?></td>
                                         <td>
-                                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                                <input type="hidden" name="id_blog" value="<?php echo $row['id_blog'] ?>">
-                                                <input type="submit" id="modificar" name="modificar" value="Modificar" class="btn btn-primary btn-lg">
-                                            </form>
-                                            <!-- </td> -->
-                                            <!-- <td> -->
-                                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                                <input type="hidden" name="id_blog" value="<?php echo $row['id_blog'] ?>">
-                                                <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="btn btn-primary btn-lg gris">
+                                            <div class="espacio">
+                                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                                    <input type="hidden" name="id_blog" value="<?php echo $row['id_blog'] ?>">
+                                                    <input type="submit" id="modificar" name="modificar" value="Modificar" class="btn btn-primary btn-lg">
+                                                </form>
+                                            </div>
+                                            <div class="espacio">
+                                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                                    <input type="hidden" name="id_blog" value="<?php echo $row['id_blog'] ?>">
+                                                    <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="btn btn-primary btn-lg gris">
 
-                                            </form>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                             <?php

@@ -39,7 +39,7 @@
                             if (count($productos) > 0) {
                                 echo '<h2>Productos</h2>';
                                 echo '<div class="row">';
-                                BD::muestraProductos($productos);
+                                funciones::muestraProductos($productos);
                                 echo '</div>';
                                 $vacio = false;
                             }
@@ -47,7 +47,7 @@
                             if (count($cursos) > 0) {
                                 echo '<h2>Cursos</h2>';
                                 echo '<div class="row">';
-                                BD::muestraCursos($cursos);
+                                funciones::muestraCursos($cursos);
                                 echo '</div>';
                                 $vacio = false;
                             }

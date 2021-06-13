@@ -45,69 +45,75 @@
                     <div class="panel-body">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <h1><?php echo $producto->getNombre(); ?></h1><br>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6 izquierda">
                             <hr>
-                            <h2><?php echo $producto->getMarca(); ?></h2>
-                            <h3><label class="negrita"> Categoria:</label> <?php echo $producto->getCategoria(); ?></h3>
-                            <div class="col-xs-12 col-sm-12 col-md-6 espacio">
-                                <h2 class="letraAzul">Descripción</h2>
-                                <p class=""><?php echo $producto->getDescripcion(); ?></p>
-                            </div>
                         </div>
+                        
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <img class="img-fluid" src="../../imagenes/imgObjetivas/productos/<?php echo $producto->getCodigo() ?>.png">
-                            <div class="col-xs-12 col-sm-12 col-md-12 float-right border sticky order-sm-0">
-                                <p class="negrita">Precio: </p>
-                                <p class=""><label class="negrita precioDetalle"> <?php echo $producto->getPrecio() ?> €</label> (IVA no incluido)</p>
-
-                                <form action="../inc/cesta.php" method="post">
-                                    <input type="hidden" name="codigo" value="<?php echo $_POST['codigo'] ?>"></input>
-                                    <input id="botoncurso" type="submit" name="aniadir" class="hidden"></input>
-                                    <label for="botoncurso" class="btn btn-info btn-lg">Añadir al carrito <i class="fas fa-shopping-cart"></i></label>
-                                </form>
-                            </div>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 izquierda">
+                            <h2><?php echo $producto->getMarca(); ?></h2>
+                            <h3><label class="negrita"> Categoria:</label> <?php echo $producto->getCategoria(); ?></h3>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <?php
+                                if (isset($_SESSION['usuario'])) {
+                                    $comprado = BD::verificaCompraProducto($_SESSION['usuario'], $_POST['codigo']);
+                                    if ($comprado) {
 
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <?php
-                            if (isset($_SESSION['usuario'])) {
-                                $comprado = BD::verificaCompraProducto($_SESSION['usuario'], $_POST['codigo']);
-                                if ($comprado) {
-
-                                    $usuario = BD::obtieneUsuario($_SESSION['usuario']);
-                                    $id_usuario = $usuario->getId_usuario();
-                                    $valorado = BD::verificarResena($id_usuario, $_POST['codigo']);
-                                    if (!$valorado) {
-                            ?>
-                                        <form method="post" action="detalleProducto.php">
-                                            <input type="hidden" name="codigo" value="<?php echo $_POST['codigo']; ?>">
-                                            <input type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
-                                            <p class="clasificacion">
-                                                <input id="radio1" type="radio" name="estrellas" value="5">
-                                                <label class="estrella" for="radio1">★</label>
-                                                <input id="radio2" type="radio" name="estrellas" value="4">
-                                                <label class="estrella" for="radio2">★</label>
-                                                <input id="radio3" type="radio" name="estrellas" value="3">
-                                                <label class="estrella" for="radio3">★</label>
-                                                <input id="radio4" type="radio" name="estrellas" value="2">
-                                                <label class="estrella" for="radio4">★</label>
-                                                <input id="radio5" type="radio" name="estrellas" value="1">
-                                                <label class="estrella" for="radio5">★</label>
-                                            </p>
-                                            <input id="botoncurso" type="submit" name="valorar" value="Valorar" />
-                                        </form>
-                            <?php
-                                    } else {
-                                        if (isset($mensaje)) {
-                                            echo $mensaje;
+                                        $usuario = BD::obtieneUsuario($_SESSION['usuario']);
+                                        $id_usuario = $usuario->getId_usuario();
+                                        $valorado = BD::verificarResena($id_usuario, $_POST['codigo']);
+                                        if (!$valorado) {
+                                ?>
+                                            <form method="post" action="detalleProducto.php">
+                                                <input type="hidden" name="codigo" value="<?php echo $_POST['codigo']; ?>">
+                                                <input type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
+                                                <p class="clasificacion">
+                                                    <input id="radio1" type="radio" name="estrellas" value="5">
+                                                    <label class="estrella" for="radio1">★</label>
+                                                    <input id="radio2" type="radio" name="estrellas" value="4">
+                                                    <label class="estrella" for="radio2">★</label>
+                                                    <input id="radio3" type="radio" name="estrellas" value="3">
+                                                    <label class="estrella" for="radio3">★</label>
+                                                    <input id="radio4" type="radio" name="estrellas" value="2">
+                                                    <label class="estrella" for="radio4">★</label>
+                                                    <input id="radio5" type="radio" name="estrellas" value="1">
+                                                    <label class="estrella" for="radio5">★</label>
+                                                </p>
+                                                <input id="botoncurso" type="submit" name="valorar" value="Valorar" />
+                                            </form>
+                                <?php
+                                        } else {
+                                            if (isset($mensaje)) {
+                                                echo $mensaje;
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            $media = BD::mediaResenas($_POST['codigo']);
-                            echo "Valoración media de los usuarios: $media";
-                            ?>
+                                $media = BD::mediaResenas($_POST['codigo']);
+                                echo "<p class='separado text-center'>Valoración media de los usuarios: " . number_format($media, 2) . "</p>";
+                                ?>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 ">
+                        <br>
+                            <hr>
+                            <div class="col-xs-12 col-sm-12 col-md-8 espacio">
+                                <h2 class="letraAzul">Descripción</h2>
+                                <p class=""><?php echo $producto->getDescripcion(); ?></p>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 border order-sm-0 sticky espacio">
+                                <p class="negrita">Precio: </p>
+                                <p class=""><label class="negrita precioDetalle"> <?php echo $producto->getPrecio() ?> €</label> (IVA no incluido)</p>
+                                <?php if (isset($_SESSION['usuario'])) { ?>
+                                    <form action="../inc/cesta.php" method="post">
+                                        <input type="hidden" name="codigo" value="<?php echo $_POST['codigo'] ?>"></input>
+                                        <input id="botoncurso" type="submit" name="aniadir" class="hidden"></input>
+                                        <label for="botoncurso" class="btn btn-info btn-lg espacio">Añadir al carrito <i class="fas fa-shopping-cart"></i></label>
+                                    </form>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -44,7 +44,7 @@
         $resumen = $_POST['resumen'];
         $descripcion = $_POST['descripcion'];
         $precio = $_POST['precio'];
-        $video_promocional = $_POST['video_promocional'];
+        $video_promocional = "video";
 
 
         $tamano = $_FILES["imagenCurso"]['size'];
@@ -90,7 +90,7 @@
         $resumen_M = $_POST['resumen_M'];
         $descripcion_M = $_POST['descripcion_M'];
         $precio_M = $_POST['precio_M'];
-        $videoPromocional_M = $_POST['video_promocional_M'];
+        $videoPromocional_M = "video";
 
 
         if ($_FILES["imagenCurso"]['size'] > 0) {
@@ -135,8 +135,6 @@
     if (isset($_POST['modificar'])) {
         $disp = "block";
         $idCurso_M = $_POST['id_curso'];
-        echo $idCurso_M;
-
         $cursoAModificar = BD::extraeCursoCod($idCurso_M);
     } else {
         $disp = "none";
@@ -184,8 +182,7 @@
                                         <input type="text" name="id_curso" class="form-control" required />
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                        <label> ID Categoria</label>
-                                        <!-- <input type="text" name="id_categoria" class="form-control" placeholder="" required /> -->
+                                        <label>Categoría</label>
                                         <select name="id_categoria" id="id_categoria" required>
                                             <?php foreach ($categorias as $categoria) {
                                                 echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
@@ -229,19 +226,13 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                         <label>Resumen</label>
-                                        <input type="text" name="resumen" class="form-control" required />
+                                        <textarea type="text" name="resumen" class="form-control" cols="100" rows="10" required></textarea>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                         <label>Descripcion</label>
-                                        <input type="text" name="descripcion" class="form-control" required />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <label>Titulo con el que se ha guardado el video promocional</label>
-                                        <input type="text" name="video_promocional" class="form-control" required />
+                                        <textarea type="text" name="descripcion" class="form-control" cols="100" rows="50" required></textarea>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -274,7 +265,7 @@
                                     <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
                                         <input type="hidden" name="id_curso_M" class="form-control" value="<?php echo $row['id_curso']; ?>" />
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
+                                            <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
                                                 <label>Categoría</label>
                                                 <select name="id_categoria_M" id="id_categoria_M" required>
                                                     <?php
@@ -290,7 +281,7 @@
                                                     ?>
                                                 </select>
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
+                                            <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
                                                 <label>Precio</label>
                                                 <input type="number" name="precio_M" class="form-control" placeholder="" value="<?php echo $row['precio']; ?>" />
                                             </div>
@@ -310,7 +301,14 @@
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
                                                 <label>Nivel</label>
-                                                <input type="text" name="nivel_M" class="form-control" value="<?php echo $row['nivel']; ?>" />
+                                                <select name="nivel_M" id="nivel_M" class="form-control" required>
+                                                    <?php
+                                                    $niveles = BD::nivelesCurso();
+                                                    foreach ($niveles as $nivel) {
+                                                        echo  "<option value=" . $nivel['nivel'] . ">" . $nivel['nivel'] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
                                                 <label>Autor</label>
@@ -320,19 +318,13 @@
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                                 <label>Resumen</label>
-                                                <input type="text" name="resumen_M" class="form-control" value="<?php echo $row['resumen']; ?>" />
+                                                <textarea type="text" name="resumen_M" class="form-control" cols="100" rows="10"><?php echo $row['resumen']; ?></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                                 <label>Descripcion</label>
-                                                <input type="text" name="descripcion_M" class="form-control" value="<?php echo $row['descripcion']; ?>" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <label>Titulo con el que se ha guardado el video promocional</label>
-                                                <input type="text" name="video_promocional_M" class="form-control" value="<?php echo $row['video_promocional']; ?>" />
+                                                <textarea type="text" name="descripcion_M" class="form-control" cols="100" rows="50"> <?php echo $row['descripcion']; ?></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -362,17 +354,11 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID Curso</th>
-                                <th scope="col">ID Categoria</th>
-                                <!-- <th scope="col">Lema</th> -->
                                 <th scope="col">Titulo</th>
                                 <th scope="col">Autor</th>
                                 <th scope="col">Nivel</th>
-                                <!-- <th scope="col">Resumen</th> -->
                                 <th scope="col">Precio</th>
-                                <!-- <th scope="col">Descripción</th> -->
-                                <!-- <th scope="col">Video</th> -->
                                 <th scope="col"></th>
-                                <!-- <th scope="col"></th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -384,33 +370,26 @@
                             ?>
                                     <tr>
                                         <td><?php echo $row["id_curso"]; ?></td>
-                                        <td><?php echo $row["id_categoria"]; ?></td>
-                                        <!-- <td><?php //echo $row["lema"]; 
-                                                    ?></td> -->
                                         <td><?php echo $row["titulo"]; ?></td>
                                         <td><?php echo $row["autor"]; ?></td>
                                         <td><?php echo $row["nivel"]; ?></td>
-                                        <!-- <td><?php // echo $row["resumen"]; 
-                                                    ?></td> -->
-                                        <!-- <td><?php //echo $row["descripcion"]; 
-                                                    ?></td> -->
                                         <td><?php echo $row["precio"]; ?></td>
-                                        <!-- <td><?php //echo $row["video_promocional"]; 
-                                                    ?></td> -->
-                                        <!-- <td><?php //echo $row["valoracion_media"]; 
-                                                    ?></td> -->
+
                                         <td>
-                                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                                <input type="hidden" name="id_curso" value="<?php echo $row['id_curso'] ?>">
-                                                <input type="submit" id="modificar" name="modificar" value="Modificar" class="btn btn-primary btn-lg ">
-                                            </form>
+                                            <div class="espacio">
+                                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                                    <input type="hidden" name="id_curso" value="<?php echo $row['id_curso'] ?>">
+                                                    <input type="submit" id="modificar" name="modificar" value="Modificar" class="btn btn-primary btn-lg ">
+                                                </form>
+                                            </div>
                                             <!-- </td> -->
                                             <!-- <td> -->
-                                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                                <input type="hidden" name="id_curso" value="<?php echo $row['id_curso'] ?>">
-                                                <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="btn btn-primary btn-lg gris">
-
-                                            </form>
+                                            <div class="espacio">
+                                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                                    <input type="hidden" name="id_curso" value="<?php echo $row['id_curso'] ?>">
+                                                    <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="btn btn-primary btn-lg gris">
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                             <?php

@@ -28,33 +28,29 @@
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <h1>Iluminación</h1>
-                                <hr>
+                        <h1>Iluminación</h1>
+                        <hr>
 
-                                <?php
-                                $vacio = true;
-                                $marcas = BD::obtieneTodasLasMarcas();
-                                foreach ($marcas as $marca) {
-                                    $productos = BD::obtieneProductos('iluminacion', $marca['nombre']);
-                                    if (count($productos) > 0) {
-                                        echo '<h2>' . $marca['nombre'] . '</h2>';
-                                        echo '<div class="row">';
-                                        BD::muestraProductos($productos);
-                                        echo '</div>';
-                                        $vacio = false;
-                                    }
-                                }
-                                if ($vacio) {
-                                    echo '<div class="col-xs-12 col-sm-12 col-md-12">';
-                                    echo '<h3>Lista vacía.</h3>';
-                                    echo '</div>';
-                                }
-                                ?>
+                        <?php
+                        $vacio = true;
+                        $marcas = BD::obtieneTodasLasMarcas();
+                        foreach ($marcas as $marca) {
+                            $productos = BD::obtieneProductos('iluminacion', $marca['nombre']);
+                            if (count($productos) > 0) {
+                                echo '<h2>' . $marca['nombre'] . '</h2>';
+                                echo '<div class="row">';
+                                funciones::muestraProductos($productos);
+                                echo '</div>';
+                                $vacio = false;
+                            }
+                        }
+                        if ($vacio) {
+                            echo '<div class="col-xs-12 col-sm-12 col-md-12">';
+                            echo '<h3>Lista vacía.</h3>';
+                            echo '</div>';
+                        }
+                        ?>
 
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

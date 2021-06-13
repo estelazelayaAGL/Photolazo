@@ -92,17 +92,17 @@ ob_start();
         </nav>
 
         <div class="row cabeceraBlanca">
-            <nav class="navbar navbar-expand-md  navbar-light ">
+            <nav class="navbar navbar-expand-md  navbar-light col-xs-12 col-sm-12 col-md-12 ">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><a class="" href="../inc/index.php">
                         <img src="../../imagenes/imgMaquetacion/logo.png" alt="Logo" class="img-fluid">
                     </a>
                 </div>
-                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 sinPad">
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>
-                <div class="col-xs-2 col-sm-8 col-md-4 col-lg-4 sinPad">
+                <div class="col-xs-2 col-sm-12 col-md-4 col-lg-4 espacio">
                     <form action="busqueda.php" method="post" id="buscarform" class="form-inline">
                         <div class="input-group">
                             <input type="text" name="buscar" id="buscar" class="form-control" placeholder="Buscar">

@@ -321,15 +321,12 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust" id="tablaMuestraProductos" style="display:none;">
+                <div class="col-xs-10 col-sm-12 col-md-12 pad-adjust" id="tablaMuestraProductos" style="display:none;">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">ID Producto</th>
-                                <th scope="col">ID Categoria</th>
-                                <th scope="col">ID Marca</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Unidades</th>
                                 <th scope="col">Precio</th>
                                 <th scope="col">Descripción</th>
                                 <th scope="col"></th>
@@ -343,28 +340,22 @@
                                 $row = $productosObtenidos->fetch();
                                 while ($row != null) {
                             ?>
-                                    <tr>
+                                    <tr scope="row">
                                         <td><?php echo $row["id_producto"]; ?></td>
-                                        <td><?php echo $row["id_categoria"]; ?></td>
-                                        <td><?php echo $row["id_marca"]; ?></td>
                                         <td><?php echo $row["nombre"]; ?></td>
-                                        <td><?php echo $row["unidades"]; ?></td>
                                         <td><?php echo $row["precio"]; ?></td>
                                         <td><?php echo $row["descripcion"]; ?></td>
-                                        <!-- <td><?php //echo $row["valoracion_media"]; 
-                                                    ?></td> -->
                                         <td>
-                                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                            <div class="espacio"><form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                 <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
                                                 <input type="submit" id="modificar" name="modificar" value="Modificar" class="btn btn-primary btn-lg">
-                                            </form>
+                                            </form></div>
                                             <!-- </td> -->
                                             <!-- <td> -->
-                                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                            <div><form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                 <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
                                                 <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="btn btn-primary btn-lg gris">
-
-                                            </form>
+                                            </form></div>
                                         </td>
                                     </tr>
                             <?php

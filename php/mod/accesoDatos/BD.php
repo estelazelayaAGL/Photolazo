@@ -43,6 +43,20 @@ class BD
         return $nombre;
     }
 
+    public static function mediaResenasCurso($curso) {
+        $sql = "SELECT AVG(valoracion) AS media FROM usuarioscursos WHERE id_curso = '$curso'";
+        $resultado = self::ejecutaConsulta($sql);
+        $media = 0;
+        if($resultado->rowCount() > 0) {
+            $row = $resultado->fetch();
+            $media = $row['media'];
+        }
+        if($media == "") {
+            $media = 0;
+        }
+        return $media;
+    }
+
     public static function mediaResenas($producto) {
         $sql = "SELECT AVG(valoracion) AS media FROM resenas WHERE id_producto = '$producto'";
         $resultado = self::ejecutaConsulta($sql);
@@ -57,6 +71,20 @@ class BD
         return $media;
     }
 
+    public static function verificarResenaCurso($usuario, $curso) {
+        $valorado = false;
+        $sql = 'SELECT * FROM usuarioscursos';
+        $sql .= " WHERE id_usuario = $usuario AND id_curso = '$curso'";
+        $resultado = self::ejecutaConsulta($sql);
+        if ($resultado->rowCount() > 0) {
+            $row = $resultado->fetch();
+            if($row['valoracion']!=0) {
+                $valorado = true;
+            }
+        }
+        return $valorado;
+    }
+
     public static function verificarResena($usuario, $producto) {
         $valorado = false;
         $sql = 'SELECT * FROM resenas';
@@ -66,6 +94,11 @@ class BD
             $valorado = true;
         }
         return $valorado;
+    }
+
+    public static function anhadeResenaCurso($usuario, $curso, $valoracion) {
+        $sql = "UPDATE usuarioscursos SET valoracion = $valoracion WHERE id_usuario = $usuario AND id_curso = '$curso'";
+        self::ejecutaConsulta($sql);
     }
 
     public static function anhadeResena($usuario, $producto, $valoracion) {
@@ -465,84 +498,7 @@ class BD
         return $resultado;
     }
 
-    public static function muestraProductos($productos)
-    {
-        if (count($productos) == 0) {
-            echo '<div class="col-xs-12 col-sm-12 col-md-12"><p>Lista de productos vacía.</p></div>';
-        } else {
-            foreach ($productos as $producto) {
-                echo '
-                <div class="col-xs-12 col-sm-6 col-md-4 ">
-						<div class="cuadro"> 
-                        <form method="post" action="../inc/detalleProducto.php">
-                        <input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>
-						<img class="img-fluid" src="../../imagenes/imgObjetivas/productos/' . $producto->getCodigo() . '.png">
-                    <input id="detalleProducto" name="detalleProducto" type="submit" value="' .  $producto->getNombre() . '" class="btn btn-primary"></input>
-                    </form>	
-                    <div class="detalles">'
-                    . '<form method="post" action="../inc/cesta.php">'
-                    . '<input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>'
-                    . '<p class="negrita "> Descripción: </p>'
-                    . '<p class="separado">' . $producto->getDescripcion() . '</p>'
-                    . '<p class="negrita derecha">Precio:</p>'
-                    . '<p class="derecha iva"><label class="negrita precio">' . $producto->getPrecio() . ' €</label> (IVA no incluido)</p>'
-                    . '<p class="separado">Valoración media: ' . self::mediaResenas($producto->getCodigo()) . '</p>';
-                if (isset($_SESSION['usuario'])) {
-                    echo '<input id="botonProductos" type="submit" name="aniadir" value="Añadir al carrito" class="btn btn-info btn-lg espacio"></input>';
-                }
-                echo ""
-                    . '</form>'
-                    . '</div>
-						</div>
-					</div>
-                ';
-            }
-        }
-    }
-
-    public static function muestraCursos($cursos)
-    {
-        if (count($cursos) == 0) {
-            echo '<div class="col-xs-12 col-sm-12 col-md-12"><p>Lista de cursos vacía.</p></div>';
-        } else {
-            foreach ($cursos as $curso) {
-                echo '
-                <div class="col-xs-12 col-sm-6 col-md-4">
-						<div class="cuadro "> 
-                        <form method="post" action="../inc/detalleCurso.php">
-                            <input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>
-                            <img class="img-fluid" src="../../imagenes/imgObjetivas/cursos/' . $curso->getCodigo() . '.png">
-                            <input id="detalleCurso" type="submit" value="' . $curso->getTitulo() . '" name="detalleCurso" class="btn btn-primary"></input>
-                        </form>
-							<div class="detalles">'
-                    . '<form action="../inc/cesta.php" method="post">'
-                    . '<input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>'
-                    . '<p class="letrapequena">' . $curso->getAutor() . '</p>'
-                    . '<p>' . $curso->getLema() . '</p>'
-                    . '<p>Nivel: ' . $curso->getNivel() . '</p>'
-                    . '<p class="negrita derecha">Precio: </p>'
-                    . '<p class="derecha iva"><label class="negrita precio">' . $curso->getPrecio() . ' €</label> (IVA no incluido)</p>';
-
-
-                // print_r($comprado);
-                if (isset($_SESSION['usuario'])) {
-                    $usuario = self::obtieneUsuario($_SESSION['usuario']);
-                    $codigo = $usuario->getId_usuario();
-                    $comprado = self::verificaCompraCurso($codigo, $curso->getCodigo());
-                    if (!$comprado) {
-                        echo '<input id="botoncurso" type="submit" name="aniadirCurso" value="Añadir al carrito" class="btn btn-info btn-lg"></input>';
-                    }
-                }
-                echo ""
-                    . '</form>'
-                    . '</div>
-						</div>
-					</div>
-                ';
-            }
-        }
-    }
-
+   
     public static function ejecutaConsulta($sql)
     {
         require 'conexion.php';
@@ -911,7 +867,7 @@ class BD
 
     public static function nivelesCurso()
     {
-        $sql = "SELECT nivel FROM cursos";
+        $sql = "SELECT DISTINCT nivel FROM cursos";
         $resultado = self::ejecutaConsulta($sql);
         return $resultado;
     }
@@ -1076,31 +1032,7 @@ class BD
         }
     }
 
-    public static function muestraUltimasEntradas($entradas)
-    {
-        if (count($entradas) == 0) {
-            echo '<div class="col-xs-12 col-sm-12 col-md-12"><p>No hay entradas</p></div>';
-        } else {
-            foreach ($entradas as $entrada) {
-                echo '
-                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 blanco">' . $entrada->getTitulo() . '
-                                <div class=" cuadro panel-padre"> 
-                                <img class="img-fluid opaca" src="../../imagenes/imgObjetivas/entradas/Administración.png">
-                                        <div class="panel-titulo"> 
-                <label for="">' . $entrada->getTitulo() . '</label>
-                <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
-                <form action="../inc/detalleEntrada.php" method="post">
-                <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>
-                    <input type="submit" name="aniadir" value="Leer más" class="btn btn-info btn-lg espacio azul"></input>';
-                echo ""
-                    . '</form>';
-                echo '</div>
-                    </div>
-                    </div>';
-            }
-        }
-    }
-
+    
     public static function  todasLasEntradas()
     {
         require 'conexion.php';
@@ -1127,32 +1059,7 @@ class BD
         }
     }
 
-    public static function muestraTodasLasEntradas($entradas)
-    {
-        if (count($entradas) == 0) {
-            echo '<div class="col-xs-12 col-sm-12 col-md-12"><p>No hay entradas</p></div>';
-        } else {
-            foreach ($entradas as $entrada) {
-                echo '
-                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 blanco">' . $entrada->getTitulo() . '
-                                <div class="">
-                                <img class="img-fluid opaca" src="../../imagenes/imgObjetivas/entradas/Administración.png">
-                                        <div class="">
-                                        <label class="list-group-item negro" for="">' . $entrada->getTitulo() . '</label>
-                                        <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
-                <form action="../inc/detalleEntrada.php" method="post">
-                <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>
-                    <input  type="submit" name="aniadir" value="Leer más" class="btn btn-info btn-lg espacio azul"></input>';
-                echo ""
-                    . '</form>';
-                echo '</div>
-                    </a>
-                    </div>
-                    </div>';
-            }
-        }
-    }
-
+   
     public static function obtieneEntrada($codigo)
     {
         $sql = "SELECT * FROM blogs WHERE id_blog = " . $codigo . "";

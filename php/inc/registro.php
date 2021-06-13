@@ -6,6 +6,20 @@
     ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
     <script src="../../js/validaFormRegistro.js"></script>
+      <!---	Incluye un breadcrumb que indique la sección actual-->
+      <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+        <div class="">
+            <ol class="breadcrumb">
+                <li><a href="index.php">Inicio </a></li>
+                <li class="active">Registrarse</li>
+            </ol>
+        </div>
+    </div>
+    </nav>
+    </div>
+    <!-- Termina el header -->
+    </header>
+
 
     <?php
     //Para intentar dar de alta un registro
@@ -85,7 +99,7 @@
                     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="registroForm" class="needs-validation" novalidate autocomplete="off">
                         <!-- DATOS DEL CLIENTE -->
                         <!-- GRUPO: Nombre -->
-                        <div class="formulario_grupo  col-xs-6 col-sm-6 col-md-6" id="grupo_validarNombre" >
+                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarNombre" >
                             <label for="validarNombre" class="formulario_label">Nombre:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                                 <input type="text" class="formulario_input " id="validarNombre" name="validarNombre" placeholder="Estela Rosinda">
@@ -94,7 +108,7 @@
                             <p class="formulario_input-error">El nombre solo puede contener letras, espacios y acentos. <strong>(Max. 35 caracteres)</strong></p>
                         </div>
                         <!-- GRUPO: Apellidos -->
-                        <div class="formulario_grupo  col-xs-6 col-sm-6 col-md-6" id="grupo_validarApellidos" >
+                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarApellidos" >
                             <label for="validarApellidos" class="formulario_label">Apellidos:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                                 <input type="text" class="formulario_input " id="validarApellidos" name="validarApellidos" placeholder="Zelaya Lazo">
@@ -102,7 +116,7 @@
                             </div>
                             <p class="formulario_input-error">El nombre solo puede contener letras, espacios y acentos. <strong>(Max. 50 caracteres)</strong></p>
                         </div>
-                        <div class="formulario_grupo  col-xs-6 col-sm-6 col-md-6" id="grupo_validarNacimiento">
+                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarNacimiento">
                             <label for="validarNacimiento" class="formulario_label">Fecha de nacimiento:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                             <input type="date" class="formulario_input " id="validarNacimiento" name="validarNacimiento">
@@ -112,7 +126,7 @@
                         </div>
 
                         <!-- GRUPO: Telefono -->
-                        <div class="formulario_grupo  col-xs-6 col-sm-6 col-md-6" id="grupo_validarTelefono">
+                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarTelefono">
                             <label for="validarTelefono" class="formulario_label">Teléfono:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                                 <input type="text" class="formulario_input " id="validarTelefono" name="validarTelefono" placeholder="+(34) 661908318">
@@ -122,7 +136,7 @@
                         </div>
 
                         <!-- GRUPO: Email -->
-                        <div class="formulario_grupo  col-xs-6 col-sm-6 col-md-6" id="grupo_validarEmail">
+                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarEmail">
                             <label for="validarEmail" class="formulario_label">Email:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                                 <input type="text" class="formulario_input " id="validarEmail" name="validarEmail" placeholder="tucorreo@tucorreo.com">
@@ -133,7 +147,7 @@
 
 
                         <!-- GRUPO: Usuario -->
-                        <div class="formulario_grupo col-xs-6 col-sm-6 col-md-6" id="grupo_validarUsuario">
+                        <div class="formulario_grupo col-xs-12 col-sm-6 col-md-6" id="grupo_validarUsuario">
                             <label for="validarUsuario" class="formulario_label">Usuario:<span class="rojo">*</span></label>
                             <div class="input-container formulario_grupo-input">
                                 <input type="text" class="formulario_input input-field" id="validarUsuario" name="validarUsuario" placeholder="estelaz_97">
@@ -143,7 +157,7 @@
                         </div>
 
                         <!-- GRUPO: Contrasena -->
-                        <div class="formulario_grupo col-xs-6 col-sm-6 col-md-6" id="grupo_validarContrasena">
+                        <div class="formulario_grupo col-xs-12 col-sm-6 col-md-6" id="grupo_validarContrasena">
                             <label for="validarContrasena" class="formulario_label">Contraseña:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                                 <input type="password" class="formulario_input " id="validarContrasena" name="validarContrasena">
@@ -153,7 +167,7 @@
                         </div>
 
                         <!-- GRUPO: Contrasena2 -->
-                        <div class="formulario_grupo  col-xs-6 col-sm-6 col-md-6" id="grupo_validarContrasena2">
+                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarContrasena2">
                             <label for="validarContrasena2" class="formulario_label">Repita contraseña:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                                 <input type="password" class="formulario_input " id="validarContrasena2" name="validarContrasena2">
@@ -179,7 +193,7 @@
                         </div>
 
                         <!-- GRUPO: Ciudad -->
-                        <div class="formulario_grupo  col-xs-6 col-sm-6 col-md-6" id="grupo_validarCiudad">
+                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarCiudad">
                             <label for="validarCiudad" class="formulario_label">Ciudad:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                                 <input type="text" class="formulario_input " id="validarCiudad" name="validarCiudad">
@@ -189,7 +203,7 @@
                         </div>
 
                         <!-- GRUPO: Provincia -->
-                        <div class="formulario_grupo  col-xs-6 col-sm-6 col-md-6" id="grupo_validarProvincia">
+                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarProvincia">
                             <label for="validarProvincia" class="formulario_label">Provincia:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                                 <input type="text" class="formulario_input " id="validarProvincia" name="validarProvincia">
@@ -199,7 +213,7 @@
                         </div>
 
                         <!-- GRUPO: Pais -->
-                        <div class="formulario_grupo  col-xs-6 col-sm-6 col-md-6" id="grupo_validarPais">
+                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarPais">
                             <label for="validarPais" class="formulario_label">Pais:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                                 <input type="text" class="formulario_input " id="validarPais" name="validarPais">
@@ -208,7 +222,7 @@
                             <p class="formulario_input-error">Solo puedes ingresar letras, numeros, espacios, comas y acentos (Máx. 35 caracteres )</p>
                         </div>
                         <!-- GRUPO: Codigo postal-->
-                        <div class="formulario_grupo  col-xs-6 col-sm-6 col-md-6" id="grupo_validarCPostal">
+                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarCPostal">
                             <label for="validarCPostal" class="formulario_label">Codigo postal:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                                 <input type="number" class="formulario_input " id="validarCPostal" name="validarCPostal" max="6">

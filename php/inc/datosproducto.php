@@ -8,23 +8,6 @@
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
 
     <?php
-    if (isset($_POST['obtener'])) {
-        // if ($_POST['codigo_O']) {
-        //     $codigoO = $_POST['codigo_O'];
-        //     $productosObtenidos = BD::extraeProductosCod($codigoO);
-        // }
-
-        // if ($_POST['nombre_O']) {
-        //     $nombreO = $_POST['nombre_O'];
-        //     $productosObtenidos = BD::extraeProductosNm($nombreO);
-        // }
-
-        // if ($_POST['listar']) {
-        // $idProducto = $_POST['idProducto'];
-        // }
-
-    }
-
     if (isset($_POST['eliminar'])) {
         $idProducto = $_POST['idProducto'];
         $mensaje = BD::eliminarProducto($idProducto);

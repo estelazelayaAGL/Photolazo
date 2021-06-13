@@ -22,9 +22,6 @@
     <section class="container-fluid">
         <!-- ENCABEZADO -->
         <div class="container sinPad ">
-
-
-
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
