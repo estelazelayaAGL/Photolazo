@@ -154,6 +154,7 @@ ol.breadcrumb {
     text-align   : left;
 }
 
+
 #buscarform1,
 #buscarform2 {
     padding : 0;
@@ -220,6 +221,26 @@ ol.breadcrumb {
     border        : 0;
     vertical-align: top;
 }
+
+@media (max-width:576px) {
+    /* Los estilos aquí contenidos solo se aplicarán a partir
+    del tamaño de pantalla indicado */
+    .col-xs-6 {
+        width: 50% !important;
+        text-align: center !important;
+    }
+}
+
+.form-inline{
+    display: flex !important;
+    flex-flow: row wrap !important;
+    align-items: stretch !important;
+    flex-direction: column !important;
+
+}
+
+
+
 
 /* MENU PRINCIPAL */
 header,
