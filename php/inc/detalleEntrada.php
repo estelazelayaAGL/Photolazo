@@ -32,7 +32,7 @@
     <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
         <div class="">
             <ol class="breadcrumb">
-                <li><a href="index.php">Inicio </a></li>
+                <li><a href="../../index.php">Inicio </a></li>
                 <li><a href="cursos.php"> Blog </a></li>
                 <li class="active"><?php echo $blog->getTitulo(); ?> </li>
             </ol>
@@ -74,7 +74,7 @@
 
                             <div class="col-xs-12 col-sm-12 col-md-8 order-sm-0">
                                 <div class="contenedor col-xs-12 col-sm-12 col-md-12">
-                                    <img src="../../imagenes/imgObjetivas/entradas/Administración.png" alt="" class="img-fluid opaca">
+                                    <img src="../../imagenes/imgObjetivas/entradas/<?php echo $blog->getTitulo(); ?>.png" alt="" class="img-fluid opaca">
                                 </div>
                                 <div class="">
                                     <ul class="iconos-social-top">

@@ -25,7 +25,7 @@
     <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
         <div class="">
             <ol class="breadcrumb">
-                <li><a href="index.php">Inicio </a></li>
+                <li><a href="../../index.php">Inicio </a></li>
                 <li><a href="productos.php">Productos </a></li>
                 <!-- <li><a href="cursos.php">Productos </a></li> PONER EL ENLACE ANTERIOR -->
                 <li class="active"><?php echo $producto->getNombre(); ?></li>

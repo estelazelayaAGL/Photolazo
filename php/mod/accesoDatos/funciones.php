@@ -120,9 +120,9 @@ class funciones
         } else {
             foreach ($entradas as $entrada) {
                 echo '
-                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 blanco">' . $entrada->getTitulo() . '
+                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 blanco mini">' . $entrada->getTitulo() . '
                                 <div class=" cuadro panel-padre"> 
-                                <img class="img-fluid" src="../../imagenes/imgObjetivas/entradas/Administración.png">
+                                <img class="img-fluid" src="../../imagenes/imgObjetivas/entradas/'. $entrada->getTitulo().'.png">
                                         <div class="panel-titulo"> 
                 <label for="" class="list-group-item blanco">' . $entrada->getTitulo() . '</label>
                 <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
@@ -144,9 +144,9 @@ class funciones
         } else {
             foreach ($entradas as $entrada) {
                 echo '
-                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 blanco">' . $entrada->getTitulo() . '
+                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 blanco mini">' . $entrada->getTitulo() . '
                                 <div class="cuadro panel-padre">
-                                <img class="img-fluid" src="../../imagenes/imgObjetivas/entradas/Administración.png">
+                                <img class="img-fluid" src="../../imagenes/imgObjetivas/entradas/'. $entrada->getTitulo().'.png">
                                         <div class="panel-titulo">
                                         <label class="list-group-item blanco" for="">' . $entrada->getTitulo() . '</label>
                                         <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>

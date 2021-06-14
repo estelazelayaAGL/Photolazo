@@ -780,7 +780,7 @@ class BD
                     $consulta->bindParam(7, $descripcion);
                     $consulta->bindParam(8, $precio);
                     $consulta->bindParam(9, $video_promocional);
-                    $consulta->bindParam(10, $valoracion_media);
+                    $consulta->bindParam(10, $valoracion);
                     $consulta->bindParam(11, $id_curso);
 
 
