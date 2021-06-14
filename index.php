@@ -6,12 +6,12 @@
     ?>
 
     <?php
-    include("../mod/plantillasDelDiseno/header.php");
+    include("php/mod/plantillasDelDiseno/header2.php");
     ?>
 
     <!---	Incluye un breadcrumb que indique la sección actual-->
     <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
-        <?php include("../mod/plantillasDelDiseno/slider.php"); ?>
+        
         <div class="">
             <ol class="breadcrumb">
                 <li class="active"><?php echo $titulo ?> </li>
@@ -68,14 +68,14 @@
                             </blockquote>
                         </div>
 
-                        <a href="cursos.php"><button class="btn btn-primary btn-lg">Ver cursos</button></a>
+                        <a href="php/inc/cursos.php"><button class="btn btn-primary btn-lg">Ver cursos</button></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <?php include("../mod/plantillasDelDiseno/footer.php")  ?>
+    <?php include("php/mod/plantillasDelDiseno/footer.php")  ?>
 </body>
 
 </html>

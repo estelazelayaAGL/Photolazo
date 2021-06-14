@@ -97,11 +97,11 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-2 float-right sticky order-sm-0">
-                                <div class="col-xs-6 col-sm-6 col-md-12">
+                                
                                     <?php
                                     $anterior = BD::anteriorEntrada($codigo);
                                     if ($anterior != null) {
-                                        echo '
+                                        echo '<div class="col-xs-6 col-sm-6 col-md-12">
             <form method="POST" action="' . $_SERVER['PHP_SELF'] . '">
             <input type="hidden" name="codigo" value="' . $anterior->getCodigo() . '"></input>
             <input  type="submit" name="anterior" value="Anterior" class="btn btn-info btn-lg espacio azul"></input>
@@ -122,11 +122,10 @@
                                     }
 
                                     ?>
-                                </div>
+                                <!-- </div> -->
                             </div>
-
-
-                            <div class="col-xs-12 col-sm-12 col-md-12 espacio">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 espacio">
                                 <?php
                                 $comentarios = BD::obtenerComentarios($codigo);
                                 funciones::mostrarComentarios($comentarios);
@@ -173,11 +172,10 @@
 
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
-
+        </div>
 
 
     </section>

@@ -20,8 +20,8 @@
     <!-- Termina el header -->
     </header>
 
-    <!-- Impide el acceso a esta página a menos que se haya iniciado sesión como usuario administrador (campo tipo_usuario = 1) -->
-    <?php
+     <!-- Impide el acceso a esta página a menos que se haya iniciado sesión como usuario administrador (campo tipo_usuario = 1) -->
+     <?php
     if (isset($_SESSION['usuario'])) {
         $usuario = BD::obtieneUsuario($_SESSION['usuario']);
         if ($usuario->getTipo_usuario() == 0) {
@@ -31,8 +31,6 @@
         header("Location: index.php");
     }
     ?>
-
-
     <?php
     if (isset($_POST['anadir'])) {
         $id_categoria = $_POST['id_categoria'];
@@ -76,6 +74,7 @@
         }
     }
 
+    
     if (isset($_POST['actualizar'])) {
         $id_entradaM = $_POST['id_entrada_M'];
         $id_categoriaM = $_POST['id_categoria_M'];
@@ -123,6 +122,7 @@
         }
     }
 
+    
     if (isset($_POST['modificar'])) {
         $disp = "block";
         $idBlog_M = $_POST['id_blog'];
@@ -131,13 +131,13 @@
         $disp = "none";
     }
 
-
     if (isset($_POST['eliminar'])) {
         $idBlog = $_POST['id_blog'];
         $mensaje = BD::eliminarEntrada($idBlog);
     }
 
     $categorias = BD::categoriasBlog();
+
     ?>
 
     <section class="container-fluid">

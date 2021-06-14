@@ -5,31 +5,30 @@
     <script src="../../js/administracionProductos.js"></script>
     <?php $titulo = 'Administración'; ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
-            <!---	Incluye un breadcrumb que indique la sección actual-->
-            <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
-                <div class="">
-                    <ol class="breadcrumb">
-                        <li><a href="index.php"> Inicio </a></li>
-                        <li><a href="panelDeadministracion.php"> Administración </a></li>
-                        <li class="active">Gestión de productos</li>
-                    </ol>
-                </div>
-            </div>
-            </nav>
+    <!---	Incluye un breadcrumb que indique la sección actual-->
+    <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+        <div class="">
+            <ol class="breadcrumb">
+                <li><a href="../../index.php"> Inicio </a></li>
+                <li><a href="panelDeAdministracion.php"> Administración </a></li>
+                <li class="active">Gestión de productos</li>
+            </ol>
         </div>
-        <!-- Termina el header -->
-        </header>
-
+    </div>
+    </nav>
+    </div>
+    <!-- Termina el header -->
+    </header>
 
     <!-- Impide el acceso a esta página a menos que se haya iniciado sesión como usuario administrador (campo tipo_usuario = 1) -->
     <?php
     if (isset($_SESSION['usuario'])) {
         $usuario = BD::obtieneUsuario($_SESSION['usuario']);
         if ($usuario->getTipo_usuario() == 0) {
-            header("Location: index.php");
+            header("Location:../../index.php");
         }
     } else {
-        header("Location: index.php");
+        header("Location:../../index.php");
     }
     ?>
 
@@ -244,7 +243,7 @@
                             ?>
                                     <h4>MODIFICAR PRODUCTO <?php echo $row["id_producto"]; ?></h4>
                                     <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
-                                        <input type="hidden" name="idProducto_M" class="form-control" placeholder="" value="<?php echo $row["id_producto"]; ?>" />
+                                        <input type="hidden" name="idProducto_M" class="form-control" placeholder="" value="<?php echo $row['id_producto']; ?>" />
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                                 <label>Categoría</label>
@@ -264,12 +263,13 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
                                                 <label>Marca</label>
-                                                <!-- <input type="text" name="idMarcaProd_M" class="form-control" placeholder="" value="<?php //echo $row["id_marca"]; ?>" required /> -->
+                                                <!-- <input type="text" name="idMarcaProd_M" class="form-control" placeholder="" value="<?php //echo $row["id_marca"]; 
+                                                                                                                                        ?>" required /> -->
                                                 <select name="idMarcaProd_M" id="idMarcaProd_M" required>
                                                     <?php
                                                     $marcas = BD::marcasProductoCurso();
                                                     foreach ($marcas as $marca) {
-                                                        if($marca['id_marca'] == $row['id_marca']) {
+                                                        if ($marca['id_marca'] == $row['id_marca']) {
                                                             echo  "<option selected value=" . $marca['id_marca'] . ">" . $marca['nombre'] . "</option>";
                                                         } else {
                                                             echo  "<option value=" . $marca['id_marca'] . ">" . $marca['nombre'] . "</option>";
@@ -282,21 +282,21 @@
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-8 pad-adjust">
                                                 <label>Nombre del producto</label>
-                                                <input type="text" name="nombreProducto_M" class="form-control" value="<?php echo $row["nombre"]; ?>" required />
+                                                <input type="text" name="nombreProducto_M" class="form-control" value="<?php echo $row['nombre']; ?>" required />
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-2 pad-adjust">
                                                 <label>Unidades</label>
-                                                <input type="text" name="unidadesProducto_M" class="form-control" value="<?php echo $row["unidades"]; ?>" required />
+                                                <input type="text" name="unidadesProducto_M" class="form-control" value="<?php echo $row['unidades']; ?>" required />
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-2 pad-adjust">
                                                 <label>Precio</label>
-                                                <input type="text" name="precioProducto_M" class="form-control" value="<?php echo $row["precio"]; ?>" required />
+                                                <input type="text" name="precioProducto_M" class="form-control" value="<?php echo $row['precio']; ?>" required />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                                 <label>Descripción</label>
-                                                <input type="text" name="descripcionProducto_M" class="form-control" value="<?php echo $row["descripcion"]; ?>" />
+                                                <input type="text" name="descripcionProducto_M" class="form-control" value="<?php echo $row['descripcion']; ?>" />
                                             </div>
                                         </div>
                                         <div class="row">
@@ -346,16 +346,20 @@
                                         <td><?php echo $row["precio"]; ?></td>
                                         <td><?php echo $row["descripcion"]; ?></td>
                                         <td>
-                                            <div class="espacio"><form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                                <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
-                                                <input type="submit" id="modificar" name="modificar" value="Modificar" class="btn btn-primary btn-lg">
-                                            </form></div>
+                                            <div class="espacio">
+                                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                                    <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
+                                                    <input type="submit" id="modificar" name="modificar" value="Modificar" class="btn btn-primary btn-lg">
+                                                </form>
+                                            </div>
                                             <!-- </td> -->
                                             <!-- <td> -->
-                                            <div><form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                                <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
-                                                <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="btn btn-primary btn-lg gris">
-                                            </form></div>
+                                            <div>
+                                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                                    <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
+                                                    <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="btn btn-primary btn-lg gris">
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                             <?php

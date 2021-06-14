@@ -9,8 +9,8 @@
     <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
         <div class="">
             <ol class="breadcrumb">
-                <li><a href="index.php"> Inicio </a></li>
-                <li><a href="panelDeadministracion.php"> Administración </a></li>
+                <li><a href="../../index.php"> Inicio </a></li>
+                <li><a href="panelDeAdministracion.php"> Administración </a></li>
                 <li class="active">Gestión de cursos</li>
             </ol>
         </div>
@@ -25,10 +25,10 @@
     if (isset($_SESSION['usuario'])) {
         $usuario = BD::obtieneUsuario($_SESSION['usuario']);
         if ($usuario->getTipo_usuario() == 0) {
-            header("Location: index.php");
+            header("Location: '../../index.php");
         }
     } else {
-        header("Location: index.php");
+        header("Location: '../../index.php'");
     }
     ?>
 

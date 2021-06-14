@@ -1,13 +1,13 @@
 <?php
 // echo getcwd ();
-require_once '../mod/clases/Producto.php';
-require_once '../mod/clases/Curso.php';
-require_once '../mod/clases/Usuario.php';
-require_once '../mod/clases/Blog.php';
-require_once '../mod/clases/Comentario.php';
+require_once 'php/mod/clases/Producto.php';
+require_once 'php/mod/clases/Curso.php';
+require_once 'php/mod/clases/Usuario.php';
+require_once 'php/mod/clases/Blog.php';
+require_once 'php/mod/clases/Comentario.php';
 include_once 'conexion.php';
 
-class BD
+class BD2
 {
 
     public static function obtieneFechaEntrega($pedido) {
@@ -874,7 +874,7 @@ class BD
 
     public static function categoriasBlog()
     {
-        $sql = "SELECT * FROM categoriasblog";
+        $sql = "SELECT * FROM categoriasBlog";
         $resultado = self::ejecutaConsulta($sql);
         return $resultado;
     }

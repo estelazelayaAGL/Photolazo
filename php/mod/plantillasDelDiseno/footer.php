@@ -28,8 +28,8 @@
 
 
 <div id="cookies" style="display: none;">
-    Necesitamos usar cookies para que funcione todo, si permanece aquí acepta su uso, más información en la
-    <a hreflang="es" href="/info/politica-de-privacidad">Política de Privacidad</a>.
+<h3>Necesitamos usar cookies para que funcione todo. Más información en la
+    <a hreflang="es" href="https://www.cookiebot.com/es/politica-de-privacidad-para-mi-web/">Política de Privacidad.</a></h3>
     <div>
         <input id="aceptarCookies" type="button" class="btn btn-sm btn-primary" value="Acepto el uso de cookies" />
     </div>
