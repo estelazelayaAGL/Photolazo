@@ -98,7 +98,7 @@ ob_start();
                     </button>
                 </div>
                 <div class="col-xs-2 col-sm-12 col-md-4 col-lg-4 espacio">
-                    <form action="busqueda.php" method="post" id="buscarform" class="form-inline">
+                    <form action="php/inc/busqueda.php" method="post" id="buscarform" class="form-inline">
                         <div class="input-group">
                             <input type="text" name="buscar" id="buscar" class="form-control" placeholder="Buscar">
                             <div class="input-group-btn">

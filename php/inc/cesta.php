@@ -16,7 +16,7 @@ ob_start();
     <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
         <div class="">
             <ol class="breadcrumb">
-                <li><a href="index.php">Inicio </a></li>
+                <li><a href="../../index.php">Inicio </a></li>
                 <li class="active">Cesta </li>
             </ol>
         </div>

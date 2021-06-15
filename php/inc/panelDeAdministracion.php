@@ -2,7 +2,7 @@
 <html lang="en">
 
 <body>
-	<?php $titulo = 'Productos'; ?>
+	<?php $titulo = 'Administración'; ?>
 
 	<?php include("../mod/plantillasDelDiseno/header.php")  ?>
 	<!---	Incluye un breadcrumb que indique la sección actual-->

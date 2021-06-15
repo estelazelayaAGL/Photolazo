@@ -578,8 +578,14 @@ iframe {
     background-color  : rgba(252, 102, 37, 0.4);
     border-radius     : 1em;
     /* opacity        : 0.9  ; */
-    margin            : 0 auto;
+    margin            : 0 auto !important;
     padding-top       : 1.5em;
+}
+
+.justify-content-center {
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+    display: grid !important;
 }
 
 .formulario_label {

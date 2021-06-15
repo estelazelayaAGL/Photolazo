@@ -2,7 +2,7 @@
 <html lang="en">
 
 <body>
-    <?php $titulo = 'Cursos'; ?>
+    <?php $titulo = 'Detalle entrada'; ?>
     <script src="../../js/imagenAleatoria.js"></script>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
     <?php
@@ -97,86 +97,83 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-2 float-right sticky order-sm-0">
-                                
-                                    <?php
-                                    $anterior = BD::anteriorEntrada($codigo);
-                                    if ($anterior != null) {
-                                        echo '<div class="col-xs-6 col-sm-6 col-md-12">
+
+                                <?php
+                                $anterior = BD::anteriorEntrada($codigo);
+                                if ($anterior != null) {
+                                    echo '<div class="col-xs-6 col-sm-6 col-md-12">
             <form method="POST" action="' . $_SERVER['PHP_SELF'] . '">
             <input type="hidden" name="codigo" value="' . $anterior->getCodigo() . '"></input>
             <input  type="submit" name="anterior" value="Anterior" class="btn btn-info btn-lg espacio azul"></input>
             <div class="letraGrisPequena esp col-xs-12 col-sm-12 col-md-12 ">' . $anterior->getTitulo() . ' </div>
             </form></div>
             ';
-                                    }
+                                }
 
-                                    $siguiente = BD::siguienteEntrada($codigo);
-                                    if ($siguiente != null) {
-                                        echo '<div class="col-xs-6 col-sm-6 col-md-12">
+                                $siguiente = BD::siguienteEntrada($codigo);
+                                if ($siguiente != null) {
+                                    echo '<div class="col-xs-6 col-sm-6 col-md-12">
             <form method="POST" action="' . $_SERVER['PHP_SELF'] . '">
             <input type="hidden" name="codigo" value="' . $siguiente->getCodigo() . '"></input>
             <input  type="submit" name="siguiente" value="Siguiente" class="btn btn-info btn-lg espacio azul"></input>
             <div class="letraGrisPequena  esp col-xs-12 col-sm-12 col-md-12">' . $siguiente->getTitulo() . ' </div>
             </form></div>
             ';
-                                    }
+                                }
 
-                                    ?>
+                                ?>
                                 <!-- </div> -->
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 espacio">
-                                <?php
-                                $comentarios = BD::obtenerComentarios($codigo);
-                                funciones::mostrarComentarios($comentarios);
-                                ?>
-                            </div>
+                            <?php
+                            $comentarios = BD::obtenerComentarios($codigo);
+                            funciones::mostrarComentarios($comentarios);
+                            ?>
+                        </div>
 
 
 
-                            <div class="col-xs-12 col-sm-12 col-md-12 espacio">
-                                <hr>
-                                <h3>Deja una respuesta<br></h3>
-                                <label class="font-italic small">Tu dirección de correo electrónico no será publicado. Los campos obligatorios están marcados con <span class="rojo">*</span></label>
-                                <hr>
-                            </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 espacio">
+                            <hr>
+                            <h3>Deja una respuesta<br></h3>
+                            <label class="font-italic small">Tu dirección de correo electrónico no será publicado. Los campos obligatorios están marcados con <span class="rojo">*</span></label>
+                            <hr>
+                        </div>
 
-
-                            <div class="row">
-                                <!-- INICIO FORMULARIO HTML -->
-                                <div class="registro mx-auto">
-                                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
-                                        <div class="col-xs-12 col-sm-12 col-md-6">
-                                            <label for="nombreC">Nombre:<span class="rojo">*</span></label>
-                                            <input type="text" class="form-control" id="nombreC" name="nombreC" required>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-12 col-md-6">
-                                            <label for="correoC">Correo electronico:<span class="rojo">*</span></label>
-                                            <input type="email" class="form-control" id="correoC" name="correoC" required>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-12 col-md-12 espacio">
-                                            <label for="mensajeC">Su mensaje:<span class="rojo">*</span></label>
-                                            <textarea class="form-control" id="mensajeC" name="mensajeC" rows="5" min="25" required></textarea>
-                                        </div>
-
-
-                                        <div class="row form-group">
-                                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                                <input value="Limpiar" class="btn btn-primary btn-lg gris" type="reset" name="reset" />
-                                                <input value="Enviar" class="btn btn-primary btn-lg" type="submit" name="enviar" />
-                                            </div>
-                                        </div>
-                                    </form>
-
+                        
+                        <!-- INICIO FORMULARIO HTML -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 justify-content-center">
+                        <div class="registro col-xs-12 col-sm-12 col-md-10">
+                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <label for="nombreC">Nombre:<span class="rojo">*</span></label>
+                                    <input type="text" class="form-control" id="nombreC" name="nombreC" required>
                                 </div>
-                            </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <label for="correoC">Correo electronico:<span class="rojo">*</span></label>
+                                    <input type="email" class="form-control" id="correoC" name="correoC" required>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 espacio">
+                                    <label for="mensajeC">Su mensaje:<span class="rojo">*</span></label>
+                                    <textarea class="form-control" id="mensajeC" name="mensajeC" rows="5" min="25" required></textarea>
+                                </div>
+
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 espacio " >
+                                    <input value="Limpiar" class="btn btn-primary btn-lg gris" type="reset" name="reset" />
+                                    <input value="Enviar" class="btn btn-primary btn-lg" type="submit" name="enviar" />
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        </div>
 
     </section>
 
