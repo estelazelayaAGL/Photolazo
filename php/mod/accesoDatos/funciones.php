@@ -68,7 +68,7 @@ class funciones
     public static function muestraProductosValoraciones($productos, $usuario)
     {
         if (count($productos) == 0) {
-            echo '<div class="col-xs-12 col-sm-12 col-md-12"><p>Lista de productos vacía.</p></div>';
+            //echo '<div class="col-xs-12 col-sm-12 col-md-12"><p>Lista de productos vacía.</p></div>';
         } else {
             foreach ($productos as $producto) {
                 $puntos = "";
@@ -111,7 +111,7 @@ class funciones
     public static function muestraCursosValoraciones($cursos, $usuario)
     {
         if (count($cursos) == 0) {
-            echo '<div class="col-xs-12 col-sm-12 col-md-12"><p>Lista de cursos vacía.</p></div>';
+            //echo '<div class="col-xs-12 col-sm-12 col-md-12"><p>Lista de cursos vacía.</p></div>';
         } else {
             foreach ($cursos as $curso) {
                 $puntos = "";

@@ -145,7 +145,7 @@
                         <!-- INICIO FORMULARIO HTML -->
                         <div class="col-xs-12 col-sm-12 col-md-12 justify-content-center">
                         <div class="registro col-xs-12 col-sm-12 col-md-10">
-                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
+                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation">
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <label for="nombreC">Nombre:<span class="rojo">*</span></label>
                                     <input type="text" class="form-control" id="nombreC" name="nombreC" required>

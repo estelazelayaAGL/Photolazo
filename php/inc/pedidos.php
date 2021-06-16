@@ -44,7 +44,9 @@
                         $cursos = BD::obtieneCursosDeUsuario($usuario->getId_usuario());
                         funciones::muestraCursosValoraciones($cursos, $usuario->getId_usuario());
                         ?>
-                        <a href="../../index.php" class="espacio"><button class="btn btn-primary btn-lg ">Ir al inicio</button></a>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <a href="../../index.php" class="espacio"><button class="btn btn-primary btn-lg ">Ir al inicio</button></a>
+                        </div>
                     </div>
                 </div>
             </div>

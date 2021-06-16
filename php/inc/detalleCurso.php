@@ -12,10 +12,13 @@
 
     if (isset($_POST['valorar'])) {
         $curso = BD::obtieneCurso($_POST['codigo']);
-        $id_usuario = $_POST['id_usuario'];
-        $valoracion = $_POST['estrellas'];
-        BD::anhadeResenaCurso($id_usuario, $_POST['codigo'], $valoracion);
-        $mensaje = "Se ha valorado el curso correctamente";
+        if(isset($_POST['estrellas'])) {
+            $id_usuario = $_POST['id_usuario'];
+            $valoracion = $_POST['estrellas'];
+            BD::anhadeResenaCurso($id_usuario, $_POST['codigo'], $valoracion);
+            $mensaje = "Se ha valorado el curso correctamente";
+    
+        }        
     }
     ?>
 

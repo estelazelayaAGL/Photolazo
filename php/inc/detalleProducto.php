@@ -14,10 +14,12 @@
 
     if (isset($_POST['valorar'])) {
         $producto = BD::obtieneProducto($_POST['codigo']);
-        $id_usuario = $_POST['id_usuario'];
-        $valoracion = $_POST['estrellas'];
-        BD::anhadeResena($id_usuario, $_POST['codigo'], $valoracion);
-        $mensaje = "Se ha valorado el producto correctamente";
+        if(isset($_POST['estrellas'])) {
+            $id_usuario = $_POST['id_usuario'];
+            $valoracion = $_POST['estrellas'];
+            BD::anhadeResena($id_usuario, $_POST['codigo'], $valoracion);
+            $mensaje = "Se ha valorado el producto correctamente";
+        }
     }
 
     ?>
