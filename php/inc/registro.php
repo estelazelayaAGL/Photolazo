@@ -102,7 +102,7 @@
                         <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarNombre" >
                             <label for="validarNombre" class="formulario_label">Nombre:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
-                                <input type="text" class="formulario_input " id="validarNombre" name="validarNombre" placeholder="Estela Rosinda">
+                                <input type="text" class="formulario_input " id="validarNombre" name="validarNombre" placeholder=" Estela Rosinda">
                                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p class="formulario_input-error">El nombre solo puede contener letras, espacios y acentos. <strong>(Max. 35 caracteres)</strong></p>
@@ -111,7 +111,7 @@
                         <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarApellidos" >
                             <label for="validarApellidos" class="formulario_label">Apellidos:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
-                                <input type="text" class="formulario_input " id="validarApellidos" name="validarApellidos" placeholder="Zelaya Lazo">
+                                <input type="text" class="formulario_input " id="validarApellidos" name="validarApellidos" placeholder=" Zelaya Lazo">
                                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p class="formulario_input-error">El nombre solo puede contener letras, espacios y acentos. <strong>(Max. 50 caracteres)</strong></p>
@@ -129,17 +129,17 @@
                         <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarTelefono">
                             <label for="validarTelefono" class="formulario_label">Teléfono:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
-                                <input type="text" class="formulario_input " id="validarTelefono" name="validarTelefono" placeholder="+(34) 661908318">
+                                <input type="text" class="formulario_input" id="validarTelefono" name="validarTelefono" placeholder=" +34 661908318">
                                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
-                            <p class="formulario_input-error">Prefijo ( + seguido de 2 o 3 cifras) espacio en blanco y 9 cifras consecutivas.</p>
+                            <p class="formulario_input-error">Prefijo (+) seguido de 2 o 3 cifras, un espacio en blanco y 9 cifras consecutivas.</p>
                         </div>
 
                         <!-- GRUPO: Email -->
                         <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarEmail">
                             <label for="validarEmail" class="formulario_label">Email:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
-                                <input type="text" class="formulario_input " id="validarEmail" name="validarEmail" placeholder="tucorreo@tucorreo.com">
+                                <input type="text" class="formulario_input " id="validarEmail" name="validarEmail" placeholder=" tucorreo@tucorreo.com">
                                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p class="formulario_input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.(Máx. 40 caracteres)</p>
@@ -150,7 +150,7 @@
                         <div class="formulario_grupo col-xs-12 col-sm-6 col-md-6" id="grupo_validarUsuario">
                             <label for="validarUsuario" class="formulario_label">Usuario:<span class="rojo">*</span></label>
                             <div class="input-container formulario_grupo-input">
-                                <input type="text" class="formulario_input input-field" id="validarUsuario" name="validarUsuario" placeholder="estelaz_97">
+                                <input type="text" class="formulario_input input-field" id="validarUsuario" name="validarUsuario" placeholder=" estelaz_97">
                                 <i class="formulario_validacion-estado  fas fa-times-circle"></i>
                             </div>
                             <p class="formulario_input-error">El Usuario solo puede contener letras, numeros, guion y guion_bajo (Máx. 35 caracteres)</p>

@@ -58,18 +58,21 @@
                 <div class="registro col-xs-12 col-sm-12 col-md-12">
                     <div><img src="../../imagenes/imgMaquetacion/formLogin.png" alt=""></div>
                     <!-- INICIO FORMULARIO HTML -->
-                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
-                        <div class="row form-group">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <input id="usuario" name="usuario" class="form-control" type="usuario" placeholder="Ingresa tu usuario" required>
+                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" id="registroForm" novalidate>
+
+                        <div class=" col-xs-12 col-sm-12 col-md-12">
+                            <div class="formulario_grupo-input">
+                                <input id="usuario" name="usuario" class="formulario_input " type="usuario" placeholder=" Ingresa tu usuario" required>
                             </div>
                         </div>
-                        <div class="row form-group">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <input id="contrasena" name="contrasena" class="form-control" type="password" placeholder="Ingresa tu contraseña" required>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 espacio">
+                            <div class="formulario_grupo-input">
+                                <input id="contrasena" name="contrasena" class="formulario_input" type="password" placeholder=" Ingresa tu contraseña" required>
                             </div>
                         </div>
-                        <div class="row form-group">
+
+                        <div class="espacio col-xs-12 col-sm-12 col-md-12 formulario_grupo formulario_grupo-btn-enviar">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary mb-2" name="intentoLogin"> Entrar</button><br>
                                 <a class="passOlvidada" href="#">Contraseña olvidada</a>

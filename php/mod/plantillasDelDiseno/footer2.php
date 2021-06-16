@@ -14,7 +14,7 @@
         <ul>
             <li>Información Legal |</li>
             <li>Condiciones de venta |</li>
-            <li><a href="privacidad.php">Política de privacidad</a> |</li>
+            <li><a href="php/inc/privacidad.php">Política de privacidad</a> |</li>
         </ul>
     </div>
     <div class="footer2 col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
@@ -28,7 +28,7 @@
 
 <div id="cookies" style="display: none;">
     <h3 class="textocookies">Necesitamos usar cookies para que funcione todo. Más información en la
-        <a hreflang="es" href="privacidad.php">Política de Privacidad.</a>
+        <a hreflang="es" href="php/inc/privacidad.php">Política de Privacidad.</a>
     </h3>
     <div>
         <input id="aceptarCookies" type="button" class="btn btn-primary btn-lg textocookies" value="Acepto el uso de cookies" />

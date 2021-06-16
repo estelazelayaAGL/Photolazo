@@ -8,6 +8,10 @@ ul li {
     display: inline;
 }
 
+ul li.bloque {
+    display:block;
+}
+
 /* ICONOS */
 .icono {
     height: 2em;
@@ -62,17 +66,18 @@ ul li {
 .barratema,
 .breadcrumb {
     background-color: #8f9499 !important;
-    font-weight     : lighter;
+    font-weight     : bold;
     font-family     : 'DM Serif Text' !important;
+}
+
+.breadcrumb li a:hover{
+    color: #eea383 !important;
+    font-weight: lighter !important;
 }
 
 .breadcrumbDiv {
     padding: 0% !important;
 }
-
-/* .barratema ul li :hover {
-    background-color: #fc6625;
-} */
 
 .navbar-nav {
     margin-bottom: 0% !important;
@@ -226,8 +231,8 @@ a.nav-link {
     margin-left: 2em;
 }
 
-.nav-link {
-    font-size: 1.6em;
+a.nav-link {
+    font-size: 1.7em !important;
 }
 
 ul li.nav-item {
@@ -238,11 +243,17 @@ ul li.nav-item {
 ul li.nav-item a.nav-link:hover {
     background-color: #fc6625 !important;
     color           : white;
+    font-weight: bold !important;
+}
+
+.dropdown-menu>li a{
+    font-size: 1.7em !important;
 }
 
 .dropdown-menu>li a:hover {
-    color           : white;
+    color           : white !important;
     background-color: #fc6625 !important;
+    font-weight: bold !important;
 }
 
 
@@ -771,9 +782,15 @@ form label,
 table tr,
 table th,
 table td {
-    font-size: .8em;
+    font-size: 1em;
 }
 
+@media screen and (max-width: 320px) {
+    table {
+      display: block !important;
+      overflow-x: auto !important;
+    }
+}
 /* BLOG */
 
 .mini {
@@ -972,3 +989,10 @@ input[type="radio"]:checked~.estrella {
     color: white;
 }
 
+.textocookies {
+    font-size: 1.5em !important;
+}
+
+.alert-success {
+    font-size: 1.5em !important;
+}

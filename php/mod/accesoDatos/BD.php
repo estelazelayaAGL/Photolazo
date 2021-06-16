@@ -10,82 +10,126 @@ include_once 'conexion.php';
 class BD
 {
 
-    public static function obtieneFechaEntrega($pedido) {
-        $sql = "SELECT fecha_entrega FROM pedidos WHERE id_pedido = $pedido";
+    public static function obtieneCursosDeUsuario($usuario) //Categoria
+    {
+        $sql = "SELECT c.* FROM cursos c INNER JOIN usuarioscursos uc ON c.id_curso = uc.id_curso WHERE uc.id_usuario = " . $usuario;
         $resultado = self::ejecutaConsulta($sql);
-        $fecha = "";
-        if($resultado->rowCount() > 0) {
+        $cursos = array();
+        if ($resultado) {
+            // Añadimos un elemento por cada pizza leida
             $row = $resultado->fetch();
-            $fecha = $row['fecha_entrega'];
+            while ($row != null) {
+                $cursos[] = new Curso($row);
+                $row = $resultado->fetch();
+            }
+        }
+        return $cursos;
+    }
+
+    public static function obtieneProductosDeUsuario($usuario) //Categoria y marca
+    {
+        $sql = "SELECT DISTINCT p.id_producto AS codigo, p.nombre, p.precio, p.descripcion, m.nombre AS marca, c.nombre AS categoria FROM productos p INNER JOIN marcas m ON p.id_marca = m.id_marca INNER JOIN categorias c ON p.id_categoria = c.id_categoria
+        INNER JOIN lineaspedidos lp ON p.id_producto = lp.id_producto
+        INNER JOIN pedidos pe ON lp.id_pedido = pe.id_pedido
+        WHERE pe.id_usuario = " . $usuario;
+        $resultado = self::ejecutaConsulta($sql);
+        $productos = array();
+        if ($resultado) {
+            // Añadimos un elemento por cada pizza leida
+            $row = $resultado->fetch();
+            while ($row != null) {
+                $productos[] = new Producto($row);
+                $row = $resultado->fetch();
+            }
+        }
+        return $productos;
+    }
+
+    public static function obtieneFechaEntrega($pedido)
+    {
+        $sql = "SELECT YEAR(fecha_entrega) AS anno ,MONTH(fecha_entrega) AS mes,DAY(fecha_entrega) AS dia FROM pedidos WHERE id_pedido = $pedido";
+        $resultado = self::ejecutaConsulta($sql);
+        $fecha = [];
+        if ($resultado->rowCount() > 0) {
+            $row = $resultado->fetch();
+            $fecha[] = $row['dia'];
+            $fecha[] = $row['mes'];
+            $fecha[] = $row['anno'];
         }
         return $fecha;
     }
 
-    public static function obtieneNombreCategoriaBlog($categoria) {
+    public static function obtieneNombreCategoriaBlog($categoria)
+    {
         $sql = "SELECT nombre FROM categoriasblog WHERE id_categoriaB = '$categoria'";
         $resultado = self::ejecutaConsulta($sql);
         $nombre = "";
-        if($resultado->rowCount() > 0) {
+        if ($resultado->rowCount() > 0) {
             $row = $resultado->fetch();
             $nombre = $row['nombre'];
         }
         return $nombre;
     }
 
-    public static function obtieneNombreCategoria($categoria) {
+    public static function obtieneNombreCategoria($categoria)
+    {
         $sql = "SELECT nombre FROM categorias WHERE id_categoria = '$categoria'";
         $resultado = self::ejecutaConsulta($sql);
         $nombre = "";
-        if($resultado->rowCount() > 0) {
+        if ($resultado->rowCount() > 0) {
             $row = $resultado->fetch();
             $nombre = $row['nombre'];
         }
         return $nombre;
     }
 
-    public static function mediaResenasCurso($curso) {
+    public static function mediaResenasCurso($curso)
+    {
         $sql = "SELECT AVG(valoracion) AS media FROM usuarioscursos WHERE id_curso = '$curso'";
         $resultado = self::ejecutaConsulta($sql);
         $media = 0;
-        if($resultado->rowCount() > 0) {
+        if ($resultado->rowCount() > 0) {
             $row = $resultado->fetch();
             $media = $row['media'];
         }
-        if($media == "") {
+        if ($media == "") {
             $media = 0;
         }
         return $media;
     }
 
-    public static function mediaResenas($producto) {
+    public static function mediaResenas($producto)
+    {
         $sql = "SELECT AVG(valoracion) AS media FROM resenas WHERE id_producto = '$producto'";
         $resultado = self::ejecutaConsulta($sql);
         $media = 0;
-        if($resultado->rowCount() > 0) {
+        if ($resultado->rowCount() > 0) {
             $row = $resultado->fetch();
             $media = $row['media'];
         }
-        if($media == "") {
+        if ($media == "") {
             $media = 0;
         }
         return $media;
     }
 
-    public static function verificarResenaCurso($usuario, $curso) {
+    public static function verificarResenaCurso($usuario, $curso)
+    {
         $valorado = false;
         $sql = 'SELECT * FROM usuarioscursos';
         $sql .= " WHERE id_usuario = $usuario AND id_curso = '$curso'";
         $resultado = self::ejecutaConsulta($sql);
         if ($resultado->rowCount() > 0) {
             $row = $resultado->fetch();
-            if($row['valoracion']!=0) {
+            if ($row['valoracion'] != 0) {
                 $valorado = true;
             }
         }
         return $valorado;
     }
 
-    public static function verificarResena($usuario, $producto) {
+    public static function verificarResena($usuario, $producto)
+    {
         $valorado = false;
         $sql = 'SELECT * FROM resenas';
         $sql .= " WHERE id_usuario = $usuario AND id_producto = '$producto'";
@@ -96,12 +140,14 @@ class BD
         return $valorado;
     }
 
-    public static function anhadeResenaCurso($usuario, $curso, $valoracion) {
+    public static function anhadeResenaCurso($usuario, $curso, $valoracion)
+    {
         $sql = "UPDATE usuarioscursos SET valoracion = $valoracion WHERE id_usuario = $usuario AND id_curso = '$curso'";
         self::ejecutaConsulta($sql);
     }
 
-    public static function anhadeResena($usuario, $producto, $valoracion) {
+    public static function anhadeResena($usuario, $producto, $valoracion)
+    {
         $sql = "INSERT INTO resenas VALUES ($usuario, '$producto', $valoracion)";
         self::ejecutaConsulta($sql);
     }
@@ -167,7 +213,8 @@ class BD
         return $existe;
     }
 
-    public static function verificaCompraProducto($login, $producto) {
+    public static function verificaCompraProducto($login, $producto)
+    {
         $comprado = false;
         $sql = "select * from productos p inner join lineaspedidos lp on p.id_producto = lp.id_producto inner join pedidos pe on lp.id_pedido = pe.id_pedido inner join usuarios u on pe.id_usuario = u.id_usuario";
         $sql .= " where u.user_login = '$login' and p.id_producto = '$producto'";
@@ -332,7 +379,7 @@ class BD
     public static function obtieneProductosPorNombre($palabras) //Categoria y marca
     {
         $sql = "SELECT p.id_producto AS codigo, p.nombre, p.precio, p.descripcion, m.nombre AS marca, c.nombre AS categoria FROM productos p INNER JOIN marcas m ON p.id_marca = m.id_marca INNER JOIN categorias c ON p.id_categoria = c.id_categoria";
-        $sql .= " WHERE p.nombre LIKE '%" . $palabras. "%'";
+        $sql .= " WHERE p.nombre LIKE '%" . $palabras . "%'";
         $resultado = self::ejecutaConsulta($sql);
         $productos = array();
         if ($resultado) {
@@ -400,8 +447,8 @@ class BD
         return $cursos;
     }
 
-    
-    
+
+
     //Este no vale para el CRUD
     public static function obtieneProducto($codigo)
     {
@@ -498,7 +545,7 @@ class BD
         return $resultado;
     }
 
-   
+
     public static function ejecutaConsulta($sql)
     {
         require 'conexion.php';
@@ -1032,7 +1079,7 @@ class BD
         }
     }
 
-    
+
     public static function  todasLasEntradas()
     {
         require 'conexion.php';
@@ -1059,7 +1106,7 @@ class BD
         }
     }
 
-   
+
     public static function obtieneEntrada($codigo)
     {
         $sql = "SELECT * FROM blogs WHERE id_blog = " . $codigo . "";

@@ -65,6 +65,9 @@ ob_start();
                     </li>
                     <li>
                         <a id='cesta' href='php/inc/cesta.php'>Cesta<img src='imagenes/imgMaquetacion/cesta.png' alt=''></a>
+                    </li>
+                    <li>
+                        <a id='pedidos' href='php/inc/pedidos.php'>Mis pedidos<img src='imagenes/imgMaquetacion/caja.png' alt=''></a>
                     </li>";
                         $usuario = BD2::obtieneUsuario($_SESSION['usuario']);
                         if ($usuario->getTipo_usuario() == 1) {

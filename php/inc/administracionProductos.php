@@ -3,6 +3,7 @@
 
 <body>
     <script src="../../js/administracionProductos.js"></script>
+    <script src="../../js/filtroEntradas.js"></script>
     <?php $titulo = 'Administración'; ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
     <!---	Incluye un breadcrumb que indique la sección actual-->
@@ -169,60 +170,73 @@
                             <h4>AÑADIR NUEVO PRODUCTO</h4>
                             <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                        <label>ID Producto</label>
-                                        <input type="text" name="idProducto_A" class="form-control" required />
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-4 pad-adjust">
+                                        <label class="formulario_label">ID Producto</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" name="idProducto_A" class="formulario_input" required />
+                                        </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                        <label>Categoría</label>
-                                        <!-- <input type="text" name="idCategoriaProd_A" class="form-control" placeholder="" required />
-                                     -->
-                                        <select name="idCategoriaProd_A" id="idCategoriaProd_A" required>
-                                            <?php foreach ($categorias as $categoria) {
-                                                echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
-                                            }
-                                            ?>
-                                        </select>
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-4 pad-adjust">
+                                        <label class="formulario_label">Categoría</label>
+                                        <div class="formulario_grupo-input">
+                                            <select name="idCategoriaProd_A" id="idCategoriaProd_A" required>
+                                                <?php foreach ($categorias as $categoria) {
+                                                    echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                        <label>Marca</label>
-                                        <!-- <input type="text" name="idMarcaProd_A" class="form-control" placeholder="" required /> -->
-                                        <select name="idMarcaProd_A" id="idMarcaProd_A" required>
-                                            <?php foreach ($marcas as $marca) {
-                                                echo  "<option value=" . $marca['id_marca'] . ">" . $marca['nombre'] . "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-8 pad-adjust">
-                                        <label>Nombre del producto</label>
-                                        <input type="text" name="nombreProducto_A" class="form-control" required />
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-2 pad-adjust">
-                                        <label>Unidades</label>
-                                        <input type="text" name="unidadesProducto_A" class="form-control" required />
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-2 pad-adjust">
-                                        <label>Precio</label>
-                                        <input type="text" name="precioProducto_A" class="form-control" required />
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-4 pad-adjust">
+                                        <label class="formulario_label">Marca</label>
+                                        <div class="formulario_grupo-input">
+                                            <select name="idMarcaProd_A" id="idMarcaProd_A" required>
+                                                <?php foreach ($marcas as $marca) {
+                                                    echo  "<option value=" . $marca['id_marca'] . ">" . $marca['nombre'] . "</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <label>Descripción</label>
-                                        <input type="text" name="descripcionProducto_A" class="form-control" />
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-8 pad-adjust">
+                                        <label class="formulario_label">Nombre del producto</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" name="nombreProducto_A" class="formulario_input" required />
+                                        </div>
+                                    </div>
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-2 pad-adjust">
+                                        <label class="formulario_label">Unidades</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" name="unidadesProducto_A" class="formulario_input" required />
+                                        </div>
+                                    </div>
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-2 pad-adjust">
+                                        <label class="formulario_label">Precio</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" name="precioProducto_A" class="formulario_input" required />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <label>Imagen del producto</label>
-                                        <input type="file" name="imagenProducto" required />
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                        <label class="formulario_label">Descripción</label>
+                                        <div class="formulario_grupo-input">
+                                            <textarea name="descripcionProducto_A" class="form-control" rows="10" cols="20" required></textarea>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                        <label class="formulario_label">Imagen del producto (Solo se admite formato: PNG)</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="file" name="imagenProducto" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="espacio col-xs-12 col-sm-12 col-md-12 formulario_grupo formulario_grupo-btn-enviar">
                                         <input type="reset" name="limpiar" class="btn btn-primary btn-lg gris" value="Limpiar" />
                                         <input type='submit' name='anadir' class='btn btn-primary btn-lg' value='Añadir' />
                                     </div>
@@ -243,66 +257,78 @@
                             ?>
                                     <h4>MODIFICAR PRODUCTO <?php echo $row["id_producto"]; ?></h4>
                                     <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
-                                        <input type="hidden" name="idProducto_M" class="form-control" placeholder="" value="<?php echo $row['id_producto']; ?>" />
+                                        <input type="hidden" name="idProducto_M" class="formulario_input" placeholder="" value="<?php echo $row['id_producto']; ?>" />
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                                <label>Categoría</label>
-                                                <select name="idCategoriaProd_M" id="idCategoriaProd_M" required>
-                                                    <?php
-                                                    $categorias = BD::categoriasProductoCurso();
-                                                    foreach ($categorias as $categoria) {
-                                                        echo $categoria['nombre'];
-                                                        if ($categoria['id_categoria'] == $row['id_categoria']) {
-                                                            echo  "<option selected value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
-                                                        } else {
-                                                            echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-6 pad-adjust">
+                                                <label class="formulario_label">Categoría</label>
+                                                <div class="formulario_grupo-input">
+                                                    <select name="idCategoriaProd_M" id="idCategoriaProd_M" required>
+                                                        <?php
+                                                        $categorias = BD::categoriasProductoCurso();
+                                                        foreach ($categorias as $categoria) {
+                                                            echo $categoria['nombre'];
+                                                            if ($categoria['id_categoria'] == $row['id_categoria']) {
+                                                                echo  "<option selected value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                                            } else {
+                                                                echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                                            }
                                                         }
-                                                    }
-                                                    ?>
-                                                </select>
+                                                        ?>
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                                <label>Marca</label>
-                                                <!-- <input type="text" name="idMarcaProd_M" class="form-control" placeholder="" value="<?php //echo $row["id_marca"]; 
-                                                                                                                                        ?>" required /> -->
-                                                <select name="idMarcaProd_M" id="idMarcaProd_M" required>
-                                                    <?php
-                                                    $marcas = BD::marcasProductoCurso();
-                                                    foreach ($marcas as $marca) {
-                                                        if ($marca['id_marca'] == $row['id_marca']) {
-                                                            echo  "<option selected value=" . $marca['id_marca'] . ">" . $marca['nombre'] . "</option>";
-                                                        } else {
-                                                            echo  "<option value=" . $marca['id_marca'] . ">" . $marca['nombre'] . "</option>";
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-6 pad-adjust">
+                                                <label class="formulario_label">Marca</label>
+                                                <div class="formulario_grupo-input">
+                                                    <select name="idMarcaProd_M" id="idMarcaProd_M" required>
+                                                        <?php
+                                                        $marcas = BD::marcasProductoCurso();
+                                                        foreach ($marcas as $marca) {
+                                                            if ($marca['id_marca'] == $row['id_marca']) {
+                                                                echo  "<option selected value=" . $marca['id_marca'] . ">" . $marca['nombre'] . "</option>";
+                                                            } else {
+                                                                echo  "<option value=" . $marca['id_marca'] . ">" . $marca['nombre'] . "</option>";
+                                                            }
                                                         }
-                                                    }
-                                                    ?>
-                                                </select>
+                                                        ?>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-8 pad-adjust">
-                                                <label>Nombre del producto</label>
-                                                <input type="text" name="nombreProducto_M" class="form-control" value="<?php echo $row['nombre']; ?>" required />
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-8 pad-adjust">
+                                                <label class="formulario_label">Nombre del producto</label>
+                                                <div class="formulario_grupo-input">
+                                                    <input type="text" name="nombreProducto_M" class="formulario_input" value="<?php echo $row['nombre']; ?>" required />
+                                                </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-2 pad-adjust">
-                                                <label>Unidades</label>
-                                                <input type="text" name="unidadesProducto_M" class="form-control" value="<?php echo $row['unidades']; ?>" required />
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-2 pad-adjust">
+                                                <label class="formulario_label">Unidades</label>
+                                                <div class="formulario_grupo-input">
+                                                    <input type="text" name="unidadesProducto_M" class="formulario_input" value="<?php echo $row['unidades']; ?>" required />
+                                                </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-2 pad-adjust">
-                                                <label>Precio</label>
-                                                <input type="text" name="precioProducto_M" class="form-control" value="<?php echo $row['precio']; ?>" required />
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-2 pad-adjust">
+                                                <label class="formulario_label">Precio</label>
+                                                <div class="formulario_grupo-input">
+                                                    <input type="text" name="precioProducto_M" class="formulario_input" value="<?php echo $row['precio']; ?>" required />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <label>Descripción</label>
-                                                <input type="text" name="descripcionProducto_M" class="form-control" value="<?php echo $row['descripcion']; ?>" />
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                                <label class="formulario_label">Descripción</label>
+                                                <div class="formulario_grupo-input">
+                                                    <textarea name="descripcionProducto_M" class="form-control" rows="10" cols="20"><?php echo $row['descripcion']; ?></textarea>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <label>Imagen</label>
-                                                <input type="file" name="imagenProducto" />
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                                <label class="formulario_label">Imagen del producto (Solo se admite formato: PNG)</label>
+                                                <div class="formulario_grupo-input">
+                                                    <input type="file" name="imagenProducto" />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -320,8 +346,11 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xs-10 col-sm-12 col-md-12 pad-adjust" id="tablaMuestraProductos" style="display:none;">
+                <div class="col-xs-10 col-sm-12 col-md-12 pad-adjust" id="tablaMuestraProductos" style="display:none; overflow-x:scroll;">
+                    <div class="margen col-xs-12 col-sm-12 col-md-12">
+                        <label class="col-xs-12 col-sm-12 col-md-12 text-right" for="myInput">Filtro de productos:</label>
+                        <input class="form-control col-xs-12 col-sm-12 col-md-12" id="myInput" type="text" placeholder="Filtrar">
+                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -330,17 +359,16 @@
                                 <th scope="col">Precio</th>
                                 <th scope="col">Descripción</th>
                                 <th scope="col"></th>
-                                <!-- <th scope="col"></th> -->
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="myList">
                             <?php
                             $productosObtenidos = BD::listarProductos();
                             if (isset($productosObtenidos)) {
                                 $row = $productosObtenidos->fetch();
                                 while ($row != null) {
                             ?>
-                                    <tr scope="row">
+                                    <tr id="lbl" scope="row">
                                         <td><?php echo $row["id_producto"]; ?></td>
                                         <td><?php echo $row["nombre"]; ?></td>
                                         <td><?php echo $row["precio"]; ?></td>

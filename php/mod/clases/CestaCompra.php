@@ -9,6 +9,8 @@ class CestaCompra
 
     protected $productosSeleccionados = array();
     protected $cursosSeleccionados = array();
+    protected $todoslospedidosProductos = array();
+    protected $todoslospedidosCursos = array();
 
     // Introduce un nuevo artículo en la cesta de la compra
     public function nuevo_articulo($codigo)
@@ -156,7 +158,6 @@ class CestaCompra
                 . "</div>";
         }
     }
-
 
     //Función que muestra la lista de pizzas, pero sin el botón para eliminarla de la lista
     public function muestraSinBotonQuitar()

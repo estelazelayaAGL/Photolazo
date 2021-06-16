@@ -75,7 +75,7 @@
         </div>
     </section>
 
-    <?php include("php/mod/plantillasDelDiseno/footer.php")  ?>
+    <?php include("php/mod/plantillasDelDiseno/footer2.php")  ?>
 </body>
 
 </html>

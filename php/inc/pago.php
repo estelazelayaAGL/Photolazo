@@ -94,12 +94,16 @@
                                         <div class="panel-heading">
                                             <div class="row">
                                                 <div class="form-group col-xs-12 col-sm-12   col-md-12">
-                                                    <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre">
+                                                    <div class="formulario_grupo-input">
+                                                        <input type="text" class="formulario_input" id="nombreUsuario" name="nombreUsuario" placeholder=" Nombre" required>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                                                    <button class="btn btn-primary btn-lg" type="submit" name="actualizarReceptor">Actualizar nombre</button>
+                                                    <div class="formulario_grupo-input">
+                                                        <button class="btn btn-primary btn-lg" type="submit" name="actualizarReceptor">Actualizar nombre</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,25 +124,35 @@
                                         <div class="panel-heading">
                                             <div class="row">
                                                 <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                                                    <input type="text" class="form-control" id="validarDireccion" name="validarDireccion" placeholder="Dirección">
+                                                    <div class="formulario_grupo-input">
+                                                        <input type="text" class="formulario_input" id="validarDireccion" name="validarDireccion" placeholder=" Dirección" required>
+                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="form-group col-xs-12 col-sm-12   col-md-6">
-                                                    <input type="text" class="form-control" id="validarCiudad" name="validarCiudad" placeholder="Ciudad">
+                                                    <div class="formulario_grupo-input">
+                                                        <input type="text" class="formulario_input" id="validarCiudad" name="validarCiudad" placeholder=" Ciudad" required>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group col-xs-12 col-sm-12 col-md-6">
-                                                    <input type="text" class="form-control" id="validarProvincia" name="validarProvincia" placeholder="Provincia">
+                                                    <div class="formulario_grupo-input">
+                                                        <input type="text" class="formulario_input" id="validarProvincia" name="validarProvincia" placeholder=" Provincia" required>
+                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="form-group col-xs-12 col-sm-12 col-md-6">
-                                                    <input type="text" class="form-control" id="validarPais" name="validarPais" placeholder="Pais">
+                                                    <div class="formulario_grupo-input">
+                                                        <input type="text" class="formulario_input" id="validarPais" name="validarPais" placeholder=" Pais" required>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group col-xs-12 col-sm-12 col-md-6">
-                                                    <input type="text" class="form-control" id="validarCPostal" name="validarCPostal" placeholder="Codigo postal">
+                                                    <div class="formulario_grupo-input">
+                                                        <input type="text" class="formulario_input" id="validarCPostal" name="validarCPostal" placeholder=" Codigo postal" required>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -170,18 +184,22 @@
                                         <div class="panel-heading">
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                    <input type="hidden" name="cuentaH" class="form-control" value="Cuenta bancaria" required />
-                                                    <!-- <input type="hidden" name="receptor" class="form-control" value="<?php //echo $_SESSION['receptor']; 
-                                                                                                                            ?>" /> -->
-                                                    <input type="text" name="titular" class="form-control" placeholder="Titular" required />
+                                                    <div class="formulario_grupo-input">
+                                                        <input type="hidden" name="cuentaH" class="formulario_input" value="Cuenta bancaria" required />
+                                                        <input type="text" name="titular" class="formulario_input" placeholder=" Titular" required />
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                                    <input type="text" name="iban" class="form-control" placeholder="IBAN" required />
+                                                    <div class="formulario_grupo-input">
+                                                        <input type="text" name="iban" class="formulario_input" placeholder=" IBAN" required />
+                                                    </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                                    <input type="text" name="bic" class="form-control" placeholder="BIC" required />
+                                                    <div class="formulario_grupo-input">
+                                                        <input type="text" name="bic" class="formulario_input" placeholder=" BIC" required />
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="espacio row">
@@ -201,29 +219,37 @@
                                         <div class="panel-heading">
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                    <!-- <input type="hidden" name="receptor" class="form-control" value="<?php //echo $_SESSION['receptor']; 
-                                                                                                                            ?>" /> -->
-                                                    <input type="hidden" name="tarjetaH" class="form-control" value="Tarjeta de crédito/débito" />
-                                                    <input type="text" name="titular" class="form-control" placeholder="Titular" required />
+                                                    <!-- <input type="hidden" name="receptor" class="formulario_input" value="<?php //echo $_SESSION['receptor']; 
+                                                                                                                                ?>" /> -->
+                                                    <input type="hidden" name="tarjetaH" class="formulario_input" value="Tarjeta de crédito/débito" />
+                                                    <input type="text" name="titular" class="formulario_input" placeholder=" Titular" required />
                                                 </div>
                                             </div>
                                             <div class="row ">
-                                                <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                    <input type="text" name="numTarjeta" class="form-control" placeholder="Número tarjeta" required />
+                                                <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                                    <div class="formulario_grupo-input">
+                                                        <input type="text" name="numTarjeta" class="formulario_input" placeholder=" Número tarjeta" required />
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row ">
-                                                <div class="col-xs-12 col-sm-4 col-md-3">
-                                                    <span class="help-block text-muted letra-peq">Mes caducidad</span>
-                                                    <input type="text" name="mesCaducidad" class="form-control" placeholder="Mes caducidad" required />
+                                                <div class="formulario_grupo col-xs-12 col-sm-4 col-md-3 pad-adjust">
+                                                    <div class="formulario_grupo-input">
+                                                        <span class="help-block text-muted letra-peq">Mes caducidad</span>
+                                                        <input type="text" name="mesCaducidad" class="formulario_input" placeholder=" Mes caducidad" required />
+                                                    </div>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-4 col-md-3">
-                                                    <span class="help-block text-muted letra-peq">Año caducidad</span>
-                                                    <input type="text" name="annoCaducidad" class="form-control" placeholder="Año caducidad" required />
+                                                <div class="formulario_grupo col-xs-12 col-sm-4 col-md-3 pad-adjust">
+                                                    <span class="help-block text-muted letra-peq formulario_label">Año caducidad</span>
+                                                    <div class="formulario_grupo-input">
+                                                        <input type="text" name="annoCaducidad" class="formulario_input" placeholder=" Año caducidad" required />
+                                                    </div>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-4 col-md-3">
-                                                    <span class="help-block text-muted letra-peq">CVC</span>
-                                                    <input type="text" name="cvc" class="form-control" placeholder="CVC" required />
+                                                <div class="formulario_grupo col-xs-12 col-sm-4 col-md-3 pad-adjust">
+                                                    <span class="help-block text-muted letra-peq formulario_label">CVC</span>
+                                                    <div class="formulario_grupo-input">
+                                                        <input type="text" name="cvc" class="formulario_input" placeholder=" CVC" required />
+                                                    </div>
                                                 </div>
                                                 <div class="col-xs-0 col-sm-2 col-md-3 hidden-xs">
                                                     <img src="../../imagenes/imgMaquetacion/tarjetaPago.png" class="" />
@@ -231,7 +257,7 @@
 
                                             </div>
                                             <div class="espacio row">
-                                                <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group col-xs-12 col-sm-12 col-md-12 pad-adjust">
                                                     <input type="reset" name="limpiar" class="btn btn-primary btn-lg gris" value="Limpiar" />
                                                     <input type="submit" name="pagar" class="btn btn-primary btn-lg" value="Finalizar pago" />
                                                 </div>

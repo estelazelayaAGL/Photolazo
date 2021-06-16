@@ -3,6 +3,7 @@
 
 <body>
     <script src="../../js/administracionCursos.js"></script>
+    <script src="../../js/filtroEntradas.js"></script>
     <?php $titulo = 'Administración'; ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
     <!---	Incluye un breadcrumb que indique la sección actual-->
@@ -177,72 +178,93 @@
                             <h4>AÑADIR NUEVO CURSO</h4>
                             <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                        <label>ID CURSO</label>
-                                        <input type="text" name="id_curso" class="form-control" required />
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-6 pad-adjust">
+                                        <label class="formulario_label">ID CURSO</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" name="id_curso" class="" required />
+                                        </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                        <label>Categoría</label>
-                                        <select name="id_categoria" id="id_categoria" required>
-                                            <?php foreach ($categorias as $categoria) {
-                                                echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
-                                            }
-                                            ?>
-                                        </select>
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-6 pad-adjust">
+                                        <label class="formulario_label">Categoría</label>
+                                        <div class="formulario_grupo-input">
+                                            <select name="id_categoria" id="id_categoria" required>
+                                                <?php foreach ($categorias as $categoria) {
+                                                    echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-4 pad-adjust">
-                                        <label>Precio</label>
-                                        <input type="number" name="precio" class="form-control" placeholder="" required />
+
+                                </div>
+                                <div class="row">
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-6 pad-adjust">
+                                        <label class="formulario_label">Lema</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" name="lema" class="" placeholder="" required />
+                                        </div>
+                                    </div>
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-6 pad-adjust">
+                                        <label class="formulario_label">Precio</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="number" name="precio" class="" placeholder="" required />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <label>Lema</label>
-                                        <input type="text" name="lema" class="form-control" placeholder="" required />
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                        <label class="formulario_label">Titulo</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" name="titulo" class="formulario_input" required />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <label>Titulo</label>
-                                        <input type="text" name="titulo" class="form-control" required />
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-6 pad-adjust">
+                                        <label class="formulario_label">Nivel</label>
+                                        <div class="formulario_grupo-input">
+                                            <!-- <input type="text" name="nivel" class="" required /> -->
+                                            <select name="nivel" id="nivel" class="" required>
+                                                <?php foreach ($niveles as $nivel) {
+                                                    echo  "<option value=" . $nivel['nivel'] . ">" . $nivel['nivel'] . "</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-6 pad-adjust">
+                                        <label class="formulario_label">Autor</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" name="autor" class="" required />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                        <label>Nivel</label>
-                                        <!-- <input type="text" name="nivel" class="form-control" required /> -->
-                                        <select name="nivel" id="nivel" class="form-control" required>
-                                            <?php foreach ($niveles as $nivel) {
-                                                echo  "<option value=" . $nivel['nivel'] . ">" . $nivel['nivel'] . "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                        <label>Autor</label>
-                                        <input type="text" name="autor" class="form-control" required />
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                        <label class="formulario_label">Resumen</label>
+                                        <div class="formulario_grupo-input">
+                                            <textarea type="text" name="resumen" class="form-control" cols="100" rows="10" required></textarea>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <label>Resumen</label>
-                                        <textarea type="text" name="resumen" class="form-control" cols="100" rows="10" required></textarea>
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                        <label class="formulario_label">Descripcion</label>
+                                        <div class="formulario_grupo-input">
+                                            <textarea name="descripcion" class="form-control" cols="100" rows="50" required></textarea>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <label>Descripcion</label>
-                                        <textarea type="text" name="descripcion" class="form-control" cols="100" rows="50" required></textarea>
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                        <label class="formulario_label">Imagen del curso (Solo se admite formato: PNG)</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="file" name="imagenCurso" required />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <label>Imagen del curso</label>
-                                        <input type="file" name="imagenCurso" required />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                    <div class="espacio col-xs-12 col-sm-12 col-md-12 formulario_grupo formulario_grupo-btn-enviar">
                                         <input type="reset" name="limpiar" class="btn btn-primary btn-lg gris" value="Limpiar" />
                                         <input type='submit' name='anadir' class='btn btn-primary btn-lg' value='Añadir' />
                                     </div>
@@ -263,74 +285,92 @@
                             ?>
                                     <h4>MODIFICAR CURSO <?php echo $row["id_curso"]; ?></h4>
                                     <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
-                                        <input type="hidden" name="id_curso_M" class="form-control" value="<?php echo $row['id_curso']; ?>" />
+                                        <input type="hidden" name="id_curso_M" class="" value="<?php echo $row['id_curso']; ?>" />
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                                <label>Categoría</label>
-                                                <select name="id_categoria_M" id="id_categoria_M" required>
-                                                    <?php
-                                                    $categorias = BD::categoriasProductoCurso();
-                                                    foreach ($categorias as $categoria) {
-                                                        echo $categoria['nombre'];
-                                                        if ($categoria['id_categoria'] == $row['id_categoria']) {
-                                                            echo  "<option selected value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
-                                                        } else {
-                                                            echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                                <label class="formulario_label">Categoría</label>
+                                                <div class="formulario_grupo-input">
+                                                    <select name="id_categoria_M" id="id_categoria_M" required>
+                                                        <?php
+                                                        $categorias = BD::categoriasProductoCurso();
+                                                        foreach ($categorias as $categoria) {
+                                                            echo $categoria['nombre'];
+                                                            if ($categoria['id_categoria'] == $row['id_categoria']) {
+                                                                echo  "<option selected value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                                            } else {
+                                                                echo  "<option value=" . $categoria['id_categoria'] . ">" . $categoria['nombre'] . "</option>";
+                                                            }
                                                         }
-                                                    }
-                                                    ?>
-                                                </select>
+                                                        ?>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                                <label>Precio</label>
-                                                <input type="number" name="precio_M" class="form-control" placeholder="" value="<?php echo $row['precio']; ?>" />
+                                                <label class="formulario_label">Precio</label>
+                                                <div class="formulario_grupo-input">
+                                                    <input type="number" name="precio_M" class="formulario_input" placeholder="" value="<?php echo $row['precio']; ?>" />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <label>Lema</label>
-                                                <input type="text" name="lema_M" class="form-control" placeholder="" value="<?php echo $row['lema']; ?>" />
+                                                <label class="formulario_label">Lema</label>
+                                                <div class="formulario_grupo-input">
+                                                    <input type="text" name="lema_M" class="formulario_input" placeholder="" value="<?php echo $row['lema']; ?>" />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <label>Titulo</label>
-                                                <input type="text" name="titulo_M" class="form-control" value="<?php echo $row['titulo']; ?>" />
+                                                <label class="formulario_label">Titulo</label>
+                                                <div class="formulario_grupo-input">
+                                                    <input type="text" name="titulo_M" class="formulario_input" value="<?php echo $row['titulo']; ?>" />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                                <label>Nivel</label>
-                                                <select name="nivel_M" id="nivel_M" class="form-control" required>
-                                                    <?php
-                                                    $niveles = BD::nivelesCurso();
-                                                    foreach ($niveles as $nivel) {
-                                                        echo  "<option value=" . $nivel['nivel'] . ">" . $nivel['nivel'] . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
+                                                <label class="formulario_label">Nivel</label>
+                                                <div class="formulario_grupo-input">
+                                                    <select name="nivel_M" id="nivel_M" class="" required>
+                                                        <?php
+                                                        $niveles = BD::nivelesCurso();
+                                                        foreach ($niveles as $nivel) {
+                                                            echo  "<option value=" . $nivel['nivel'] . ">" . $nivel['nivel'] . "</option>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                                <label>Autor</label>
-                                                <input type="text" name="autor_M" class="form-control" value="<?php echo $row['autor']; ?>" />
+                                                <label class="formulario_label">Autor</label>
+                                                <div class="formulario_grupo-input">
+                                                    <input type="text" name="autor_M" class="formulario_input" value="<?php echo $row['autor']; ?>" />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <label>Resumen</label>
-                                                <textarea type="text" name="resumen_M" class="form-control" cols="100" rows="10"><?php echo $row['resumen']; ?></textarea>
+                                                <label class="formulario_label">Resumen</label>
+                                                <div class="formulario_grupo-input">
+                                                    <textarea type="text" name="resumen_M" class="form-control" cols="100" rows="10"><?php echo $row['resumen']; ?></textarea>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <label>Descripcion</label>
-                                                <textarea type="text" name="descripcion_M" class="form-control" cols="100" rows="50"> <?php echo $row['descripcion']; ?></textarea>
+                                                <label class="formulario_label">Descripcion</label>
+                                                <div class="formulario_grupo-input">
+                                                    <textarea name="descripcion_M" class="form-control" cols="100" rows="50"> <?php echo $row['descripcion']; ?></textarea>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <label>Imagen del curso</label>
-                                                <input type="file" name="imagenCurso" required />
+                                                <label class="formulario_label">Imagen del curso (Solo se admite formato: PNG)</label>
+                                                <div class="formulario_grupo-input"><label class="formulario_label">
+                                                        <input type="file" name="imagenCurso" required />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -349,7 +389,11 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust" id="tablaMuestraCursos" style="display:none;">
+                <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust" id="tablaMuestraCursos" style="display:none; overflow-x:scroll;">
+                    <div class="margen col-xs-12 col-sm-12 col-md-12">
+                        <label class="col-xs-12 col-sm-12 col-md-12 text-right" for="myInput">Filtro de cursos:</label>
+                        <input class="form-control col-xs-12 col-sm-12 col-md-12" id="myInput" type="text" placeholder="Filtrar">
+                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -361,14 +405,14 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="myList">
                             <?php
                             $cursosObtenidos = BD::listarCursos();
                             if (isset($cursosObtenidos)) {
                                 $row = $cursosObtenidos->fetch();
                                 while ($row != null) {
                             ?>
-                                    <tr>
+                                    <tr id="lbl">
                                         <td><?php echo $row["id_curso"]; ?></td>
                                         <td><?php echo $row["titulo"]; ?></td>
                                         <td><?php echo $row["autor"]; ?></td>

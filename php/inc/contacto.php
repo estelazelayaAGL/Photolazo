@@ -6,6 +6,7 @@
     ?>
 
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
+    <script src="../../js/validaFormContacto.js"></script>
 
     <!---	Incluye un breadcrumb que indique la sección actual-->
     <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
@@ -22,23 +23,10 @@
     </header>
 
     <?php
+    $mensaje = "";
     if (isset($_POST['enviar'])) {
-
-        /*
-        $nombre = $_POST['validarNombre'];
-        $correo = $_POST['validarTelefono'];
-        $mensaje = $_POST['validarMensaje'];
-        $mensaje = wordwrap($mensaje, 70, "\r\n");
-
-        $para = "ezelayal01@educantabria.es";
-        $titulo = "Consulta a Photolazo";
-
-        if (imap_mail($para, $titulo, $mensaje)) {
-            echo "<p>Thank you for contacting us, $nombre. You will get a reply within 24 hours.</p>";
-        } else {
-            echo '<p>We are sorry but the email did not go through.</p>';
-        }*/
-        
+        $mensaje = "<div class ='col-xs-12 col-sm-12 col-md-12 alert alert-success'>
+                <a class='close' data-dismiss='alert'> × </a>Muchas gracias por contactar con nosotros. Le responderemos con la mayor brevedad posible.</div>";
     }
     ?>
 
@@ -54,36 +42,66 @@
                             <hr>
                         </div>
                         <div class="row">
+                            <?php echo $mensaje; ?>
+                            <div class="col-xs-12 col-sm-12 col-md-12 formulario_mensaje" id="formulario_mensaje">
+                                <div class='alert alert-danger'>
+                                    <a class='close' data-dismiss='alert'> × </a>Error: Por favor rellene el formulario correctamente.
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 formulario_mensaje-exito" id="formulario_mensaje-exito">
+                                <div class='alert alert-success'>
+                                    <a class='close' data-dismiss='alert'> × </a>Muchas gracias por contactar con nosotros. Le responderemos con la mayor brevedad posible.
+                                </div>
+                                </p>
+                            </div>
                             <div class="col-xs-12 col-sm-12 col-md-4">
                                 <img class="img-fluid" src="../../imagenes/imgMaquetacion/img-contactanos.png" alt="">
                             </div>
                             <div class="registro col-xs-12 col-sm-12 col-md-6">
                                 <!-- INICIO FORMULARIO HTML -->
-                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <label for="validarNombre">Nombre y apellidos:<span class="rojo">*</span></label>
-                                        <input type="text" class="form-control" id="validarNombre" name="validarNombre" required>
+                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" id="contactoForm" novalidate autocomplete="off">
+                                    <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarNombre">
+                                        <label for="validarNombre" class="formulario_label">Nombre y apellidos:<span class="rojo">*</span></label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" class="formulario_input" id="validarNombre" name="validarNombre" placeholder=" Estela Zelaya Lazo" required>
+                                            <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                                        </div>
+                                        <p class="formulario_input-error">El nombre solo puede contener letras, espacios y acentos. <strong>(Max. 60 caracteres)</strong></p>
                                     </div>
 
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <label for="validarTelefono">Teléfono:</label>
-                                        <input type="number" class="form-control" id="validarTelefono" name="validarTelefono" max="999999999">
+                                    <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarTelefono">
+                                        <label for="validarTelefono" class="formulario_label">Teléfono:<span class="rojo">*</span></label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" class="formulario_input" id="validarTelefono" name="validarTelefono" placeholder=" +34 661908318" required>
+                                            <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                                        </div>
+                                        <p class="formulario_input-error">Prefijo (+) seguido de 2 o 3 cifras, un espacio en blanco y 9 cifras consecutivas.</p>
                                     </div>
 
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <label for="validarEmail">Correo electronico:<span class="rojo">*</span></label>
-                                        <input type="email" class="form-control" id="validarEmail" name="validarEmail" required>
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12" id="grupo_validarEmail">
+                                        <label for="validarEmail" class="formulario_label">Correo electrónico:<span class="rojo">*</span></label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" class="formulario_input " id="validarEmail" name="validarEmail" placeholder=" tucorreo@tucorreo.com" required>
+                                            <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                                        </div>
+                                        <p class="formulario_input-error">El correo solo puede contener letras, números, puntos, guiones o guión bajo.(Máx. 40 caracteres)</p>
                                     </div>
 
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <label for="validarMensaje">Su mensaje:<span class="rojo">*</span></label>
-                                        <textarea class="form-control" id="validarMensaje" name="validarMensaje" rows="5" min="25" required></textarea>
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12" id="grupo_validarMensaje">
+                                        <label for="validarMensaje" class="formulario_label">Su mensaje:<span class="rojo">*</span></label>
+                                        <div class="formulario_grupo-input">
+                                            <textarea class="form-control" id="validarMensaje" name="validarMensaje" rows="5" min="25" required></textarea>
+                                            <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                                        </div>
+                                        <p class="formulario_input-error">Debes escribir un mensaje.</p>
                                     </div>
 
 
-                                    <div class="col-xs-12 col-sm-12 col-md-12 espacio">
-                                        <input value="Limpiar" class="btn btn-primary btn-lg gris" type="reset" name="reset" />
-                                        <input value="Enviar" class="btn btn-primary btn-lg" type="submit" name="enviar" />
+                                    <div class="espacio col-xs-12 col-sm-12 col-md-12 formulario_grupo formulario_grupo-btn-enviar">
+                                        <div>
+                                            <input value="Limpiar" class="btn btn-primary btn-lg gris" type="reset" name="reset" />
+                                            <input value="Enviar" class="btn btn-primary btn-lg" type="submit" name="enviar" id="enviar" />
+                                        </div>
                                     </div>
 
                                 </form>

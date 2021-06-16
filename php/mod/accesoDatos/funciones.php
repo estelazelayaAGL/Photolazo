@@ -1,5 +1,6 @@
 <?php
 require_once '../mod/clases/Comentario.php';
+
 class funciones
 {
 
@@ -32,7 +33,7 @@ class funciones
         } else {
             foreach ($productos as $producto) {
                 $puntos = "";
-                if(strlen($producto->getDescripcion()) > 100) {
+                if (strlen($producto->getDescripcion()) > 100) {
                     $puntos = "...";
                 }
                 echo '
@@ -64,6 +65,95 @@ class funciones
         }
     }
 
+    public static function muestraProductosValoraciones($productos, $usuario)
+    {
+        if (count($productos) == 0) {
+            echo '<div class="col-xs-12 col-sm-12 col-md-12"><p>Lista de productos vacía.</p></div>';
+        } else {
+            foreach ($productos as $producto) {
+                $puntos = "";
+                if (strlen($producto->getDescripcion()) > 100) {
+                    $puntos = "...";
+                }
+                echo '
+                <div class="col-xs-12 col-sm-6 col-md-4">
+						<div class="cuadro"> 
+                        <form method="post" action="../inc/detalleProducto.php">
+                        <input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>
+                        <h3 class="separado">' . $producto->getNombre() . '</h3>
+						<img class="img-fluid" src="../../imagenes/imgObjetivas/productos/' . $producto->getCodigo() . '.png">
+                    <p class="separado espacio" id="descripcion">' . substr($producto->getDescripcion(), 0, 100) . $puntos . '<input id="detalleProducto" name="detalleProducto" type="submit" value="Ver más" class="btn btn-primary"></input></p>
+                    
+                    </form>	
+                    <div class="detalles">'
+                    . '<form method="post" action="../inc/detalleProducto.php">'
+                    . '<input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>'
+                    . '<p class="negrita derecha">Precio:</p>'
+                    . '<p class="derecha iva"><label class="negrita precio">' . $producto->getPrecio() . ' €</label> (IVA no incluido)</p>'
+                    . '<p class="separado">Valoración media: ' . number_format(BD::mediaResenas($producto->getCodigo()), 2) . '</p>';
+                if (!BD::verificarResena($usuario, $producto->getCodigo())) {
+                    echo '<input id="detalleProducto" name="detalleProducto" type="submit" value="Ir a valorar" class="btn btn-info"></input>';
+                } else {
+                    echo "<div class='alert alert-success' role='alert'>
+                    Ya has valorado
+                  </div>";
+                }
+                echo ""
+                    . '</form>'
+                    . '</div>
+						</div>
+					</div>
+                ';
+            }
+        }
+    }
+
+    public static function muestraCursosValoraciones($cursos, $usuario)
+    {
+        if (count($cursos) == 0) {
+            echo '<div class="col-xs-12 col-sm-12 col-md-12"><p>Lista de cursos vacía.</p></div>';
+        } else {
+            foreach ($cursos as $curso) {
+                $puntos = "";
+                if (strlen($curso->getDescripcion()) > 100) {
+                    $puntos = "...";
+                }
+                echo '
+                <div class="col-xs-12 col-sm-6 col-md-4">
+						<div class="cuadro "> 
+                        <form method="post" action="../inc/detalleCurso.php">
+                            <input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>
+                            <h3 class="separado">' . $curso->getTitulo() . '</h3>
+                            <img class="img-fluid" src="../../imagenes/imgObjetivas/cursos/' . $curso->getCodigo() . '.png">
+                            <p class="letraGrisPequena espacio derecha">' . $curso->getAutor() . '</p>
+                            <p class="separado" id="descripcion"> ' . substr($curso->getDescripcion(), 0, 100) . $puntos . '<input id="detalleCurso" type="submit" value="Ver más" name="detalleCurso" class="btn btn-primary"></input></p>
+                            
+                        </form>
+							<div class="detalles">'
+                    . '<form action="../inc/detalleCurso.php" method="post">'
+                    . '<input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>'
+                    . '<p class="letrapequena izquierda">' . $curso->getNivel() . '</p>'
+                    . '<p class="negrita derecha">Precio: </p>'
+                    . '<p class="derecha iva"><label class="negrita precio">' . $curso->getPrecio() . ' €</label> (IVA no incluido)</p>'
+                    . '<p class="separado">Valoración media: ' . number_format(BD::mediaResenasCurso($curso->getCodigo()), 2) . '</p>';;
+
+                if (!BD::verificarResenaCurso($usuario, $curso->getCodigo())) {
+                    echo '<input id="detalleCurso" type="submit" value="Ir a valorar" name="detalleCurso" class="btn btn-info"></input>';
+                } else {
+                    echo "<div class='alert alert-success' role='alert'>
+                    Ya has valorado
+                  </div>";
+                }
+                echo ""
+                    . '</form>'
+                    . '</div>
+						</div>
+					</div>
+                ';
+            }
+        }
+    }
+
     public static function muestraCursos($cursos)
     {
         if (count($cursos) == 0) {
@@ -71,7 +161,7 @@ class funciones
         } else {
             foreach ($cursos as $curso) {
                 $puntos = "";
-                if(strlen($curso->getDescripcion()) > 100) {
+                if (strlen($curso->getDescripcion()) > 100) {
                     $puntos = "...";
                 }
                 echo '
@@ -120,9 +210,9 @@ class funciones
         } else {
             foreach ($entradas as $entrada) {
                 echo '
-                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 blanco mini">' . $entrada->getTitulo() . '
+                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 blanco mini">
                                 <div class=" cuadro panel-padre"> 
-                                <img class="img-fluid" src="../../imagenes/imgObjetivas/entradas/'. $entrada->getTitulo().'.png">
+                                <img class="img-fluid" src="../../imagenes/imgObjetivas/entradas/' . $entrada->getTitulo() . '.png">
                                         <div class="panel-titulo"> 
                 <label for="" class="list-group-item blanco">' . $entrada->getTitulo() . '</label>
                 <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
@@ -144,9 +234,9 @@ class funciones
         } else {
             foreach ($entradas as $entrada) {
                 echo '
-                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 blanco mini">' . $entrada->getTitulo() . '
+                <div id="lbl" class="col-xs-12 col-sm-6 col-md-4 blanco mini">
                                 <div class="cuadro panel-padre">
-                                <img class="img-fluid" src="../../imagenes/imgObjetivas/entradas/'. $entrada->getTitulo().'.png">
+                                <img class="img-fluid" src="../../imagenes/imgObjetivas/entradas/' . $entrada->getTitulo() . '.png">
                                         <div class="panel-titulo">
                                         <label class="list-group-item blanco" for="">' . $entrada->getTitulo() . '</label>
                                         <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>

@@ -3,6 +3,7 @@
 
 <body>
     <script src="../../js/administracionBlog.js"></script>
+    <script src="../../js/filtroEntradas.js"></script>
     <?php $titulo = 'Administración'; ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
     <!---	Incluye un breadcrumb que indique la sección actual-->
@@ -20,8 +21,8 @@
     <!-- Termina el header -->
     </header>
 
-     <!-- Impide el acceso a esta página a menos que se haya iniciado sesión como usuario administrador (campo tipo_usuario = 1) -->
-     <?php
+    <!-- Impide el acceso a esta página a menos que se haya iniciado sesión como usuario administrador (campo tipo_usuario = 1) -->
+    <?php
     if (isset($_SESSION['usuario'])) {
         $usuario = BD::obtieneUsuario($_SESSION['usuario']);
         if ($usuario->getTipo_usuario() == 0) {
@@ -74,7 +75,7 @@
         }
     }
 
-    
+
     if (isset($_POST['actualizar'])) {
         $id_entradaM = $_POST['id_entrada_M'];
         $id_categoriaM = $_POST['id_categoria_M'];
@@ -122,7 +123,7 @@
         }
     }
 
-    
+
     if (isset($_POST['modificar'])) {
         $disp = "block";
         $idBlog_M = $_POST['id_blog'];
@@ -164,47 +165,58 @@
                             <h4>AÑADIR NUEVA ENTRADA</h4>
                             <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                        <label> ID Categoria</label>
-                                        <!-- <input type="text" name="id_categoria" class="form-control" placeholder="" required /> -->
-                                        <select name="id_categoria" id="id_categoria" required>
-                                            <?php foreach ($categorias as $categoria) {
-                                                echo  "<option value=" . $categoria['id_categoriaB'] . ">" . $categoria['nombre'] . "</option>";
-                                            }
-                                            ?>
-                                        </select>
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-6 pad-adjust">
+                                        <label class="formulario_label">ID Categoria</label>
+                                        <div class="formulario_grupo-input">
+                                            <select name="id_categoria" id="id_categoria" required>
+                                                <?php foreach ($categorias as $categoria) {
+                                                    echo  "<option value=" . $categoria['id_categoriaB'] . ">" . $categoria['nombre'] . "</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                        <label>Autor</label>
-                                        <input type="text" name="autor" class="form-control" placeholder="" required />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <label>Titulo</label>
-                                        <input type="text" name="titulo" class="form-control" placeholder="" required />
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-6 pad-adjust">
+                                        <label class="formulario_label">Autor</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" name="autor" class="formulario_input" placeholder="" required />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <label>Contenido</label>
-                                        <textarea name="contenido" class="form-control" rows="10" cols="20" required></textarea>
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                        <label class="formulario_label">Titulo</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="text" name="titulo" class="formulario_input" placeholder="" required />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                        <label>Fecha de publicación</label>
-                                        <input type="date" name="fecha_publicacion" class="form-control" required />
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                        <label class="formulario_label">Contenido</label>
+                                        <div class="formulario_grupo-input">
+                                            <textarea name="contenido" class="form-control" rows="10" cols="20" required></textarea>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                        <label>Imagen de la entrada</label>
-                                        <input type="file" name="imagenEntrada" required />
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                        <label class="formulario_label">Fecha de publicación</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="date" name="fecha_publicacion" class="formulario_input" required />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                    <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                        <label class="formulario_label">Imagen de la entrada (Solo se admite formato: PNG)</label>
+                                        <div class="formulario_grupo-input">
+                                            <input type="file" name="imagenEntrada" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="espacio col-xs-12 col-sm-12 col-md-12 formulario_grupo formulario_grupo-btn-enviar">
                                         <input type="reset" name="limpiar" class="btn btn-primary btn-lg gris" value="Limpiar" />
                                         <input type='submit' name='anadir' class='btn btn-primary btn-lg' value='Añadir' />
                                     </div>
@@ -224,57 +236,67 @@
                             ?>
                                     <h4>MODIFICAR ENTRADA <?php echo $row["id_blog"]; ?></h4>
                                     <form enctype="multipart/form-data" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" novalidate>
-                                        <input type="hidden" name="id_entrada_M" class="form-control" value="<?php echo $row['id_blog']; ?>" required />
+                                        <input type="hidden" name="id_entrada_M" class="formulario_input" value="<?php echo $row['id_blog']; ?>" required />
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                                <label> ID Categoria</label>
-                                                <!-- <input type="text" name="id_categoria_M" class="form-control" placeholder="" value="<?php //echo $row['id_categoriaB']; 
-                                                                                                                                            ?>" required /> -->
-                                                <select name="id_categoria_M" id="id_categoria_M" required>
-                                                    <?php
-                                                    $categorias = BD::categoriasBlog();
-                                                    foreach ($categorias as $categoria) {
-                                                        echo $categoria['nombre'];
-                                                        if ($categoria['id_categoriaB'] == $row['id_categoriaB']) {
-                                                            echo  "<option selected value=" . $categoria['id_categoriaB'] . ">" . $categoria['nombre'] . "</option>";
-                                                        } else {
-                                                            echo  "<option value=" . $categoria['id_categoriaB'] . ">" . $categoria['nombre'] . "</option>";
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-6 pad-adjust">
+                                                <label class="formulario_label"> ID Categoria</label>
+                                                <div class="formulario_grupo-input">
+                                                    <select name="id_categoria_M" id="id_categoria_M" required>
+                                                        <?php
+                                                        $categorias = BD::categoriasBlog();
+                                                        foreach ($categorias as $categoria) {
+                                                            echo $categoria['nombre'];
+                                                            if ($categoria['id_categoriaB'] == $row['id_categoriaB']) {
+                                                                echo  "<option selected value=" . $categoria['id_categoriaB'] . ">" . $categoria['nombre'] . "</option>";
+                                                            } else {
+                                                                echo  "<option value=" . $categoria['id_categoriaB'] . ">" . $categoria['nombre'] . "</option>";
+                                                            }
                                                         }
-                                                    }
-                                                    ?>
-                                                </select>
+                                                        ?>
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                                <label>Autor</label>
-                                                <input type="text" name="autor_M" class="form-control" placeholder="" value="<?php echo $row['autor']; ?>" required />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <label>Titulo</label>
-                                                <input type="text" name="titulo_M" class="form-control" placeholder="" value="<?php echo $row['titulo']; ?>" required />
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-6 pad-adjust">
+                                                <label class="formulario_label">Autor</label>
+                                                <div class="formulario_grupo-input">
+                                                    <input type="text" name="autor_M" class="formulario_input" placeholder="" value="<?php echo $row['autor']; ?>" required />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <label>Contenido</label>
-                                                <textarea name="contenido_M" class="form-control" rows="10" cols="20" required><?php echo $row['contenido']; ?></textarea>
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                                <label class="formulario_label">Titulo</label>
+                                                <div class="formulario_grupo-input">
+                                                    <input type="text" name="titulo_M" class="formulario_input" placeholder="" value="<?php echo $row['titulo']; ?>" required />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-6 pad-adjust">
-                                                <label>Fecha de publicacion</label>
-                                                <input type="date" name="fecha_publicacion_M" class="form-control" value="<?php echo $row['fecha_publicacion']; ?>" required />
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                                <label class="formulario_label">Contenido</label>
+                                                <div class="formulario_grupo-input">
+                                                    <textarea name="contenido_M" class="form-control" rows="10" cols="20" required><?php echo $row['contenido']; ?></textarea>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust">
-                                                <label>Imagen de la entrada</label>
-                                                <input type="file" name="imagenEntrada" required />
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                                <label class="formulario_label">Fecha de publicación</label>
+                                                <div class="formulario_grupo-input">
+                                                    <input type="date" name="fecha_publicacion_M" class="formulario_input" value="<?php echo $row['fecha_publicacion']; ?>" required />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="form-group col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                            <div class="formulario_grupo col-xs-12 col-sm-12 col-md-12 pad-adjust">
+                                                <label class="formulario_label">Imagen de la entrada (Solo se admite formato: PNG)</label>
+                                                <div class="formulario_grupo-input">
+                                                    <input type="file" name="imagenEntrada" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="espacio col-xs-12 col-sm-12 col-md-12 formulario_grupo formulario_grupo-btn-enviar">
                                                 <input type="reset" name="limpiar" class="btn btn-primary btn-lg gris" value="Limpiar" />
                                                 <input type='submit' name='actualizar' class='btn btn-primary btn-lg' value='Modificar' />
                                             </div>
@@ -289,7 +311,11 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust" id="tablaMuestraEntradas" style="display:none;">
+                <div class="col-xs-12 col-sm-12 col-md-12 pad-adjust" id="tablaMuestraEntradas" style="display:none; overflow-x:scroll;">
+                    <div class="margen col-xs-12 col-sm-12 col-md-12">
+                        <label class="col-xs-12 col-sm-12 col-md-12 text-right" for="myInput">Filtro de entradas:</label>
+                        <input class="form-control col-xs-12 col-sm-12 col-md-12" id="myInput" type="text" placeholder="Filtrar">
+                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -300,14 +326,14 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="myList">
                             <?php
                             $entradasObtenidas = BD::listarEntradas();
                             if (isset($entradasObtenidas)) {
                                 $row = $entradasObtenidas->fetch();
                                 while ($row != null) {
                             ?>
-                                    <tr>
+                                    <tr id="lbl">
                                         <td><?php echo $row["id_blog"]; ?></td>
                                         <td><?php echo $row["autor"]; ?></td>
                                         <td><?php echo $row["titulo"]; ?></td>

@@ -57,7 +57,8 @@
     ?>
 
     <?php
-    $fecha = date("Y-m-d");
+    $fechaPedido = date("d-m-Y");
+    $fecha = BD::obtieneFechaEntrega($id_pedido);
     ?>
 
 
@@ -71,27 +72,23 @@
                         <hr>
                         <div class="row text-left">
                             <div class="col-xs-8 col-sm-8 col-md-8">
-                                <h2 class="sinMargin">PhotoLazo</h2>
+                                <h3 class="sinMargin">PhotoLazo</h3>
                                 <label>http://photolazo.es</label>
                             </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 text-center">
-                                <strong>Fecha</strong>
+                            <div class="col-xs-4 col-sm-4 col-md-4 text-center">
+                                <strong>Fecha de pedido</strong>
                                 <br>
-                                <?php echo $fecha ?>
-                            </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 text-center">
-                                <strong>Fecha de entrega</strong>
-                                <br>
-                                <?php echo BD::obtieneFechaEntrega($id_pedido) ?>
+                                <?php echo $fechaPedido ?>
                             </div>
                         </div>
                         <hr>
                         <div class="row text-left">
                             <div class="col-xs-12 col-sm-12 col-md-12">
-                                <h3>Cliente: <strong><?php echo $usuario->getNombre() . " " . $usuario->getApellidos(); ?></strong></h3>
-                                <h3>Receptor del pedido: <strong><?php echo  $_SESSION['receptor']; ?></strong></h3>
-                                <h3>Dirección de envio: <strong><?php echo $usuario->getDireccion() . ", " . $usuario->getCodigo_postal() . " " . $usuario->getCiudad() . " " . $usuario->getProvincia() . " " . $usuario->getPais(); ?></strong></h3>
-                                <h3>Método de pago: <strong><?php echo  $metodoString; ?></strong></h3>
+                                <strong> Cliente:</strong> <?php echo $usuario->getNombre() . " " . $usuario->getApellidos(); ?><br>
+                                <strong> Receptor del pedido:</strong> <?php echo  $_SESSION['receptor']; ?><br>
+                                <strong> Dirección de envio: </strong><?php echo $usuario->getDireccion() . ", " . $usuario->getCodigo_postal() . " " . $usuario->getCiudad() . " " . $usuario->getProvincia() . " " . $usuario->getPais(); ?><br>
+                                <strong> Método de pago: </strong><?php echo  $metodoString; ?><br>
+                                <strong>Fecha prevista de entrega: </strong><?php echo $fecha[0] . "-" . $fecha[1] . "-" . $fecha[2]; ?><br>
                             </div>
                         </div>
                         <hr>
@@ -102,17 +99,22 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <a href="pedidos.php"><button class="btn btn-primary btn-lg">Ir a mis productos pedidos</button></a>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                <p class="h5">*************Gracias por tu compra*************</p>
+                                *************Gracias por tu compra*************
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-     </section>
+    </section>
 
-            <?php include("../mod/plantillasDelDiseno/footer.php")  ?>
+    <?php include("../mod/plantillasDelDiseno/footer.php")  ?>
 </body>
 
 </html>
