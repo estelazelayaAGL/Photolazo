@@ -145,25 +145,19 @@ function enviarFormulario(e) {
         ajax.onload = function () {
             if (ajax.status==200) {
                 submt.removeAttribute("disabled");
-                document.getElementById('formulario_mensaje-exito').classList.add('formulario_mensaje-exito-activo');
-
-                setTimeout(() => {
-                    document.getElementById('formulario_mensaje-exito').classList.remove('formulario_mensaje-exito-activo');
-                }, 5000);
-
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(ajax.responseText, "text/html");
+                var elem = doc.getElementById("respuesta").innerHTML; 
+                document.getElementById("mensaje").innerHTML =elem;
                 document.querySelectorAll('.formulario_grupo-correcto').forEach((icono) => {
                     icono.classList.remove('formulario_grupo-correcto');
                 });
             }
-            this.DONE((res) =>{
-                document.getElementById("mensaje").innerHTML=res;
-            });
+           
+           
 
         }
         ajax.send(fd);
-        //document.getElementById("mensaje").innerHTML=ajax.responseText;
-        // console.log(ajax.responseText);
-        // window.location.reload();
 
     } else {
         document.getElementById('formulario_mensaje').classList.add('formulario_mensaje-activo');

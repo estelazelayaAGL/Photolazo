@@ -6,8 +6,8 @@
     ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
     <script src="../../js/validaFormRegistro.js"></script>
-      <!---	Incluye un breadcrumb que indique la sección actual-->
-      <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
+    <!---	Incluye un breadcrumb que indique la sección actual-->
+    <div class="breadcrumbDiv col-xs-12 col-sm-12 col-md-12">
         <div class="">
             <ol class="breadcrumb">
                 <li><a href="../../index.php">Inicio </a></li>
@@ -23,7 +23,7 @@
 
     <?php
     //Para intentar dar de alta un registro
-    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['validarNombre'])){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['validarNombre'])) {
         $nombre = $_POST['validarNombre'];
         $apellidos = $_POST['validarApellidos'];
         $fechaNacimiento = $_POST['validarNacimiento'];
@@ -44,23 +44,22 @@
         if (!$existe) {
             $resultado = BD::crearUsuario($nombre, $apellidos, $fechaNacimiento, $telefono, $email, $usuario, $contrasena, $direccion, $ciudad, $provincia, $pais, $codigoPostal);
             if ($resultado) {
-                $mensaje = "<div class ='alert alert-success'>
-                <a class='close' data-dismiss='alert'> × </a>¡Se ha creado el usuario " . $usuario . " correctamente!</div>";
-                
+                $mensaje = "<div id='respuesta'><div class ='alert alert-success'>
+                <a class='close' data-dismiss='alert'> × </a>¡Se ha creado el usuario " . $usuario . " correctamente!</div></div>";
                 header('Refresh: 10; URL=login.php');
             } else {
-                $mensaje = "<div class ='alert alert-danger'>
-                <a class='close' data-dismiss='alert'> × </a>¡No se ha podido registrar el $usuario </div>";
-                // header("Location: registro.php");
-                header('Refresh: 10; URL=registro.php');
+                $mensaje = "<div id='respuesta'><div class ='alert alert-danger'>
+                <a class='close' data-dismiss='alert'> × </a>¡No se ha podido registrar el $usuario </div></div>";
+                //  header("Location: registro.php");
+                header('Refresh: 2; URL=registro.php');
             }
         } else {
-            $mensaje = "<div class ='alert alert-danger'>
-            <a class='close' data-dismiss='alert'> × </a>¡El usuario ya existe!</div>";
+            $mensaje = "<div id='respuesta'><div class ='alert alert-danger'>
+            <a class='close' data-dismiss='alert'> × </a>¡El usuario ya existe!</div></div>";
+            header('Refresh: 2; URL=registro.php');
         }
 
         echo $mensaje;
-
     }
     ?>
 
@@ -72,16 +71,17 @@
                     <h1>Crea una cuenta</h1>
                     <h4>Es fácil y rápido</h4>
                     <hr>
-                    
+
                     <div class="formulario_mensaje alert alert-danger" id="formulario_mensaje">
                         <a class='close' data-dismiss='alert'> × </a>
                         <p><i class="fas fa-exclamation-triangle"></i><b> Error: </b>Por favor rellene el formulario correctamente</p>
                     </div>
                     <div class="formulario_mensaje-exito" id="formulario_mensaje-exito">
                         <!-- <a class='close' data-dismiss='alert'> × </a> -->
-                        <p>Formulario enviado exitosamente!</p></p>
+                        <p>Formulario enviado exitosamente!</p>
+                        </p>
                     </div>
-                    
+
                     <div id="mensaje">
                         <?php
                         // var_dump($_POST);
@@ -99,7 +99,7 @@
                     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="registroForm" class="needs-validation" novalidate autocomplete="off">
                         <!-- DATOS DEL CLIENTE -->
                         <!-- GRUPO: Nombre -->
-                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarNombre" >
+                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarNombre">
                             <label for="validarNombre" class="formulario_label">Nombre:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                                 <input type="text" class="formulario_input " id="validarNombre" name="validarNombre" placeholder=" Estela Rosinda">
@@ -108,7 +108,7 @@
                             <p class="formulario_input-error">El nombre solo puede contener letras, espacios y acentos. <strong>(Max. 35 caracteres)</strong></p>
                         </div>
                         <!-- GRUPO: Apellidos -->
-                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarApellidos" >
+                        <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarApellidos">
                             <label for="validarApellidos" class="formulario_label">Apellidos:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
                                 <input type="text" class="formulario_input " id="validarApellidos" name="validarApellidos" placeholder=" Zelaya Lazo">
@@ -119,8 +119,8 @@
                         <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarNacimiento">
                             <label for="validarNacimiento" class="formulario_label">Fecha de nacimiento:<span class="rojo">*</span></label>
                             <div class="formulario_grupo-input">
-                            <input type="date" class="formulario_input " id="validarNacimiento" name="validarNacimiento">
-                            <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                                <input type="date" class="formulario_input " id="validarNacimiento" name="validarNacimiento">
+                                <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p class="formulario_input-error">Recuerda poner la fecha de nacimiento.</p>
                         </div>
@@ -235,7 +235,7 @@
                                 <button class="btn btn-info btn-lg formulario_btn" type="reset" name="reset">Limpiar</button>
                                 <button class="btn btn-primary btn-lg formulario_btn" id="enviar" type="submit" name="enviar">Enviar</button>
                             </div>
-                            
+
                         </div>
                     </form>
                 </div>
@@ -243,7 +243,7 @@
         </div>
     </section>
 
-    
+
     <?php include("../mod/plantillasDelDiseno/footer.php")  ?>
 </body>
 

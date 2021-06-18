@@ -1,0 +1,462 @@
+<html xmlns:ganttproject="http://ganttproject.sf.net/">
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Tareas - Temporización</title>
+        <style>
+	    A:link {
+		FONT-WEIGHT: bold;  TEXT-DECORATION: none;
+		FONT-SIZE: 14px ; COLOR: black;
+	    }
+	    A:visited {
+		FONT-WEIGHT: bold;  TEXT-DECORATION: none;
+		FONT-SIZE: 14px ; COLOR: black; BACKGROUND: none
+	    }
+	    A:hover {
+		FONT-WEIGHT: bold;  TEXT-DECORATION: none;
+		FONT-SIZE: 14px ; COLOR: white ; BACKGROUND: #6d9ec6;
+	    }
+	    .notes {
+	      padding-left: 10px;
+	    }
+	    .notes pre {
+	      font-family: Arial, Helvetica;
+	      font-size: 10px;
+	      margin-top: 0px;
+	      padding-top: 0px;
+	      margin-bottom: 5px;
+	    }
+	    .attachment {
+	      padding-left: 10px;
+	    }
+	    .attachment a:link {
+	      font-weight: normal;
+	      font-size: 12px;
+	      color: #6d9ec6;
+	      background: white;
+	    }
+	    .attachment a:hover {
+	      font-weight: normal;
+	      text-decoration: underline;
+	      font-size: 12px;
+	      color: #6d9ec6;
+	      background: white;
+	    }
+	    .attachment a:visited {
+	      font-weight: normal;
+	      font-size: 12px;
+	      background: white;
+	      color: gray;
+	    }
+	    TD {
+		FONT-SIZE: 12px; COLOR: black; FONT-STYLE: normal; FONT-FAMILY: Arial, Helvetica, Geneva, sans-serif
+	    }
+	    UL {
+		FONT-SIZE: 12px; FONT-FAMILY: Arial, Helvetica, Geneva, sans-serif
+	    }
+	    LI {
+		FONT-SIZE: 12px; FONT-FAMILY: Arial, Helvetica, Geneva, sans-serif
+	    }
+	    H1 {
+		FONT-WEIGHT: bold; FONT-SIZE: 16pt; COLOR: #6d9ec6;
+	    }
+	    H2 {
+		FONT-WEIGHT: bold; FONT-SIZE: 16pt; COLOR: #000000;
+	    }
+	    H3 {
+		FONT-WEIGHT: bold; FONT-SIZE: 13pt; COLOR: #6d9ec6;
+	    }
+	    H4 {
+		FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #000000;
+	    }
+	    H5 {
+		FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #6d9ec6;
+	    }
+	    H6 {
+		FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #000000
+	    }
+
+	    </style>
+    </head>
+    <body bgcolor="white">
+        <center>
+            <style>
+div.project_name {
+  font-size: 150%;
+  color: black;
+  font-weight: bold;
+  border-top: solid #6d9ec6 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+}
+div.page_links {
+  background: #6d9ec6;
+  text-align: center;
+}
+</style>
+            <center>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td bgcolor="#dddddd">
+                            <div class="project_name">PhotoLazo</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="page_links">
+                                <a href="Temporizaci&oacute;n.html">Inicio</a>  |
+          <a href="Temporizaci&oacute;n-chart.html">Gantt</a> |
+          <a href="Temporizaci&oacute;n-tasks.html">Tarea</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+            <br>
+            <style>
+td.header {
+  background: #dddddd;
+  margin: 0;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 2px;
+  padding-bottom:1px;
+  border-bottom: solid black 2px;
+}
+td.cell {
+  margin: 0;
+  margin-top: 2px;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 2px;
+  padding-bottom:1px;
+}
+div.cell {
+}
+h5.header {
+  margin-left: 2px;
+  margin-top: 2px;
+}
+</style>
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td valign="top" class="header">
+                        <h5 class="header">Nombre de la tarea</h5>
+                    </td><td valign="top" class="header">
+                        <h5 class="header">Fecha de inicio</h5>
+                    </td><td valign="top" class="header">
+                        <h5 class="header">Fecha de fin</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0em">
+                            <div style="margin: 0; padding: 0;">Anteproyecto</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">15/3/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">5/4/21</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Redacci&oacute;n de requisitos</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">15/3/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">19/3/21</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Maquetas de dise&ntilde;o</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">19/3/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">24/3/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Diagrama E/R</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">25/3/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">26/3/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Gu&iacute;a de estilos</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">29/3/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">31/3/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Documento Planificaci&oacute;n del proyecto</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">29/3/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">5/4/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0em">
+                            <div style="margin: 0; padding: 0;">Dise&ntilde;o de interfaz y BD</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">6/4/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">13/4/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Dise&ntilde;o de BD en SQL</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">6/4/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">6/4/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Dise&ntilde;o de estilos CSS</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">7/4/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">13/4/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Dise&ntilde;o de p&aacute;gina de inicio</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">7/4/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">13/4/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0em">
+                            <div style="margin: 0; padding: 0;">Desarrollo</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">14/4/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">4/6/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Dise&ntilde;o del backend PHP</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">14/4/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">25/5/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Dise&ntilde;o del frontend JS</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">14/4/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">25/5/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Pruebas y ajustes finales Frontend y Backend</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">26/5/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">3/6/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Actualizaci&oacute;n de documentaci&oacute;n de requisitos y diagrama E/R</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">3/6/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">4/6/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0em">
+                            <div style="margin: 0; padding: 0;">Despliegue</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">7/6/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">15/6/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Creaci&oacute;n de M&aacute;quina Virtual Azure</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">7/6/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">7/6/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Entorno de despliegue LAMP + Webmin</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">8/6/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">9/6/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Documentaci&oacute;n de despliegue y mantenimiento</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">10/6/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">11/6/21</div>
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:1em">
+                            <div style="margin: 0; padding: 0;">Despliegue en Azure</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">14/6/21</div>
+                        </div>
+                    </td><td valign="top" class="cell">
+                        <div style="margin:0; padding:0; padding-left:0.5em">
+                            <div style="margin: 0; padding: 0;">15/6/21</div>
+                        </div>
+                    </td> 
+                </tr>
+            </table>
+        </center>
+        <br>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td bgcolor="#6d9ec6" width="50%"><font color="#FFFFFF"><b>Ganttproject (3.1.3100)</b></font></td><td bgcolor="#6d9ec6" width="50%" align="right"><b><a href="http://ganttproject.biz">ganttproject.biz</a></b>
+                    <br>
+                    <b>13/6/21 - 15:23:24</b></td>
+            </tr>
+        </table>
+    </body>
+</html>

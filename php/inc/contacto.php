@@ -33,7 +33,7 @@
 
     <section class="container-fluid">
         <!-- ENCABEZADO -->
-        <div class="container ">
+        <div class="container sinPad">
             <div class="cabecera-seccion col-xs-12 col-sm-12 col-md-12">
                 <div class="panel panel-default ">
                     <div class="panel-body">
@@ -60,7 +60,7 @@
                             <div class="registro col-xs-12 col-sm-12 col-md-6">
                                 <!-- INICIO FORMULARIO HTML -->
                                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="needs-validation" id="contactoForm" novalidate autocomplete="off">
-                                    <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarNombre">
+                                    <div class="formulario_grupo  col-xs-12 col-sm-12 col-md-12 col-lg-6" id="grupo_validarNombre">
                                         <label for="validarNombre" class="formulario_label">Nombre y apellidos:<span class="rojo">*</span></label>
                                         <div class="formulario_grupo-input">
                                             <input type="text" class="formulario_input" id="validarNombre" name="validarNombre" placeholder=" Estela Zelaya Lazo" required>
@@ -69,7 +69,7 @@
                                         <p class="formulario_input-error">El nombre solo puede contener letras, espacios y acentos. <strong>(Max. 60 caracteres)</strong></p>
                                     </div>
 
-                                    <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarTelefono">
+                                    <div class="formulario_grupo  col-xs-12 col-sm-12 col-md-12 col-lg-6" id="grupo_validarTelefono">
                                         <label for="validarTelefono" class="formulario_label">Teléfono:<span class="rojo">*</span></label>
                                         <div class="formulario_grupo-input">
                                             <input type="text" class="formulario_input" id="validarTelefono" name="validarTelefono" placeholder=" +34 661908318" required>
