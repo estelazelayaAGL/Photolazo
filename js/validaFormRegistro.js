@@ -149,9 +149,12 @@ function enviarFormulario(e) {
                 var doc = parser.parseFromString(ajax.responseText, "text/html");
                 var elem = doc.getElementById("respuesta").innerHTML; 
                 document.getElementById("mensaje").innerHTML =elem;
-                document.querySelectorAll('.formulario_grupo-correcto').forEach((icono) => {
-                    icono.classList.remove('formulario_grupo-correcto');
-                });
+                if(elem.includes("correctamente")) {
+                    formulario.reset();
+                    document.querySelectorAll('.formulario_grupo-correcto').forEach((icono) => {
+                        icono.classList.remove('formulario_grupo-correcto');
+                    });
+                }
             }
            
            

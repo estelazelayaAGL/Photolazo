@@ -86,6 +86,7 @@ function enviarFormulario(e) {
                 submt.removeAttribute("disabled");
                 document.getElementById('formulario_mensaje-exito').classList.add('formulario_mensaje-exito-activo');
 
+                formulario.reset();
                 setTimeout(() => {
                     document.getElementById('formulario_mensaje-exito').classList.remove('formulario_mensaje-exito-activo');
                 }, 10000);

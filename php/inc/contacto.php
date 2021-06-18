@@ -99,7 +99,7 @@
 
                                     <div class="espacio col-xs-12 col-sm-12 col-md-12 formulario_grupo formulario_grupo-btn-enviar">
                                         <div>
-                                            <input value="Limpiar" class="btn btn-primary btn-lg gris" type="reset" name="reset" />
+                                            <input value="Limpiar" class="btn btn-primary btn-lg gris" type="reset" name="resetear" />
                                             <input value="Enviar" class="btn btn-primary btn-lg" type="submit" name="enviar" id="enviar" />
                                         </div>
                                     </div>

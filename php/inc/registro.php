@@ -232,7 +232,7 @@
                         </div>
                         <div class="espacio col-xs-12 col-sm-12 col-md-12 formulario_grupo formulario_grupo-btn-enviar">
                             <div>
-                                <button class="btn btn-info btn-lg formulario_btn" type="reset" name="reset">Limpiar</button>
+                                <button class="btn btn-info btn-lg formulario_btn" type="reset" name="resetear">Limpiar</button>
                                 <button class="btn btn-primary btn-lg formulario_btn" id="enviar" type="submit" name="enviar">Enviar</button>
                             </div>
 
