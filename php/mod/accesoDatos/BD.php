@@ -59,6 +59,18 @@ class BD
         return $fecha;
     }
 
+    public static function obtieneFechaEntrada($id_blog)
+    {
+        $sql = "SELECT YEAR(fecha_publicacion) AS anno ,MONTH(fecha_publicacion) AS mes,DAY(fecha_publicacion) AS dia FROM blogs WHERE id_blog = $id_blog";
+        $resultado = self::ejecutaConsulta($sql);
+        $fecha = "";
+        if ($resultado->rowCount() > 0) {
+            $row = $resultado->fetch();
+            $fecha = $row['dia'] . "-" . $row['mes'] . "-" . $row['anno'];
+        }
+        return $fecha;
+    }
+
     public static function obtieneNombreCategoriaBlog($categoria)
     {
         $sql = "SELECT nombre FROM categoriasblog WHERE id_categoriaB = '$categoria'";

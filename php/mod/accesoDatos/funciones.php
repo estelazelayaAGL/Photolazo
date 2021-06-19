@@ -215,7 +215,7 @@ class funciones
                                 <img class="img-fluid" src="../../imagenes/imgObjetivas/entradas/' . $entrada->getTitulo() . '.png">
                                         <div class="panel-titulo"> 
                 <label for="" class="list-group-item blanco">' . $entrada->getTitulo() . '</label>
-                <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
+                <label class="fecha">' . BD::obtieneFechaEntrada($entrada->getCodigo()) . '</label>
                 <form action="../inc/detalleEntrada.php" method="post">
                 <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>
                     <input type="submit" name="aniadir" value="Leer más" class="btn btn-info btn-lg espacio azul"></input>';
@@ -239,7 +239,7 @@ class funciones
                                 <img class="img-fluid" src="../../imagenes/imgObjetivas/entradas/' . $entrada->getTitulo() . '.png">
                                         <div class="panel-titulo">
                                         <label class="list-group-item blanco" for="">' . $entrada->getTitulo() . '</label>
-                                        <label class="fecha">' . $entrada->getFechaPublicacion() . '</label>
+                                        <label class="fecha">' . BD::obtieneFechaEntrada($entrada->getCodigo()) . '</label>
                 <form action="../inc/detalleEntrada.php" method="post">
                 <input type="hidden" name="codigo" value="' . $entrada->getCodigo() . '"></input>
                     <input  type="submit" name="aniadir" value="Leer más" class="btn btn-info btn-lg espacio azul"></input>';

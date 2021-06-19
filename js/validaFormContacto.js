@@ -1,10 +1,10 @@
 window.addEventListener("load", principal);
 
 var expresiones = {
-    nombre: /^[a-zA-ZÀ-ÿ\s]{1,60}$/, // Letras y espacios, pueden llevar acentos.
+    nombre: /^[a-zA-ZÀ-ÿ]+[a-zA-ZÀ-ÿ\s]{0,59}$/, // Letras y espacios, pueden llevar acentos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    telefono: /^\+\d{2,3}\s\d{9}/, //	Prefijo internacional ( + seguido de 2 o 3 cifras) espacio en blanco y 9 cifras consecutivas
-    mensaje: /^[a-zA-ZÀ-ÿ0-9\,\s\.]+$/
+    telefono: /^\+\d{2,3}\s\d{9}$/, //	Prefijo internacional ( + seguido de 2 o 3 cifras) espacio en blanco y 9 cifras consecutivas
+    mensaje: /^[a-zA-ZÀ-ÿ0-9\,\.]+[a-zA-ZÀ-ÿ0-9\,\s\.]*$/
 }
 
 var campos = {

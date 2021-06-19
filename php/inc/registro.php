@@ -199,7 +199,7 @@
                                 <input type="text" class="formulario_input " id="validarCiudad" name="validarCiudad">
                                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
-                            <p class="formulario_input-error">Solo puedes ingresar letras, numeros, espacios, comas y acentos (Máx. 20 caracteres )</p>
+                            <p class="formulario_input-error">Solo puedes ingresar letras, espacios, comas y acentos (Máx. 20 caracteres )</p>
                         </div>
 
                         <!-- GRUPO: Provincia -->
@@ -209,7 +209,7 @@
                                 <input type="text" class="formulario_input " id="validarProvincia" name="validarProvincia">
                                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
-                            <p class="formulario_input-error">Solo puedes ingresar letras, numeros, espacios, comas y acentos (Máx. 20 caracteres )</p>
+                            <p class="formulario_input-error">Solo puedes ingresar letras, espacios, comas y acentos (Máx. 20 caracteres )</p>
                         </div>
 
                         <!-- GRUPO: Pais -->
@@ -219,7 +219,7 @@
                                 <input type="text" class="formulario_input " id="validarPais" name="validarPais">
                                 <i class="formulario_validacion-estado fas fa-times-circle"></i>
                             </div>
-                            <p class="formulario_input-error">Solo puedes ingresar letras, numeros, espacios, comas y acentos (Máx. 35 caracteres )</p>
+                            <p class="formulario_input-error">Solo puedes ingresar letras, espacios, comas y acentos (Máx. 35 caracteres )</p>
                         </div>
                         <!-- GRUPO: Codigo postal-->
                         <div class="formulario_grupo  col-xs-12 col-sm-6 col-md-6" id="grupo_validarCPostal">

@@ -996,3 +996,7 @@ input[type="radio"]:checked~.estrella {
 .alert-success {
     font-size: 1.5em !important;
 }
+
+.footer2 ul li a {
+    color: #2E2E2E;
+}

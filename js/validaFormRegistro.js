@@ -1,18 +1,18 @@
 window.addEventListener("load", principal);
 
 var expresiones = {
-    nombre: /^[a-zA-ZÀ-ÿ\s]{1,35}$/, // Letras y espacios, pueden llevar acentos.
-    apellidos: /^[a-zA-ZÀ-ÿ\s]{1,50}$/, // Letras y espacios, pueden llevar acentos.
+    nombre: /^[a-zA-ZÀ-ÿ]+[a-zA-ZÀ-ÿ\s]{0,34}$/, // Letras y espacios, pueden llevar acentos.
+    apellidos: /^[a-zA-ZÀ-ÿ]+[a-zA-ZÀ-ÿ\s]{0,49}$/, // Letras y espacios, pueden llevar acentos.
     usuario: /^[a-zA-Z0-9\_\-]{1,35}$/, // Letras, numeros, guion y guion_bajo
-    password: /^.{1,12}$/, // 4 a 12 digitos.
+    password: /^.{4,12}$/, // 4 a 12 digitos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     fecha: /^\d{4}\-\d{2}\-\d{2}$/,
-    telefono: /^\+\d{2,3}\s\d{9}/, //	Prefijo internacional ( + seguido de 2 o 3 cifras) espacio en blanco y 9 cifras consecutivas
-    direccion: /^[a-zA-ZÀ-ÿ0-9\,\s]{1,35}$/, // Letras, numeros, espacios, comas y acentos
+    telefono: /^\+\d{2,3}\s\d{9}$/, //	Prefijo internacional ( + seguido de 2 o 3 cifras) espacio en blanco y 9 cifras consecutivas
+    direccion: /^[a-zA-ZÀ-ÿ0-9\,]+[a-zA-ZÀ-ÿ0-9\,\s]{0,34}$/, // Letras, numeros, espacios, comas y acentos
     codigoPostal: /^\d{1,6}$/,
-    ciudad: /^[a-zA-ZÀ-ÿ\,\s]{1,20}$/, // Letras, espacios, comas y acentos
-    provincia: /^[a-zA-ZÀ-ÿ\,\s]{1,20}$/, // Letras, espacios, comas y acentos
-    pais: /^[a-zA-ZÀ-ÿ\,\s]{1,35}$/ // Letras, espacios, comas y acentos
+    ciudad: /^[a-zA-ZÀ-ÿ\,]+[a-zA-ZÀ-ÿ\,\s]{0,19}$/, // Letras, espacios, comas y acentos
+    provincia: /^[a-zA-ZÀ-ÿ\,]+[a-zA-ZÀ-ÿ\,\s]{0,19}$/, // Letras, espacios, comas y acentos
+    pais: /^[a-zA-ZÀ-ÿ\,]+[a-zA-ZÀ-ÿ\,\s]{0,34}$/ // Letras, espacios, comas y acentos
 }
 
 var campos = {

@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="izquierda col-xs-12 col-sm-12 col-md-12 ">
                                         Publicación:
-                                        <label class="separado letraGrisPequena"><?php echo $blog->getFechaPublicacion(); ?></label>
+                                        <label class="separado letraGrisPequena"><?php echo BD::obtieneFechaEntrada($blog->getCodigo()); ?></label>
                                     </div>
                                     <div class="izquierda col-xs-12 col-sm-12 col-md-12">
                                         Categoría:
