@@ -4,6 +4,7 @@
 <body>
     <script src="../../js/administracionBlog.js"></script>
     <script src="../../js/filtroEntradas.js"></script>
+    <script src="../../js/borrado.js"></script>
     <?php $titulo = 'Administración'; ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
     <!---	Incluye un breadcrumb que indique la sección actual-->
@@ -26,10 +27,10 @@
     if (isset($_SESSION['usuario'])) {
         $usuario = BD::obtieneUsuario($_SESSION['usuario']);
         if ($usuario->getTipo_usuario() == 0) {
-            header("Location: index.php");
+            header("Location: ../../index.php");
         }
     } else {
-        header("Location: index.php");
+        header("Location: ../../index.php");
     }
     ?>
     <?php
@@ -348,7 +349,7 @@
                                             <div class="espacio">
                                                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                     <input type="hidden" name="id_blog" value="<?php echo $row['id_blog'] ?>">
-                                                    <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="btn btn-primary btn-lg gris">
+                                                    <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="eliminar btn btn-primary btn-lg gris">
 
                                                 </form>
                                             </div>

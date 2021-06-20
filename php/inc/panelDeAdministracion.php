@@ -18,6 +18,17 @@
 	</div>
 	<!-- Termina el header -->
 	</header>
+	 <!-- Impide el acceso a esta página a menos que se haya iniciado sesión como usuario administrador (campo tipo_usuario = 1) -->
+	 <?php
+    if (isset($_SESSION['usuario'])) {
+        $usuario = BD::obtieneUsuario($_SESSION['usuario']);
+        if ($usuario->getTipo_usuario() == 0) {
+            header("Location: ../../index.php");
+        }
+    } else {
+        header("Location: ../../index.php");
+    }
+    ?>
 
 	<section class="container-fluid">
 		<!-- ENCABEZADO -->

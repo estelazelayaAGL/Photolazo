@@ -12,9 +12,9 @@
     <!-- POLITICAS -->
     <div class="footer2 col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
         <ul>
-            <li>Información Legal |</li>
-            <li>Condiciones de venta |</li>
-            <li><a href="php/inc/privacidad.php">Política de privacidad</a> |</li>
+            <li><a href="php/inc/avisolegal.php">Información Legal</a> |</li>
+            <li><a href="php/inc/condicionesdeventa.php">Condiciones de venta</a> |</li>
+            <li><a href="php/inc/privacidad.php">Política de privacidad</a></li>
         </ul>
     </div>
     <div class="footer2 col-xs-12 col-sm-12 col-md-12 col-lg-12 ">

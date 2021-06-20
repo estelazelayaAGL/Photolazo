@@ -173,9 +173,9 @@
                             ?>
 
                             <div class="form-group izquierda espacio">
-                                <span>Metódo de pago:</span>
-                                <input type="button" id="cuenta" name="cuenta" value="Cuenta bancaria" class='btn btn-primary btn-lg' />
-                                <input type="button" id="tarjeta" name="tarjeta" value="Tarjeta de crédito/debito" class='btn btn-primary btn-lg' />
+                                <span class="centrad">Metódo de pago:<br></span>
+                                <input type="button" id="cuenta" name="cuenta" value="Cuenta bancaria" class='btn btn-primary btn-lg espacio' />
+                                <input type="button" id="tarjeta" name="tarjeta" value="Tarjeta de crédito/debito" class='btn btn-primary btn-lg espacio' />
                             </div>
 
                             <form action="resumen.php" method="post">
@@ -233,20 +233,20 @@
                                                 </div>
                                             </div>
                                             <div class="row ">
-                                                <div class="formulario_grupo col-xs-12 col-sm-4 col-md-3 pad-adjust">
+                                                <div class="formulario_grupo col-xs-12 col-sm-6 col-md-3 pad-adjust">
                                                     <div class="formulario_grupo-input">
-                                                        <span class="help-block text-muted letra-peq">Mes caducidad</span>
+                                                        <span class="help-block text-muted formulario_label letra-peq ">Mes caducidad</span>
                                                         <input type="text" name="mesCaducidad" class="formulario_input" placeholder=" Mes caducidad" required />
                                                     </div>
                                                 </div>
-                                                <div class="formulario_grupo col-xs-12 col-sm-4 col-md-3 pad-adjust">
-                                                    <span class="help-block text-muted letra-peq formulario_label">Año caducidad</span>
+                                                <div class="formulario_grupo col-xs-12 col-sm-6 col-md-3 pad-adjust">
+                                                    <span class="help-block text-muted formulario_label letra-peq">Año caducidad</span>
                                                     <div class="formulario_grupo-input">
                                                         <input type="text" name="annoCaducidad" class="formulario_input" placeholder=" Año caducidad" required />
                                                     </div>
                                                 </div>
-                                                <div class="formulario_grupo col-xs-12 col-sm-4 col-md-3 pad-adjust">
-                                                    <span class="help-block text-muted letra-peq formulario_label">CVC</span>
+                                                <div class="formulario_grupo col-xs-12 col-sm-12 col-md-3 pad-adjust">
+                                                    <span class="help-block text-muted formulario_label letra-peq">CVC</span>
                                                     <div class="formulario_grupo-input">
                                                         <input type="text" name="cvc" class="formulario_input" placeholder=" CVC" required />
                                                     </div>

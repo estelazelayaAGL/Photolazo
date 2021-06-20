@@ -1,12 +1,15 @@
 window.addEventListener("load", principal);
 
 function principal() {
-    document.getElementById("eliminar").addEventListener("click", asegurarBorrado, false);
+    var elementos = document.getElementsByClassName("eliminar");
+    for(var i=0; i < elementos.length; i++) {
+        elementos[i].addEventListener("click", asegurarBorrado, false);
+    }    
 }
 
 
-function asegurarBorrado() {
-    console.log("ENTRA");
-    respuesta = confirm("¿Seguro que desea Eliminar?");
-    return respuesta;
+function asegurarBorrado(e) {
+    if (!confirm('¿Realmente desea eliminar este elemento?')) {
+        e.preventDefault();
+      }
 }

@@ -62,7 +62,6 @@
                                         <td><?php echo $row["unidades"]; ?></td>
                                         <td><?php echo $row["precio"]; ?></td>
                                         <td><?php echo $row["descripcion"]; ?></td>
-                                        <!-- <td><?php //echo $row["valoracion_media"]; ?></td> -->
                                         <td>
                                             <form method="POST" action="administracion.php">
                                                 <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">

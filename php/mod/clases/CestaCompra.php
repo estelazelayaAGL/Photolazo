@@ -137,7 +137,7 @@ class CestaCompra
 
             echo "<table class='rosa_tabla table table-striped col-xs-12 col-sm-12 col-md-12'>"
                 . "<tr>"
-                . "<td colspan='2' class='text-right'>TOTAL: </td>"
+                . "<td colspan='2' class='text-right'>Subtotal: </td>"
                 . "<td>"
                 . number_format($this->get_coste(),2)
                 . "€</td>"
@@ -146,13 +146,14 @@ class CestaCompra
                 ."<td colspan='2' class='text-right'>IVA: </td><td>"
                 .number_format(($this->get_coste()*0.21),2)
                 ."</td></tr><tr>"
-                . "<td colspan='2' class='text-right'>Subtotal: </td><td>"
+                . "<td colspan='2' class='text-right'>TOTAL: </td><td>"
                 . number_format((($this->get_coste()*0.21)+ $this->get_coste()),2)
                 ."</td></tr>"
                 ."</table>";
             echo  "<div class='col-xs-12 col-sm-12 col-md-12'>"
                 . '<form action="cesta.php" method="post">'
-                . '<input type="submit" name="vaciar" value="Vaciar cesta" class="btn btn-primary btn-lg gris"></input>'
+                .'<a href="../../php/inc/productos.php"><span class="btn btn-primary btn-lg">Seguir comprando</span></a>'
+                . '<input type="submit" name="vaciar" value="Vaciar cesta" class="btn btn-primary btn-lg gris separacion"></input>'
                 . '<input type="submit" name="tramitar" value="Tramitar pedido" class="btn btn-primary btn-lg separacion"></input>'
                 . '</form>'
                 . "</div>";
@@ -209,7 +210,7 @@ class CestaCompra
             }
             echo "<table class='rosa_tabla table table-striped derecha'>"
                 . "<tr>"
-                . "<td colspan='2' class='text-right'>TOTAL: </td>"
+                . "<td colspan='2' class='text-right'>Subtotal: </td>"
                 . "<td>"
                 . number_format($this->get_coste(),2)
                 . "€</td>"
@@ -218,7 +219,7 @@ class CestaCompra
                 . "<td colspan='2' class='text-right'>IVA: </td><td>"
                 . number_format(($this->get_coste()*0.21),2)
                 ."</td></tr><tr>"
-                . "<td colspan='2' class='text-right'>Subtotal: </td><td>"
+                . "<td colspan='2' class='text-right'>TOTAL: </td><td>"
                 . number_format((($this->get_coste()*0.21)+ $this->get_coste()),2)
                 ."</td></tr>"
                 ."</table>";

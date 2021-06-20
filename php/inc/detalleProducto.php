@@ -93,7 +93,7 @@
                                     }
                                 }
                                 $media = BD::mediaResenas($_POST['codigo']);
-                                echo "<p class='separado text-center'>Valoración media de los usuarios: " . number_format($media, 2) . "</p>";
+                                echo "<p class='separado text-center'>Valoración media de los usuarios: " . number_format($media, 2) . " / 5.00</p>";
                                 ?>
                             </div>
                         </div>

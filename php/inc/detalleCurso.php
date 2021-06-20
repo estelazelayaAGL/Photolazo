@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-                                <small><i>Vista previa del curso:</i></small>
+                                <small><i>Vista previa del curso</i></small>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 espacio">
                             <h3 class="izquierda espacio"><label class="negrita"> Creado por:</label> <?php echo $curso->getAutor(); ?></h3>
@@ -92,7 +92,7 @@
                                     }
                                 }
                                 $media = BD::mediaResenasCurso($_POST['codigo']);
-                                echo "Valoración media de los usuarios: " . number_format($media, 2);
+                                echo "Valoración media de los usuarios: " . number_format($media, 2) . " / 5.00";
                                 ?>
                             </div>
                         </div>

@@ -100,11 +100,11 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
-                                <a href="pedidos.php"><button class="btn btn-primary btn-lg">Ir a mis productos pedidos</button></a>
+                                <a href="pedidos.php"><button class="btn btn-primary btn-lg espacio">Ir a mis productos pedidos</button></a>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <div class="col-xs-12 col-sm-12 col-md-12 text-center espacio">
                                 *************Gracias por tu compra*************
                             </div>
                         </div>

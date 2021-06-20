@@ -49,9 +49,9 @@ class funciones
                     <div class="detalles">'
                     . '<form method="post" action="../inc/cesta.php">'
                     . '<input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>'
-                    . '<p class="negrita derecha">Precio:</p>'
+                    // . '<p class="negrita derecha">Precio:</p>'
                     . '<p class="derecha iva"><label class="negrita precio">' . $producto->getPrecio() . ' €</label> (IVA no incluido)</p>'
-                    . '<p class="separado">Valoración media: ' . number_format(BD::mediaResenas($producto->getCodigo()), 2) . '</p>';
+                    . '<p class="separado">Valoración media: ' . number_format(BD::mediaResenas($producto->getCodigo()), 2) . ' / 5.00</p>';
                 if (isset($_SESSION['usuario'])) {
                     echo '<input id="botonProductos" type="submit" name="aniadir" value="Añadir al carrito" class="btn btn-info btn-lg espacio"></input>';
                 }
@@ -88,9 +88,9 @@ class funciones
                     <div class="detalles">'
                     . '<form method="post" action="../inc/detalleProducto.php">'
                     . '<input type="hidden" name="codigo" value="' . $producto->getCodigo() . '"></input>'
-                    . '<p class="negrita derecha">Precio:</p>'
+                    // . '<p class="negrita derecha">Precio:</p>'
                     . '<p class="derecha iva"><label class="negrita precio">' . $producto->getPrecio() . ' €</label> (IVA no incluido)</p>'
-                    . '<p class="separado">Valoración media: ' . number_format(BD::mediaResenas($producto->getCodigo()), 2) . '</p>';
+                    . '<p class="separado">Valoración media: ' . number_format(BD::mediaResenas($producto->getCodigo()), 2) . ' / 5.00</p>';
                 if (!BD::verificarResena($usuario, $producto->getCodigo())) {
                     echo '<input id="detalleProducto" name="detalleProducto" type="submit" value="Ir a valorar" class="btn btn-info"></input>';
                 } else {
@@ -133,9 +133,9 @@ class funciones
                     . '<form action="../inc/detalleCurso.php" method="post">'
                     . '<input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>'
                     . '<p class="letrapequena izquierda">' . $curso->getNivel() . '</p>'
-                    . '<p class="negrita derecha">Precio: </p>'
+                    // . '<p class="negrita derecha">Precio: </p>'
                     . '<p class="derecha iva"><label class="negrita precio">' . $curso->getPrecio() . ' €</label> (IVA no incluido)</p>'
-                    . '<p class="separado">Valoración media: ' . number_format(BD::mediaResenasCurso($curso->getCodigo()), 2) . '</p>';;
+                    . '<p class="separado">Valoración media: ' . number_format(BD::mediaResenasCurso($curso->getCodigo()), 2) . ' / 5.00</p>';;
 
                 if (!BD::verificarResenaCurso($usuario, $curso->getCodigo())) {
                     echo '<input id="detalleCurso" type="submit" value="Ir a valorar" name="detalleCurso" class="btn btn-info"></input>';
@@ -172,16 +172,16 @@ class funciones
                             <h3 class="separado">' . $curso->getTitulo() . '</h3>
                             <img class="img-fluid" src="../../imagenes/imgObjetivas/cursos/' . $curso->getCodigo() . '.png">
                             <p class="letraGrisPequena espacio derecha">' . $curso->getAutor() . '</p>
+                            <p class="letrapequena izquierda">' . $curso->getNivel() . '</p>
                             <p class="separado" id="descripcion"> ' . substr($curso->getDescripcion(), 0, 100) . $puntos . '<input id="detalleCurso" type="submit" value="Ver más" name="detalleCurso" class="btn btn-primary"></input></p>
                             
                         </form>
 							<div class="detalles">'
                     . '<form action="../inc/cesta.php" method="post">'
                     . '<input type="hidden" name="codigo" value="' . $curso->getCodigo() . '"></input>'
-                    . '<p class="letrapequena izquierda">' . $curso->getNivel() . '</p>'
-                    . '<p class="negrita derecha">Precio: </p>'
+                    // . '<p class="negrita derecha">Precio: </p>'
                     . '<p class="derecha iva"><label class="negrita precio">' . $curso->getPrecio() . ' €</label> (IVA no incluido)</p>'
-                    . '<p class="separado">Valoración media: ' . number_format(BD::mediaResenasCurso($curso->getCodigo()), 2) . '</p>';;
+                    . '<p class="separado">Valoración media: ' . number_format(BD::mediaResenasCurso($curso->getCodigo()), 2) . ' / 5.00</p>';;
 
 
                 // print_r($comprado);

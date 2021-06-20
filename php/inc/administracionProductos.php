@@ -4,6 +4,7 @@
 <body>
     <script src="../../js/administracionProductos.js"></script>
     <script src="../../js/filtroEntradas.js"></script>
+    <script src="../../js/borrado.js"></script>
     <?php $titulo = 'Administración'; ?>
     <?php include("../mod/plantillasDelDiseno/header.php")  ?>
     <!---	Incluye un breadcrumb que indique la sección actual-->
@@ -385,7 +386,7 @@
                                             <div>
                                                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                     <input type="hidden" name="idProducto" value="<?php echo $row['id_producto'] ?>">
-                                                    <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="btn btn-primary btn-lg gris">
+                                                    <input type="submit" id="eliminar" name="eliminar" value="Eliminar" class="eliminar btn btn-primary btn-lg gris">
                                                 </form>
                                             </div>
                                         </td>
